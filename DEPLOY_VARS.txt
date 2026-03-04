@@ -1,0 +1,15 @@
+=== CONFIGURAÇÕES VERCEL (ENVIRONMENT VARIABLES) ===
+
+Copie e cole estas 4 chaves no seu dashboard da Vercel (Project Settings > Environment Variables):
+
+1. NEXT_PUBLIC_SUPABASE_URL
+Valor: https://wuehdrluzwnukvokhzpo.supabase.co
+
+2. NEXT_PUBLIC_SUPABASE_ANON_KEY
+Valor: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind1ZWhkcmx1endudWt2b2toenBvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI2Mzg0MDAsImV4cCI6MjA4ODIxNDQwMH0.y5CSz3ddYw2C7c0fvYP6SeZM0dQEsshK95vUT7wqKdI
+
+3. NEXT_PUBLIC_META_PIXEL_ID
+Valor: 1550588932692220
+
+4. META_ACCESS_TOKEN
+Valor: EAAczFHdXOWMBQ9fkq6cCfSaon4izh6ItV1sRlqB2YBBR0SFs7X7Yr83NudZAeUyPD7LklYHUR1eo7uYVKZB6LXTDU0IWGXqjvteir6qj1rqF9HppzZB0iHgedBYkIbVnNbkwZBjhcWP0vZCpf2nyMjkQ9GPtawT6Azpt5DrXLJCabb0t0lDRA3R0MwmPqY85ypgZDZD

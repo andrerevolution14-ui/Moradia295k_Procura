@@ -177,7 +177,7 @@ export default function HomePage() {
             {[
               { val: 'T3', lbl: 'Tipologia' },
               { val: '295k€', lbl: 'Preço Lista Privada' },
-              { val: '114 m²', lbl: 'Área de Construção' },
+              { val: '154 m²', lbl: 'Área Útil' },
               { val: '2026', lbl: 'Entrega Prevista' },
             ].map((s) => (
               <div key={s.lbl} className="stat-item">
@@ -324,7 +324,7 @@ export default function HomePage() {
             <div className="specs-strip">
               {[
                 { val: 'T3', lbl: 'Tipologia' },
-                { val: '114 m²', lbl: 'Área de Construção' },
+                { val: '154 m²', lbl: 'Área Útil' },
                 { val: '2026', lbl: 'Entrega Prevista' },
                 { val: '295k€', lbl: 'Preço Lista Privada' },
               ].map((s, i) => (
