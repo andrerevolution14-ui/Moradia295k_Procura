@@ -6,28 +6,36 @@ import { useEffect } from 'react';
 
 export const PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID;
 
-export const pageview = () => {
-    if (typeof window !== 'undefined' && (window as any).fbq) {
-        (window as any).fbq('track', 'PageView');
-    }
-};
-
 export default function MetaPixel() {
     const pathname = usePathname();
     const searchParams = useSearchParams();
 
     useEffect(() => {
-        if (process.env.NODE_ENV === 'development') {
-            console.log(`[Meta Pixel] Init with ID: ${PIXEL_ID}`);
+        if (!PIXEL_ID) {
+            console.warn('[Meta Pixel] PIXEL_ID is missing. Check your environment variables.');
+            return;
         }
-        pageview();
-    }, [pathname, searchParams]);
+
+        if (typeof window !== 'undefined' && (window as any).fbq) {
+            if (process.env.NODE_ENV === 'development') {
+                console.log(`[Meta Pixel] Tracking PageView: ${pathname}`);
+            }
+            (window as any).fbq('track', 'PageView');
+        }
+    }, [pathname, searchParams, PIXEL_ID]);
+
+    if (!PIXEL_ID) return null;
 
     return (
         <>
             <Script
                 id="fb-pixel"
                 strategy="afterInteractive"
+                onLoad={() => {
+                    if (process.env.NODE_ENV === 'development') {
+                        console.log('[Meta Pixel] Script loaded successfully');
+                    }
+                }}
                 dangerouslySetInnerHTML={{
                     __html: `
             !function(f,b,e,v,n,t,s)
@@ -54,3 +62,10 @@ export default function MetaPixel() {
         </>
     );
 }
+
+export const pageview = () => {
+    const PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID;
+    if (typeof window !== 'undefined' && (window as any).fbq && PIXEL_ID) {
+        (window as any).fbq('track', 'PageView');
+    }
+};
