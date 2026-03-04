@@ -1733,10 +1733,15 @@ h5 {
    FORM SECTION
    ====================================================== */
 
-.form-section {
-  background: var(--clr-navy);
+#formulario {
+  background: #080c1a !important;
+  /* Force dark background regardless of variables */
+  color: #ffffff;
   position: relative;
   overflow: hidden;
+  padding: 120px 0;
+  scroll-margin-top: 100px;
+  /* Aligns with fix nav + air */
 }
 
 .form-section::before {
@@ -1748,17 +1753,15 @@ h5 {
   width: 800px;
   height: 800px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(201, 169, 110, 0.06) 0%, transparent 70%);
-  filter: blur(60px);
+  background: radial-gradient(circle, rgba(201, 169, 110, 0.08) 0%, transparent 70%);
+  filter: blur(80px);
   pointer-events: none;
+  z-index: 0;
 }
 
-.form-section {
-  background: var(--clr-navy-dark);
+#formulario .container {
   position: relative;
-  overflow: hidden;
-  padding: 100px 0;
-  scroll-margin-top: 80px;
+  z-index: 1;
 }
 
 .form-header {
