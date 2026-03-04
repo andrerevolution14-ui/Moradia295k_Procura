@@ -83,27 +83,38 @@ export default function QualForm() {
             return;
         }
 
-        console.log('Submitting lead data:', data);
-        setLoading(true);
         try {
+            // Generate unique event ID for deduplication
+            const eventId = 'lead_' + Date.now() + '_' + Math.random().toString(36).substring(2, 9);
+            const leadValue = 295000;
+
+            console.log(`[Tracking] Generating eventID: ${eventId}`);
+
             // 1. Insert into Supabase
             await insertLead(data);
+            console.log('[Tracking] Supabase insertion successful');
 
             // 2. Track Lead on Client (Pixel)
             if (typeof window !== 'undefined' && (window as any).fbq) {
+                console.log('[Tracking] Firing Meta Pixel Lead event...');
                 (window as any).fbq('track', 'Lead', {
-                    value: 295000,
+                    value: leadValue,
                     currency: 'EUR',
-                });
+                }, { eventID: eventId });
+            } else {
+                console.warn('[Tracking] Meta Pixel (fbq) not found on window');
             }
 
             // 3. Track Lead on Server (CAPI)
+            console.log('[Tracking] Firing Meta CAPI Lead event...');
             await trackCapiLead({
                 nome: data.nome,
-                telefone: data.telefone
+                telefone: data.telefone,
+                eventId: eventId,
+                value: leadValue
             });
 
-            console.log('Submission and tracking successful');
+            console.log('[Tracking] All tracking events triggered successfully');
             setSubmitted(true);
         } catch (err: any) {
             console.error('Submission error:', err);

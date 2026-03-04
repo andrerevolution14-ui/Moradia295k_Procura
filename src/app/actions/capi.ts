@@ -15,6 +15,8 @@ function hash(value: string | undefined) {
 export async function trackCapiLead(userData: {
     nome: string;
     telefone: string;
+    eventId: string;
+    value?: number;
 }) {
     const pixelId = process.env.NEXT_PUBLIC_META_PIXEL_ID;
     const accessToken = process.env.META_ACCESS_TOKEN;
@@ -27,8 +29,13 @@ export async function trackCapiLead(userData: {
     const hHeaders = await headers();
     const clientIp = (hHeaders.get('x-forwarded-for') ?? '127.0.0.1').split(',')[0];
     const userAgent = hHeaders.get('user-agent') ?? '';
+    const cookieHeader = hHeaders.get('cookie') ?? '';
 
-    // Extract name parts (assuming first name is tracked as fn)
+    // Extract fbp and fbc cookies
+    const fbp = cookieHeader.split(';').find(c => c.trim().startsWith('_fbp='))?.split('=')[1];
+    const fbc = cookieHeader.split(';').find(c => c.trim().startsWith('_fbc='))?.split('=')[1];
+
+    // Extract name parts
     const nameParts = userData.nome.trim().split(' ');
     const firstName = nameParts[0];
     const lastName = nameParts.length > 1 ? nameParts[nameParts.length - 1] : '';
@@ -38,6 +45,7 @@ export async function trackCapiLead(userData: {
             {
                 event_name: 'Lead',
                 event_time: Math.floor(Date.now() / 1000),
+                event_id: userData.eventId,
                 action_source: 'website',
                 event_source_url: hHeaders.get('referer') ?? '',
                 user_data: {
@@ -46,6 +54,12 @@ export async function trackCapiLead(userData: {
                     ph: hash(userData.telefone.replace(/\D/g, '')),
                     client_ip_address: clientIp,
                     client_user_agent: userAgent,
+                    fbp: fbp,
+                    fbc: fbc,
+                },
+                custom_data: {
+                    value: userData.value ?? 295000,
+                    currency: 'EUR',
                 },
             },
         ],

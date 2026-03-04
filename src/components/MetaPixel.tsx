@@ -17,6 +17,9 @@ export default function MetaPixel() {
     const searchParams = useSearchParams();
 
     useEffect(() => {
+        if (process.env.NODE_ENV === 'development') {
+            console.log(`[Meta Pixel] Init with ID: ${PIXEL_ID}`);
+        }
         pageview();
     }, [pathname, searchParams]);
 
