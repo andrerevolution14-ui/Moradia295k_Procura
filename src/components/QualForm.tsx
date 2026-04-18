@@ -260,19 +260,19 @@ export default function QualForm() {
             </div>
 
             <div className="field">
-                <label>Valor máximo disponível: <span style={{ color: 'var(--clr-gold)' }}>*</span></label>
+                <label>Capital próprio disponível para entrada: <span style={{ color: 'var(--clr-gold)' }}>*</span></label>
                 <RadioCards
                     field="valor"
                     options={[
-                        { value: 'ate280', label: 'Até 280.000€' },
-                        { value: '280a300', label: 'Entre 280.000€ e 300.000€' },
-                        { value: 'acima300', label: 'Acima de 300.000€' },
+                        { value: 'menos20k', label: 'Menos de 20.000€' },
+                        { value: '20k_a_44k', label: 'Entre 20.000€ e 44.999€' },
+                        { value: 'mais45k', label: '45.000€ ou mais' },
                     ]}
                 />
                 {errors.valor && <span className="field-error">{errors.valor}</span>}
             </div>
 
-            <div className="privacy-note">
+            <div className="privacy-row">
                 <svg viewBox="0 0 20 20"><path d="M10 2a6 6 0 00-6 6v1H3a1 1 0 00-1 1v7a1 1 0 001 1h14a1 1 0 001-1v-7a1 1 0 00-1-1h-1V8a6 6 0 00-6-6zm-4 7V8a4 4 0 118 0v1H6z" /></svg>
                 <p>Os seus dados são utilizados exclusivamente para contacto sobre este projeto e não serão partilhados com terceiros.</p>
             </div>
@@ -285,7 +285,7 @@ export default function QualForm() {
 
             <button
                 type="submit"
-                className="btn btn--primary btn--lg btn--full"
+                className="btn btn--gold btn--lg btn--full"
                 disabled={loading}
             >
                 {loading ? (
@@ -305,13 +305,17 @@ export default function QualForm() {
                     </>
                 ) : (
                     <>
-                        Solicitar Apresentação Completa
+                        Receber Apresentação Completa
                         <svg className="btn-arrow" viewBox="0 0 20 20">
                             <path d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" />
                         </svg>
                     </>
                 )}
             </button>
+            <div className="form-credit-note" style={{ marginTop: '24px', fontSize: '0.82rem', color: 'var(--text-light)', lineHeight: 1.6, textAlign: 'center', background: 'rgba(200, 169, 107, 0.05)', padding: '16px', borderRadius: 'var(--radius)', border: '1px solid rgba(200, 169, 107, 0.15)' }}>
+                <span style={{ fontSize: '1.2rem', display: 'block', marginBottom: '8px' }}>🔐</span>
+                Ao submeter, terá acesso prioritário a uma <strong>consulta gratuita com o nosso especialista em crédito</strong> para validar a sua capacidade de compra — sem compromisso.
+            </div>
         </form>
     );
 }

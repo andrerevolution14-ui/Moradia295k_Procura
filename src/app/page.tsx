@@ -1,220 +1,124 @@
 import { Fragment } from 'react';
-import Image from 'next/image';
-import Nav from '@/components/Nav';
 import FloatingCTA from '@/components/FloatingCTA';
 import RevealWrapper from '@/components/RevealWrapper';
 import QualForm from '@/components/QualForm';
 
-/* ============================================================
-   ICON SNIPPETS
-   ============================================================ */
-const CheckIcon = () => (
-  <svg width="9" height="9" viewBox="0 0 20 20" fill="currentColor">
-    <path d="M16.7 5.3a1 1 0 00-1.4 0L8 12.6 4.7 9.3a1 1 0 00-1.4 1.4l4 4a1 1 0 001.4 0l8-8a1 1 0 000-1.4z" />
-  </svg>
-);
-
+/* ── Icons ── */
 const ArrowIcon = () => (
-  <svg className="btn-arrow" viewBox="0 0 20 20" fill="currentColor">
+  <svg className="btn-arrow" viewBox="0 0 20 20" fill="currentColor" aria-hidden>
     <path d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" />
   </svg>
 );
 
-const LockIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
-    <path d="M7 11V7a5 5 0 0110 0v4" />
+const CheckSvg = () => (
+  <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden>
+    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z" clipRule="evenodd" />
   </svg>
 );
 
 /* ============================================================
-   HERO PILLS DATA
-   ============================================================ */
-const pills = [
-  'Projeto Aprovado',
-  'Entrega Prevista 2026',
-  'Arquitetura Contemporânea',
-];
-
-/* ============================================================
-   FEATURES DATA
-   ============================================================ */
-const features = [
-  {
-    num: '01',
-    title: 'Arquitetura Contemporânea',
-    body: 'Linhas limpas, fachada moderna e intemporal. Design que comunica qualidade antes de entrar.',
-  },
-  {
-    num: '02',
-    title: 'Layout Funcional para Famílias',
-    body: 'Tipologia T3 com áreas bem distribuídas para o ritmo real de uma família moderna.',
-  },
-  {
-    num: '03',
-    title: 'Luminosidade Natural',
-    body: 'Orientação e vãos estudados para maximizar entrada de luz natural ao longo do dia.',
-  },
-  {
-    num: '04',
-    title: 'Conforto Térmico e Acústico',
-    body: 'Materiais atuais, isolamentos adequados e caixilharia de qualidade. Conforto o ano todo.',
-  },
-  {
-    num: '05',
-    title: 'Espaço Exterior Privativo',
-    body: 'Jardim e logradouro privados. Ar livre em casa — cada vez mais difícil de encontrar.',
-  },
-  {
-    num: '06',
-    title: 'Zona Residencial Calma',
-    body: 'Ambiente habitacional tranquilo, sem a densidade dos centros urbanos.',
-  },
-];
-
-/* ============================================================
-   LOCATION DATA
-   ============================================================ */
-const locationCards = [
-  { icon: '🏫', title: 'Educação e Família', body: 'Estabelecimentos de ensino de vários níveis num raio de acesso fácil para o dia a dia.' },
-  { icon: '🛒', title: 'Comércio e Serviços', body: 'Comércio local e grandes superfícies para as compras do dia a dia. Serviços essenciais próximos.' },
-  { icon: '🚗', title: 'Acessos e Mobilidade', body: 'Boa ligação a vias rápidas e itinerários principais para os centros urbanos da região.' },
-  { icon: '🌳', title: 'Ambiente Residencial', body: 'Zona predominantemente habitacional, baixa densidade e ambiente calmo com segurança de bairro.' },
-];
-
-/* ============================================================
-   WHY LIST DATA
-   ============================================================ */
-const whyItems = [
-  {
-    num: '1',
-    title: 'Avaliar procura real antes de avançar',
-    body: 'Antes de assumir compromissos adicionais com fornecedores e financiadores, queremos confirmar que existe procura genuína e qualificada neste momento.',
-  },
-  {
-    num: '2',
-    title: 'Selecionar compradores prioritários',
-    body: 'Com a lista privada identificamos antecipadamente quem está financeiramente preparado, garantindo que o tempo de todos é usado de forma eficiente.',
-  },
-  {
-    num: '3',
-    title: 'Oferecer condições de acesso antecipado',
-    body: 'Quem entra na lista privada nesta fase tem acesso a condições que não estarão disponíveis após lançamento oficial.',
-  },
-  {
-    num: '4',
-    title: 'Garantir alinhamento entre projeto e mercado',
-    body: 'Esta fase de validação ajuda-nos a confirmar ou ajustar detalhes do projeto antes de qualquer decisão irreversível.',
-  },
-];
-
-/* ============================================================
-   PAGE COMPONENT
+   PAGE
    ============================================================ */
 export default function HomePage() {
   return (
     <>
-      <Nav />
+      {/* ── FLOATING MOBILE CTA ── */}
       <FloatingCTA />
 
-      {/* ==================== HERO ==================== */}
-      <section className="hero" id="hero">
-        <div className="hero-orb hero-orb-1" />
-        <div className="hero-orb hero-orb-2" />
-        <div className="hero-grid" />
-
-        <div className="hero-content">
-          <div className="animate-fadeUp hero-badge">
-            <span className="hero-badge-dot" />
-            Lista Privada &mdash; Acesso Antecipado
-          </div>
-
-          <h1 className="hero-title animate-fadeUp delay-1">
-            Nova Moradia<br />
-            T3 Moderna<br />
-            <span className="gold">a 10 Minutos de</span><br />
-            <span className="gold">Aveiro</span><br />
-            <span className="hero-price">295.000€</span>
-          </h1>
-
-          <p className="hero-sub animate-fadeUp delay-2">
-            Projeto aprovado em fase inicial, com acesso antecipado para compradores selecionados.{' '}
-            <strong>Entrega prevista 2026.</strong> As informações completas são partilhadas apenas após qualificação.
-          </p>
-
-          <div className="hero-actions animate-fadeUp delay-3">
-            <a href="#formulario" className="btn btn--primary btn--lg">
-              Solicitar Informação Completa
-              <ArrowIcon />
-            </a>
-            <a href="#conceito" className="btn btn--outline">
-              Conhecer o Projeto
-            </a>
-          </div>
-
-          <div className="hero-pills animate-fadeUp delay-4">
-            {pills.map((p) => (
-              <span key={p} className="hero-pill">
-                <span className="hero-pill-check">
-                  <CheckIcon />
-                </span>
-                {p}
-              </span>
-            ))}
+      {/* ── NAV ── */}
+      <nav className="nav" aria-label="Navegação principal">
+        <div className="container nav-container">
+          <a href="#hero" className="nav-logo" aria-label="Voltar ao topo">
+            Moradia <span>295K</span>
+          </a>
+          <div className="nav-actions">
+            <a href="#projeto" className="nav-link">A Moradia</a>
+            <a href="#modelo" className="nav-link">O Modelo</a>
+            <a href="#formulario" className="btn btn--gold btn--sm">Acesso Exclusivo</a>
           </div>
         </div>
+      </nav>
 
-        <div className="hero-scroll">
-          <span>Scroll</span>
-          <div className="hero-scroll-line" />
+      {/* ══════════════════════════════════════════════════
+          HERO
+          ══════════════════════════════════════════════════ */}
+      <section className="hero" id="hero">
+        <div className="container">
+          <div className="hero-inner">
+            <RevealWrapper>
+              <div className="hero-eyebrow">Lista Privada — Acesso Antecipado</div>
+
+              <h1 className="hero-title">
+                Moradia T3 Moderna<br />
+                <em>nas Quintãs.</em>
+                <span className="hero-price">295.000€</span>
+              </h1>
+
+              <p className="hero-sub">
+                O futuro da habitação. Design, rapidez e inteligência financeira.<br />
+                Entregue <strong>Chave na Mão em Janeiro de 2027.</strong>
+              </p>
+
+              <div className="hero-bullets">
+                <span className="hero-bullet">Quintãs, Aveiro</span>
+                <span className="hero-bullet-sep" aria-hidden />
+                <span className="hero-bullet">Entrega em 10 meses</span>
+                <span className="hero-bullet-sep" aria-hidden />
+                <span className="hero-bullet">Preço Fechado</span>
+              </div>
+
+              <a href="#formulario" className="btn btn--gold btn--lg" id="hero-cta">
+                Solicitar Apresentação e Plantas
+                <ArrowIcon />
+              </a>
+            </RevealWrapper>
+
+            <RevealWrapper delay={1}>
+              <div className="hero-stats">
+                {[
+                  { val: 'T3', lbl: 'Tipologia' },
+                  { val: '145 m²', lbl: 'Área Útil' },
+                  { val: 'Jan 2027', lbl: 'Entrega' },
+                  { val: '295k€', lbl: 'Preço Final' },
+                ].map((s) => (
+                  <Fragment key={s.lbl}>
+                    <div className="stat-item">
+                      <span className="stat-value">{s.val}</span>
+                      <span className="stat-label">{s.lbl}</span>
+                    </div>
+                  </Fragment>
+                ))}
+              </div>
+            </RevealWrapper>
+          </div>
         </div>
       </section>
 
-      {/* ==================== STATS ROW ==================== */}
-      <div className="stats-row">
-        <div className="container">
-          <div className="stats-inner">
-            {[
-              { val: 'T3', lbl: 'Tipologia' },
-              { val: '295k€', lbl: 'Preço Lista Privada' },
-              { val: '154 m²', lbl: 'Área Útil' },
-              { val: '2026', lbl: 'Entrega Prevista' },
-            ].map((s) => (
-              <div key={s.lbl} className="stat-item">
-                <span className="stat-value">{s.val}</span>
-                <span className="stat-label">{s.lbl}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* ==================== PROBLEM ==================== */}
-      <section className="section problem-section" id="mercado">
+      {/* ══════════════════════════════════════════════════
+          A MORADIA — CARACTERÍSTICAS
+          ══════════════════════════════════════════════════ */}
+      <section className="section section--mid" id="projeto">
         <div className="container">
           <RevealWrapper>
-            <div className="section-header">
-              <div className="tag">O Contexto Atual</div>
-              <div style={{ height: 20 }} />
-              <h2 className="section-title">
-                Encontrar uma casa nova<br />a preço justo ficou difícil.
-              </h2>
-              <p className="section-sub">
-                O mercado imobiliário em Portugal mudou significativamente. Para quem está genuinamente à procura de habitação própria, a realidade é desafiante.
+            <div className="section-header section-header--center">
+              <p className="label">O Produto</p>
+              <h2 className="title title--center">Arquitetura Contemporânea<br />e Inteligente.</h2>
+              <p className="section-intro section-intro--center">
+                Uma moradia pensada para proporcionar conforto e estética no dia a dia. Com uma distribuição inteligente e excelente exposição solar, desenhada à medida das necessidades de uma família moderna.
               </p>
             </div>
           </RevealWrapper>
 
           <div className="problem-grid">
             {[
-              { emoji: '📈', title: 'Preços inflacionados', body: 'Os preços subiram consideravelmente enquanto a qualidade de construção nem sempre acompanhou. É comum pagar muito por pouco.' },
-              { emoji: '🔨', title: 'Obras nas usadas', body: 'A maioria das casas usadas exige obras de atualização — canalização, elétrica, isolamento. Custos imprevistos que pesam no orçamento.' },
-              { emoji: '⚡', title: 'Baixa eficiência energética', body: 'Grande parte do parque habitacional tem classificações energéticas baixas. Faturas elevadas durante décadas têm um impacto financeiro real.' },
-              { emoji: '🔍', title: 'Dificuldade em encontrar qualidade', body: 'Encontrar moradia nova, com arquitetura cuidada e preço justo em zona tranquila tornou-se um exercício de paciência.' },
+              { num: '01', title: 'Distribuição Inteligente', body: 'Tipologia T3 com espaços bem proporcionados. Cada divisão foi planeada para maximizar o conforto, a organização e o aproveitamento do espaço.' },
+              { num: '02', title: 'Exposição Solar', body: 'Luminosidade garantida. Orientação estudada e vãos generosos para assegurar luz natural em toda a habitação ao longo do dia.' },
+              { num: '03', title: '100% Equipada', body: 'Pronta a habitar. Cozinha com eletrodomésticos de gama alta e casas de banho premium (loiças e torneiras incluídas).' },
+              { num: '04', title: 'Acabamentos à sua Medida', body: 'Pavimentos, revestimentos e pinturas incluídos no orçamento, com a opção de personalização dos materiais interiores.' },
             ].map((card, i) => (
-              <RevealWrapper key={card.title} delay={i % 4 as 0 | 1 | 2 | 3}>
+              <RevealWrapper key={card.num} delay={i % 4 as 0 | 1 | 2 | 3}>
                 <div className="problem-card">
-                  <span className="problem-emoji">{card.emoji}</span>
+                  <div className="problem-num">{card.num}</div>
                   <h3>{card.title}</h3>
                   <p>{card.body}</p>
                 </div>
@@ -223,504 +127,327 @@ export default function HomePage() {
           </div>
 
           <RevealWrapper>
-            <div className="solution-callout">
+            <div className="callout-bar">
+              <div className="callout-bar-line" aria-hidden />
               <p>
-                Este projeto foi pensado como resposta direta a esta realidade: uma moradia{' '}
-                <strong>nova, a 10 minutos de Aveiro</strong>, com <strong>eficiência energética</strong>,{' '}
-                <strong>arquitetura contemporânea</strong> e um preço que reflete o momento de lançamento —
-                não o mercado daqui a dois anos.
+                <strong>O nosso compromisso:</strong> Chave na mão. O preço fechado reflete uma casa pronta a habitar, sem adjudicações extras ou surpresas no fim da obra.
               </p>
-            </div>
-          </RevealWrapper>
-
-          <RevealWrapper>
-            <div style={{ textAlign: 'center', marginTop: 48 }}>
-              <a href="#formulario" className="btn btn--primary btn--lg">
-                Quero Saber Mais
-                <ArrowIcon />
-              </a>
             </div>
           </RevealWrapper>
         </div>
       </section>
 
-      {/* ==================== MARKET CONTEXT ==================== */}
-      <section className="section market-context-section" id="mercado-comparativo">
-        <div className="container">
-          <RevealWrapper>
-            <div className="section-header section-header--center">
-              <div className="tag">Contexto de Mercado</div>
-              <div style={{ height: 20 }} />
-              <h2 className="section-title" style={{ textAlign: 'center' }}>
-                Oportunidade real de mercado.<br />Veja o comparativo na zona.
-              </h2>
-              <p className="section-sub" style={{ textAlign: 'center' }}>
-                Ao contrário da oferta atual em Aradas e arredores de Aveiro, este projeto oferece uma moradia
-                <strong> nova e moderna</strong> abaixo do preço médio das casas usadas na região.
-              </p>
-            </div>
-          </RevealWrapper>
-
-          <RevealWrapper>
-            <div className="market-map-container">
-              <a href="/market-map.png" target="_blank" rel="noopener noreferrer" className="market-map-link">
-                <Image
-                  src="/market-map.png"
-                  alt="Mapa comparativo de preços em Aveiro"
-                  width={1200}
-                  height={800}
-                  className="market-map-image"
-                />
-                <div className="market-map-zoom-hint">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" /><line x1="11" y1="8" x2="11" y2="14" /><line x1="8" y1="11" x2="14" y2="11" />
-                  </svg>
-                  <span>Clique para ampliar</span>
-                </div>
-              </a>
-              <div className="market-map-overlay">
-                <div className="market-map-legend">
-                  <span className="legend-dot legend-dot--ours" />
-                  <span>Este Projeto (295k€)</span>
-                  <span className="legend-dot legend-dot--other" />
-                  <span>Oferta Mercado na Zona</span>
-                </div>
-              </div>
-            </div>
-          </RevealWrapper>
-        </div>
-      </section>
-
-      {/* ==================== CONCEPT ==================== */}
-      <section className="section concept-section" id="conceito">
-        <div className="concept-bg-orb" />
+      {/* ══════════════════════════════════════════════════
+          LOCALIZAÇÃO
+          ══════════════════════════════════════════════════ */}
+      <section className="section section--dark" id="localizacao">
         <div className="container">
           <RevealWrapper>
             <div className="section-header">
-              <div className="tag tag--light">O Projeto</div>
-              <div style={{ height: 20 }} />
-              <h2 className="section-title section-title--white">
-                Uma moradia pensada para<br />quem valoriza o essencial.
-              </h2>
-              <p className="section-sub section-sub--white">
-                Não se trata apenas de metros quadrados. É sobre a forma como a casa funciona no quotidiano.
+              <p className="label">A Localização</p>
+              <h2 className="title">Tranquilidade com<br />o centro a 10 minutos.</h2>
+              <p className="section-intro">
+                O lote situa-se nas Quintãs (Rua da Capela Nova), inserido num loteamento organizado, seguro e de forte pendor familiar. O equilíbrio perfeito entre a pacatez residencial e a proximidade aos principais acessos.
               </p>
             </div>
           </RevealWrapper>
 
-          <div className="features-grid">
-            {features.map((f, i) => (
-              <RevealWrapper key={f.num} delay={(i % 3) as 0 | 1 | 2}>
-                <div className="feature-cell">
-                  <div className="feature-num">{f.num}</div>
-                  <h3>{f.title}</h3>
-                  <p>{f.body}</p>
+          <div className="benefits-grid">
+            {[
+              { tag: 'Distância', title: 'Centro de Aveiro', body: 'Apenas 8 a 10 minutos de carro da cidade, garantindo proximidade a comércio, escolas e transportes.' },
+              { tag: 'Conveniência', title: 'Autoestrada a 2 min', body: 'Acesso quase imediato às vias rápidas, facilitando qualquer deslocação diária ou profissional.' },
+              { tag: 'Ambiente', title: 'Zona Residencial', body: 'Vizinhança consolidada e pacífica, longe da confusão urbana mas dotada de boas infraestruturas locais.' },
+              { tag: 'O Lote', title: 'Espaço Exterior Otimizado', body: 'Terreno de aproximadamente 194m² desenhado para ser prático e de baixa manutenção, complementando a área útil de habitação.' },
+            ].map((b, i) => (
+              <RevealWrapper key={b.tag} delay={i % 4 as 0 | 1 | 2 | 3}>
+                <div className="benefit-card">
+                  <span className="benefit-tag">{b.tag}</span>
+                  <h3>{b.title}</h3>
+                  <p>{b.body}</p>
                 </div>
               </RevealWrapper>
             ))}
           </div>
 
-          <RevealWrapper>
-            <div className="specs-strip">
-              {[
-                { val: 'T3', lbl: 'Tipologia' },
-                { val: '154 m²', lbl: 'Área Útil' },
-                { val: '2026', lbl: 'Entrega Prevista' },
-                { val: '295k€', lbl: 'Preço Lista Privada' },
-              ].map((s, i) => (
-                <Fragment key={s.lbl}>
-                  <div className="spec">
-                    <span className="spec-val">{s.val}</span>
-                    <span className="spec-lbl">{s.lbl}</span>
-                  </div>
-                  {i < 3 && <div className="spec-sep" />}
-                </Fragment>
-              ))}
-            </div>
-          </RevealWrapper>
-
-          <RevealWrapper>
-            <div style={{ textAlign: 'center', marginTop: 48 }}>
-              <a href="#formulario" className="btn btn--primary btn--lg">
-                Solicitar Acesso Antecipado
-                <ArrowIcon />
-              </a>
+          <RevealWrapper delay={1}>
+            <div style={{ marginTop: 48, borderRadius: 'var(--radius)', overflow: 'hidden' }}>
+              <img src="/aveiro1.webp" alt="Visão de Aveiro" style={{ width: '100%', height: 'auto', objectFit: 'cover', display: 'block' }} loading="lazy" />
             </div>
           </RevealWrapper>
         </div>
       </section>
 
-      {/* ==================== PROFILE ==================== */}
-      <section className="section profile-section" id="perfil">
+      {/* ══════════════════════════════════════════════════
+          O PROBLEMA DO MERCADO
+          ══════════════════════════════════════════════════ */}
+      <section className="section section--mid" id="contexto">
+        <div className="container">
+          <div className="lsf-layout">
+            <RevealWrapper>
+              <div>
+                <p className="label">O Desafio Atual</p>
+                <h2 className="title">O mercado imobiliário falhou o comprador.</h2>
+                <p className="section-intro" style={{ marginBottom: 24 }}>
+                  Comprar casa nova tornou-se um desafio. Preços inflexíveis, escassez de opções de qualidade e apartamentos banais a ultrapassarem os 355.000€ na região.
+                </p>
+                <div className="check-list">
+                  {[
+                    'Concorrência inflacionada entre compradores',
+                    'Falta de transparência e prazos de entrega incertos',
+                    'Casas usadas a pedir obras de atualização dispendiosas',
+                    'Relação qualidade/preço completamente desequilibrada',
+                  ].map((item) => (
+                    <div key={item} className="check-item">
+                      <CheckSvg />
+                      <span>{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </RevealWrapper>
+
+            <RevealWrapper delay={1}>
+              <div className="lsf-highlight-box">
+                <h3 style={{ color: 'var(--gold)' }}>A Nossa Solução</h3>
+                <p>Criámos de raiz um projeto desenhado para oferecer qualidade de vida sem abdicar da inteligência financeira.</p>
+                <div className="check-list">
+                  <div className="check-item" style={{ color: 'var(--white)' }}>
+                    <CheckSvg /> <span>Construção de ponta, completamente nova</span>
+                  </div>
+                  <div className="check-item" style={{ color: 'var(--white)' }}>
+                    <CheckSvg /> <span>Entrada em fase inicial com vantagens reais</span>
+                  </div>
+                  <div className="check-item" style={{ color: 'var(--white)' }}>
+                    <CheckSvg /> <span>Posicionamento de preço abaixo da média</span>
+                  </div>
+                </div>
+              </div>
+            </RevealWrapper>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════
+          O MODELO SILVERMONT E FASES
+          ══════════════════════════════════════════════════ */}
+      <section className="section section--dark" id="modelo">
         <div className="container">
           <RevealWrapper>
-            <div className="section-header">
-              <div className="tag">Para Quem É</div>
-              <div style={{ height: 20 }} />
-              <h2 className="section-title">
-                Esta moradia foi pensada<br />para um perfil específico.
-              </h2>
-              <p className="section-sub">
-                Preferimos ser claros desde o início — sobre quem vai beneficiar verdadeiramente deste projeto.
+            <div className="section-header section-header--center">
+              <p className="label">O Modelo Silvermont</p>
+              <h2 className="title title--center">Autoconstrução Assistida.</h2>
+              <p className="section-intro section-intro--center">
+                A junção perfeita: as enormes vantagens fiscais e financeiras da autoconstrução, totalmente geridas por nós para garantir a simplicidade de um produto 'Chave na Mão'.
               </p>
             </div>
           </RevealWrapper>
 
-          <div className="profile-cols">
-            <RevealWrapper delay={1}>
-              <div className="profile-col profile-col--yes">
-                <div className="profile-col-header">
-                  <span className="profile-icon profile-icon--yes">✔</span>
-                  <h3>Este projeto é para si se…</h3>
+          <div className="phases-layout">
+            {[
+              { step: '01', badge: 'Terreno', title: 'Proprietário no Dia 1', body: 'A escritura do lote (com projeto aprovado) passa imediatamente para si. Tem a segurança máxima sobre o investimento.' },
+              { step: '02', badge: 'Financiamento', title: 'Construção por Tranches', body: 'O banco aprova a operação total e só liberta fundos à medida que a casa é construída. Controlo e transparência absolutos.' },
+              { step: '03', badge: 'Chave na Mão', title: 'Gestão 100% Silvermont', body: 'Sem dores de cabeça. Coordenamos as equipas, tratamos das burocracias e entregamos-lhe a casa concluída.' },
+            ].map((p, i) => (
+              <RevealWrapper key={p.step} delay={i as 0 | 1 | 2}>
+                <div className="phase-card">
+                  <div className="phase-step" aria-hidden>{p.step}</div>
+                  <span className="phase-badge">{p.badge}</span>
+                  <h3>{p.title}</h3>
+                  <p>{p.body}</p>
                 </div>
-                <ul className="profile-list">
-                  <li>É um <strong>casal ou família</strong> que quer sair do apartamento para moradia com exterior</li>
-                  <li>Valoriza <strong>qualidade de construção nova</strong> acima de preço baixo em imóvel degradado</li>
-                  <li>Quer <strong>eficiência energética</strong> e zero obras futuras</li>
-                  <li>Está disposto a esperar pela <strong>conclusão em 2026</strong></li>
-                  <li>Quer comprar em <strong>fase inicial</strong> para melhor posicionamento e condições</li>
-                  <li>Tem capacidade de financiamento <strong>alinhada com 295.000€</strong></li>
-                </ul>
+              </RevealWrapper>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════
+          INTELIGÊNCIA FINANCEIRA & BENEFÍCIOS
+          ══════════════════════════════════════════════════ */}
+      <section className="section section--mid" id="beneficios">
+        <div className="container">
+          <RevealWrapper>
+            <div className="section-header section-header--center">
+              <p className="label">Inteligência Financeira</p>
+              <h2 className="title title--center">Razões que a matemática aprova.</h2>
+              <p className="section-intro section-intro--center">
+                Não maximizamos apenas a arquitetura. Maximizamos ativamente a eficácia do seu capital através de uma engenharia processual inovadora.
+              </p>
+            </div>
+          </RevealWrapper>
+
+          <div className="lsf-layout">
+            <div className="lsf-features">
+              {[
+                { title: 'Otimização Fiscal Brutal', body: 'Enquanto a maioria paga IMT sobre o valor total do imóvel pronto (295k€), aqui apenas tributa o lote. Poupança superior a 10.000€ euros perfeitamente legais.' },
+                { title: 'Sem Dupla Prestação', body: 'O pesadelo de pagar aluguer e crédito ao mesmo tempo desaparece. Paga apenas juros sobre a fração do dinheiro que for utilizada durante os curtos meses da obra.' },
+                { title: 'Crédito Tratado Gratuitamente', body: 'Trabalhamos com parceiros intermediários registados no Banco de Portugal que analisam a sua viabilidade de forma transparente, rápida e isenta de custos.' },
+                { title: 'Valorização Imediata', body: 'O mercado negoceia moradias novas desta dimensão muito acima dos 350.000€. Quem reserva na lista privada e escrituras a 295.000€ solidifica património instantaneamente.' },
+              ].map((f, i) => (
+                <RevealWrapper key={f.title} delay={i % 3 as 0 | 1 | 2}>
+                  <div className="lsf-feature">
+                    <span className="lsf-num" aria-hidden>0{i + 1}</span>
+                    <div>
+                      <h3>{f.title}</h3>
+                      <p>{f.body}</p>
+                    </div>
+                  </div>
+                </RevealWrapper>
+              ))}
+            </div>
+
+            <RevealWrapper delay={1}>
+              <div className="lsf-highlight-box" style={{ borderColor: 'rgba(239, 68, 68, 0.4)' }}>
+                <h3 style={{ color: '#f87171' }}>Segurança Jurídica Total</h3>
+                <p>Introduzimos a 'Cláusula de Confiança Total' no Contrato Promessa.</p>
+                <div style={{ marginTop: 20, fontSize: '0.95rem', color: 'var(--text-light)', lineHeight: 1.7 }}>
+                  Se assinar o contrato connosco e o banco rejeitar inesperadamente o financiamento essencial à sua operação — ou a avaliação divergir fatalmente — <strong>o sinal depositado ser-lhe-á devolvido na íntegra.</strong>
+                  <br /><br />
+                  <span style={{ color: 'var(--white)' }}>Sem penalizações obscuras. Sem riscos para a sua família. Risco zero para fechar negócio.</span>
+                </div>
               </div>
             </RevealWrapper>
-            <RevealWrapper delay={2}>
-              <div className="profile-col profile-col--no">
-                <div className="profile-col-header">
-                  <span className="profile-icon profile-icon--no">✖</span>
-                  <h3>Este projeto não é para si se…</h3>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════
+          TECNOLOGIA LSF
+          ══════════════════════════════════════════════════ */}
+      <section className="section section--dark" id="tecnologia">
+        <div className="container">
+          <RevealWrapper>
+            <div className="section-header section-header--center">
+              <p className="label">10 Meses de Obra — Sem Atrasos</p>
+              <h2 className="title title--center">Construção de Precisão: LSF</h2>
+            </div>
+          </RevealWrapper>
+
+          <div className="benefits-grid">
+            {[
+              { tag: 'Precisão', title: 'Light Steel Framing', body: 'Estruturas de aço leve produzidas de forma industrial e montadas na obra sem margem para erros estéticos ou logísticos.' },
+              { tag: 'Conforto', title: 'Isolamento Térmico Absoluto', body: 'A tecnologia LSF isola as paredes e teto por camadas múltiplas, erradicando humidades e oscilações desconfortáveis de clima.' },
+              { tag: 'Acústica', title: 'Silêncio Garantido', body: 'Ao contrário dos reflexos e propagação do tijolo moderno, os materiais absorventes do modelo LSF atenuam ruídos externos de forma esmagadora.' },
+              { tag: 'Prazo', title: 'Rapidez Previsível', body: 'Fugimos dos imponderáveis da mão-de-obra que bloqueia a maioria da construção pesada. A agilidade permite fechar chaves em Janeiro de 2027.' },
+            ].map((b, i) => (
+              <RevealWrapper key={b.tag} delay={i % 4 as 0 | 1 | 2 | 3}>
+                <div className="benefit-card">
+                  <span className="benefit-tag">{b.tag}</span>
+                  <h3>{b.title}</h3>
+                  <p>{b.body}</p>
                 </div>
-                <ul className="profile-list">
-                  <li>Precisa de <strong>entrega imediata</strong></li>
-                  <li>Está apenas a <strong>comparar preços</strong> sem intenção de compra</li>
-                  <li>Procura <strong>especulação de curto prazo</strong></li>
-                  <li>Não tem <strong>pré-aprovação bancária</strong> nem está a tratar disso</li>
-                </ul>
-                <p className="profile-note">
-                  Esta clareza não é exclusão — é respeito mútuo pelo tempo de todos.
+              </RevealWrapper>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════
+          COMPARATIVO FINAL
+          ══════════════════════════════════════════════════ */}
+      <section className="section section--mid" id="comparativo">
+        <div className="container">
+          <RevealWrapper>
+            <div className="section-header section-header--center">
+              <p className="label">Posicionamento</p>
+              <h2 className="title title--center">A transparência da Venda Direta.</h2>
+              <p className="section-intro section-intro--center">
+                Ignoramos a intermediação imobiliária para reinvestir os 10% nas suas poupanças. Como os números confirmam:
+              </p>
+            </div>
+          </RevealWrapper>
+
+          <div className="comparison-grid">
+            <RevealWrapper delay={0}>
+              <div className="comparison-card comparison-card--default">
+                <span className="comparison-card-label">Mercado Normal (T2 Médio)</span>
+                <h3>Apartamento T2 em Aveiro / Gafanhas</h3>
+                <p>
+                  Sujeito aos caprichos de mercado: cerca de 355.000€. Tributará o IMT global e o Imposto de Selo resultando num encargo extra enorme. Faltarão personalizações, sem cozinha totalmente assegurada, para espaço mais restrito.
+                </p>
+              </div>
+            </RevealWrapper>
+            <RevealWrapper delay={1}>
+              <div className="comparison-card comparison-card--featured">
+                <span className="comparison-card-label"> Silvermont Capital</span>
+                <h3>Lista Privada nas Quintãs (T3)</h3>
+                <p>
+                  Fecho do processo aos <strong>295.000€</strong> redondos. O seu IMT foca-se cirurgicamente no valor restrito do lote inicial. Todo o equipamento é topo de gama e incluído na planta sem um centímetro cedido na flexibilidade.
                 </p>
               </div>
             </RevealWrapper>
           </div>
 
-          <RevealWrapper>
-            <div style={{ textAlign: 'center', marginTop: 48 }}>
-              <a href="#formulario" className="btn btn--primary btn--lg">
-                Fazer Parte da Lista Privada
-                <ArrowIcon />
-              </a>
+          <RevealWrapper delay={1}>
+            <div style={{ marginTop: 48, borderRadius: 'var(--radius)', overflow: 'hidden', border: '1px solid var(--border-dark)' }}>
+              <img src="/precos1.png" alt="Comparativo de Preços na Região" style={{ width: '100%', height: 'auto', objectFit: 'contain', display: 'block' }} loading="lazy" />
             </div>
           </RevealWrapper>
         </div>
       </section>
 
-      {/* ==================== LOCATION ==================== */}
-      <section className="section location-section" id="localizacao">
+      {/* ══════════════════════════════════════════════════
+          QUEM SOMOS E CTA
+          ══════════════════════════════════════════════════ */}
+      <section className="section section--dark" id="autoridade">
         <div className="container">
-          <RevealWrapper>
-            <div className="section-header">
-              <div className="tag tag--light">Localização</div>
-              <div style={{ height: 20 }} />
-              <h2 className="section-title section-title--white">
-                A 10 minutos de Aveiro.<br />Com toda a tranquilidade de zona residencial.
-              </h2>
-              <p className="section-sub section-sub--white">
-                A morada exata será partilhada após qualificação. O que podemos adiantar sobre o contexto:
-              </p>
-            </div>
-          </RevealWrapper>
-
-          <div className="location-cards">
-            {locationCards.map((c, i) => (
-              <RevealWrapper key={c.title} delay={(i % 4) as 0 | 1 | 2 | 3}>
-                <div className="loc-card">
-                  <div className="loc-icon">{c.icon}</div>
-                  <h3>{c.title}</h3>
-                  <p>{c.body}</p>
+          <div className="about-grid" style={{ gridTemplateColumns: '1fr', maxWidth: 640, margin: '48px auto 0' }}>
+            <RevealWrapper delay={0}>
+              <div className="about-card">
+                <div className="about-image-wrap is-logo" style={{ background: '#fff', padding: '40px', display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '180px' }}>
+                  <img src="/sign1.png" alt="Silvermont Capital" className="about-image is-logo-img" style={{ maxHeight: '200px', width: 'auto', display: 'block', transform: 'scale(1.4)' }} loading="lazy" />
                 </div>
-              </RevealWrapper>
-            ))}
-          </div>
-
-          <RevealWrapper>
-            <div className="location-lock-note">
-              <LockIcon />
-              A morada exata e detalhes específicos da localização são partilhados na apresentação completa, disponível após submissão e qualificação.
-            </div>
-          </RevealWrapper>
-        </div>
-      </section>
-
-      {/* ==================== WHY LIST ==================== */}
-      <section className="section why-section" id="lista-privada">
-        <div className="container container--mid">
-          <RevealWrapper>
-            <div className="section-header">
-              <div className="tag">O Nosso Processo</div>
-              <div style={{ height: 20 }} />
-              <h2 className="section-title">
-                Porque estamos a abrir<br />uma lista privada.
-              </h2>
-              <p className="section-sub">
-                Esta não é uma estratégia de marketing. É a forma mais responsável de gerir um projeto imobiliário.
-              </p>
-            </div>
-          </RevealWrapper>
-
-          <div className="why-list">
-            {whyItems.map((item) => (
-              <RevealWrapper key={item.num}>
-                <div className="why-item">
-                  <span className="why-num">{item.num}</span>
-                  <div className="why-body">
-                    <h3>{item.title}</h3>
-                    <p>{item.body}</p>
-                  </div>
-                </div>
-              </RevealWrapper>
-            ))}
-          </div>
-
-          <RevealWrapper>
-            <div style={{ textAlign: 'center', marginTop: 48 }}>
-              <a href="#formulario" className="btn btn--primary btn--lg">
-                Entrar na Lista Privada
-                <ArrowIcon />
-              </a>
-            </div>
-          </RevealWrapper>
-        </div>
-      </section>
-
-      {/* ==================== FINANCE ==================== */}
-      <section className="section finance-section" id="financeiro">
-        <div className="container">
-          <RevealWrapper>
-            <div className="section-header">
-              <div className="tag tag--light">Transparência</div>
-              <div style={{ height: 20 }} />
-              <h2 className="section-title section-title--white">
-                O que sabemos neste momento<br />— e o que seria especulação.
-              </h2>
-            </div>
-          </RevealWrapper>
-
-          <div className="finance-grid">
-            <RevealWrapper delay={1}>
-              <div className="finance-card finance-card--yes">
-                <div className="finance-card-label">O que é confirmado</div>
-                <div className="finance-items">
-                  {[
-                    { bold: 'Projeto aprovado', text: 'Licenciamento concluído. O projeto tem aprovação camarária.' },
-                    { bold: 'Construção iniciada', text: 'As obras já tiveram início. O cronograma está em curso.' },
-                    { bold: 'Preço de acesso: 295.000€', text: 'Valor válido para compradores que entram nesta fase de lista privada.' },
-                    { bold: 'Possibilidade de reserva formal', text: 'Após validação mútua, com documentação adequada e condições definidas.' },
-                  ].map((fi) => (
-                    <div key={fi.bold} className="finance-item">
-                      <span className="finance-item-dot" />
-                      <div>
-                        <strong>{fi.bold}</strong>
-                        {fi.text}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </RevealWrapper>
-
-            <RevealWrapper delay={2}>
-              <div className="finance-card finance-card--no">
-                <div className="finance-card-label">O que não garantimos</div>
-                <div className="finance-items">
-                  {[
-                    { bold: 'Disponibilidade imediata', text: 'O número de unidades é limitado. A lista privada pode ser encerrada a qualquer momento e as condições desta fase não estarão disponíveis após lançamento oficial.' },
-                  ].map((fi) => (
-                    <div key={fi.bold} className="finance-item">
-                      <span className="finance-item-dot" />
-                      <div>
-                        <strong>{fi.bold}</strong>
-                        {fi.text}
-                      </div>
-                    </div>
-                  ))}
+                <div className="about-body" style={{ textAlign: 'center' }}>
+                  <h3>Silvermont Capital</h3>
+                  <p>A força administrativa que não tem medo das datas nem da complexidade logística. Transformando a promessa de obra na verdadeira definição de 'Chave na Mão'. Parceiros com mediação de crédito imobiliário à disposição, a custo zero.</p>
                 </div>
               </div>
             </RevealWrapper>
           </div>
-
-          <RevealWrapper>
-            <div className="price-callout">
-              <div className="price-block">
-                <span className="price-tag-label">Preço de Acesso — Lista Privada</span>
-                <span className="price-big">295.000€</span>
-                <span className="price-sub">
-                  Disponível nesta fase. Preço de mercado após lançamento oficial: 345.000€.
-                </span>
-              </div>
-              <div className="price-saving">
-                <span className="saving-label">Diferença potencial</span>
-                <span className="saving-big">50.000€</span>
-                <span className="saving-label">face ao preço após lançamento</span>
-              </div>
-            </div>
-          </RevealWrapper>
         </div>
       </section>
 
-
-
-      {/* ==================== STEPS ==================== */}
-      <section className="section steps-section" id="processo">
-        <div className="container">
-          <RevealWrapper>
-            <div className="section-header section-header--center">
-              <div className="tag">Próximos Passos</div>
-              <div style={{ height: 20 }} />
-              <h2 className="section-title" style={{ textAlign: 'center' }}>
-                O que acontece depois<br />de submeter o formulário.
-              </h2>
-            </div>
-          </RevealWrapper>
-
-          <div className="steps-container">
-            {[
-              { n: '1', title: 'Submete o formulário', body: 'Campos simples sobre o que procura e a sua situação financeira.' },
-              { n: '2', title: 'Entramos em contacto', body: 'Por telefone ou WhatsApp dentro de 24–48 horas úteis, sem pressão.' },
-              { n: '3', title: 'Recebe a apresentação', body: 'Localização, plantas, cronograma e condições desta fase.' },
-              { n: '4', title: 'Visita ou reunião', body: 'Se fizer sentido, agenda uma visita ao local sem qualquer compromisso.' },
-            ].map((s, i) => (
-              <RevealWrapper key={s.n} delay={(i as 0 | 1 | 2 | 3)}>
-                <div className="step">
-                  <div className="step-bubble">{s.n}</div>
-                  <h3>{s.title}</h3>
-                  <p>{s.body}</p>
-                </div>
-              </RevealWrapper>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ==================== AUTHORITY ==================== */}
-      <section className="section authority-section" id="autoridade">
-        <div className="container">
-          <RevealWrapper>
-            <div className="section-header">
-              <div className="tag">Sobre o Desenvolvimento</div>
-              <div style={{ height: 20 }} />
-              <h2 className="section-title">
-                Um projeto gerido<br />com rigor e responsabilidade.
-              </h2>
-            </div>
-          </RevealWrapper>
-
-          <div className="authority-grid">
-            {[
-              { icon: '📋', title: 'Projeto Estruturado', body: 'Inclui projeto de arquitetura, engenharia estrutural, instalações e conformidade legal. Nada é improvisado.' },
-              { icon: '✅', title: 'Aprovação em Curso', body: 'Processo de licenciamento em fase avançada, com relacionamento transparente com as entidades competentes.' },
-              { icon: '💼', title: 'Planeamento Financeiro Responsável', body: 'Modelo financeiro definido e adequado ao dimensionamento do projeto. Condições baseadas em estrutura de custo real.' },
-              { icon: '🏗️', title: 'Foco em Qualidade de Construção', body: 'Seleção de materiais e subempreiteiros com critério. O objetivo é entregar um imóvel que resista bem ao tempo.' },
-            ].map((a, i) => (
-              <RevealWrapper key={a.title} delay={(i % 4 as 0 | 1 | 2 | 3)}>
-                <div className="authority-card">
-                  <span className="authority-icon">{a.icon}</span>
-                  <div>
-                    <h3>{a.title}</h3>
-                    <p>{a.body}</p>
-                  </div>
-                </div>
-              </RevealWrapper>
-            ))}
-          </div>
-
-          <RevealWrapper>
-            <div style={{ textAlign: 'center', marginTop: 48 }}>
-              <a href="#formulario" className="btn btn--primary btn--lg">
-                Solicitar Apresentação Completa
-                <ArrowIcon />
-              </a>
-            </div>
-          </RevealWrapper>
-        </div>
-      </section>
-
-      {/* ==================== SCARCITY ==================== */}
-      <section className="section scarcity-section" id="disponibilidade">
-        <div className="container container--mid">
-          <RevealWrapper>
-            <div className="section-header section-header--center">
-              <div className="tag tag--light">Disponibilidade</div>
-              <div style={{ height: 20 }} />
-              <h2 className="section-title section-title--white" style={{ textAlign: 'center' }}>
-                Uma unidade. Uma lista.<br />Um processo organizado.
-              </h2>
-            </div>
-          </RevealWrapper>
-
-          <div className="scarcity-items">
-            {[
-              { emoji: '🏠', text: 'Número limitado de unidades disponíveis nesta fase de lista privada' },
-              { emoji: '📋', text: 'Contacto por ordem de submissão, após análise de qualificação' },
-              { emoji: '🔒', text: 'As condições desta fase não estarão disponíveis após lançamento oficial' },
-            ].map((s, i) => (
-              <RevealWrapper key={s.emoji} delay={(i as 0 | 1 | 2)}>
-                <div className="scarcity-item">
-                  <div className="scarcity-emoji">{s.emoji}</div>
-                  <p>{s.text}</p>
-                </div>
-              </RevealWrapper>
-            ))}
-          </div>
-
-          <RevealWrapper>
-            <p className="scarcity-note">
-              Não usamos contadores a fazer contagem decrescente nem linguagem de pressão artificial. Se está genuinamente interessado, o momento certo é quando estiver preparado — e as condições ainda estiverem disponíveis.
-            </p>
-            <div style={{ textAlign: 'center' }}>
-              <a href="#formulario" className="btn btn--primary btn--lg">
-                Solicitar Informação Completa
-                <ArrowIcon />
-              </a>
-            </div>
-          </RevealWrapper>
-        </div>
-      </section>
-
-      {/* ==================== FORM ==================== */}
-      <section className="section form-section" id="formulario">
+      {/* ══════════════════════════════════════════════════
+          FORMULÁRIO
+          ══════════════════════════════════════════════════ */}
+      <section className="section section--mid" id="formulario">
         <div className="container container--narrow">
           <RevealWrapper>
-            <div className="form-header">
-              <div className="tag tag--light" style={{ margin: '0 auto 20px' }}>Qualificação</div>
-              <h2 className="section-title section-title--white" style={{ textAlign: 'center' }}>
-                Solicitar Apresentação Completa
-              </h2>
-              <p>Preencha o formulário. Entraremos em contacto dentro de 24–48 horas úteis.</p>
+            <div className="section-header section-header--center">
+              <p className="label">Reserva Antecipada</p>
+              <h2 className="title title--center">Garanta a sua informação.</h2>
+              <p className="section-intro section-intro--center">
+                Apenas 3 unidades estão sob este teto de condições da Lista Privada.
+                Preencha os dados e receberá todo o compêndio de plantas arquitetónicas e pormenores cruciais da obra.
+              </p>
             </div>
           </RevealWrapper>
 
           <RevealWrapper>
-            <QualForm />
+            <div className="form-wrap">
+              <QualForm />
+            </div>
           </RevealWrapper>
         </div>
       </section>
 
-      {/* ==================== FOOTER ==================== */}
+      {/* ══════════════════════════════════════════════════
+          FOOTER
+          ══════════════════════════════════════════════════ */}
       <footer className="footer">
         <div className="container">
           <div className="footer-inner">
-            <div className="footer-brand">
-              <span className="footer-logo">Moradia T3 — Lista Privada</span>
-              <p>Projeto em fase inicial de desenvolvimento.<br />Informações detalhadas disponíveis após qualificação.</p>
+            <div>
+              <span className="footer-logo">Moradia <span>295K</span></span>
+              <p className="footer-tagline">Lista Privada — Quintãs, 2026</p>
             </div>
-            <div className="footer-disclaimer">
-              <p>
-                As informações desta página são de carácter indicativo e referem-se a um projeto em desenvolvimento. Valores, datas e especificações técnicas estão sujeitos a alterações no decurso normal do processo construtivo e de licenciamento. Este material não constitui uma proposta vinculativa de venda.
-              </p>
-            </div>
+            <p className="footer-disclaimer">
+              Material indicativo sujeito a afinações em fase de desenvolvimento. Valores perspetivados de modo indicial e a proposta documentada pode carecer de verificação por meios legais. Não consubstancia a compra final em si sem prévia autorização das partes intervenientes.
+            </p>
           </div>
           <div className="footer-bottom">
-            <span>&copy; 2025 — Todos os direitos reservados.</span>
-            <span>Informação disponível mediante qualificação prévia</span>
+            <span>&copy; 2026 Silvermont Capital. Todos os direitos reservados.</span>
+            <span>Venda Exclusiva.</span>
           </div>
         </div>
       </footer>
