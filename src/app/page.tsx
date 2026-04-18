@@ -54,23 +54,24 @@ export default function HomePage() {
                 <span className="hero-price">295.000€</span>
               </h1>
 
-              <p className="hero-sub">
-                O futuro da habitação. Design, rapidez e inteligência financeira.<br />
+              <p className="hero-sub" style={{ fontSize: '1.2rem', color: 'var(--white)' }}>
                 Entregue <strong>Chave na Mão em Janeiro de 2027.</strong>
               </p>
 
               <div className="hero-bullets">
-                <span className="hero-bullet">Quintãs, Aveiro</span>
-                <span className="hero-bullet-sep" aria-hidden />
-                <span className="hero-bullet">Entrega em 10 meses</span>
-                <span className="hero-bullet-sep" aria-hidden />
-                <span className="hero-bullet">Preço Fechado</span>
+                <span className="hero-bullet">📍 Localização de Ouro</span>
+                <span className="hero-bullet">⏳ Entrega em 10 Meses</span>
+                <span className="hero-bullet">💡 Financeiramente Inteligente</span>
               </div>
 
               <a href="#formulario" className="btn btn--gold btn--lg" id="hero-cta">
                 Solicitar Apresentação e Plantas
                 <ArrowIcon />
               </a>
+
+              <div style={{ display: 'flex', justifyContent: 'center', marginTop: '-45px', marginBottom: '-90px', pointerEvents: 'none' }}>
+                <img src="/sign2.png" alt="Silvermont Signature" style={{ width: '100%', maxWidth: '220px', height: 'auto', display: 'block' }} loading="lazy" />
+              </div>
             </RevealWrapper>
 
             <RevealWrapper delay={1}>
@@ -394,8 +395,8 @@ export default function HomePage() {
           <div className="about-grid" style={{ gridTemplateColumns: '1fr', maxWidth: 640, margin: '48px auto 0' }}>
             <RevealWrapper delay={0}>
               <div className="about-card">
-                <div className="about-image-wrap is-logo" style={{ background: '#fff', padding: '40px', display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '180px' }}>
-                  <img src="/sign1.png" alt="Silvermont Capital" className="about-image is-logo-img" style={{ maxHeight: '200px', width: 'auto', display: 'block', transform: 'scale(1.4)' }} loading="lazy" />
+                <div style={{ background: '#fff', padding: '32px 24px', display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: 'var(--radius) var(--radius) 0 0' }}>
+                  <img src="/sign2.png" alt="Silvermont Capital" style={{ width: '100%', maxWidth: '300px', height: 'auto', display: 'block' }} loading="lazy" />
                 </div>
                 <div className="about-body" style={{ textAlign: 'center' }}>
                   <h3>Silvermont Capital</h3>
