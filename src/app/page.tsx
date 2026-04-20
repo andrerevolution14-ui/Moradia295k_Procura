@@ -78,7 +78,7 @@ export default function HomePage() {
               <div className="hero-stats">
                 {[
                   { val: 'T3', lbl: 'Tipologia' },
-                  { val: '145 m²', lbl: 'Área Útil' },
+                  { val: '185 m²', lbl: 'Área Útil' },
                   { val: 'Jan 2027', lbl: 'Entrega' },
                   { val: '295k€', lbl: 'Preço Final' },
                 ].map((s) => (
