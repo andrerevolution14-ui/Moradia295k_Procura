@@ -86,7 +86,7 @@ export default function QualForm() {
         try {
             // Generate unique event ID for deduplication
             const eventId = 'lead_' + Date.now() + '_' + Math.random().toString(36).substring(2, 9);
-            const leadValue = 295000;
+            const leadValue = 390000;
 
             console.log(`[Tracking] Generating eventID: ${eventId}`);
 
@@ -162,7 +162,7 @@ export default function QualForm() {
                         </svg>
                     </div>
                     <h3>Pedido recebido com sucesso.</h3>
-                    <p>Entraremos em contacto dentro de 24 a 48 horas úteis com a apresentação completa do projeto.</p>
+                    <p>Enviaremos agora para o seu WhatsApp a apresentação completa do projeto e o dossier técnico.</p>
                 </div>
             </div>
         );
@@ -264,9 +264,8 @@ export default function QualForm() {
                 <RadioCards
                     field="valor"
                     options={[
-                        { value: 'menos20k', label: 'Menos de 20.000€' },
-                        { value: '20k_a_44k', label: 'Entre 20.000€ e 44.999€' },
-                        { value: 'mais45k', label: '45.000€ ou mais' },
+                        { value: 'menos_60k', label: 'Menos de 60.000€' },
+                        { value: 'mais_60k', label: '60.000€ ou mais' },
                     ]}
                 />
                 {errors.valor && <span className="field-error">{errors.valor}</span>}

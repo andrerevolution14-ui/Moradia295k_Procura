@@ -29,7 +29,7 @@ export default function HomePage() {
       <nav className="nav" aria-label="Navegação principal">
         <div className="container nav-container">
           <a href="#hero" className="nav-logo" aria-label="Voltar ao topo">
-            Moradia <span>295K</span>
+            Moradia <span>390K</span>
           </a>
           <div className="nav-actions">
             <a href="#projeto" className="nav-link">A Moradia</a>
@@ -51,11 +51,11 @@ export default function HomePage() {
               <h1 className="hero-title">
                 Moradia T3 Moderna<br />
                 <em>nas Quintãs.</em>
-                <span className="hero-price">295.000€</span>
+                <span className="hero-price">390.000€</span>
               </h1>
 
               <p className="hero-sub" style={{ fontSize: '1.2rem', color: 'var(--white)' }}>
-                Entregue <strong>Chave na Mão em Janeiro de 2027.</strong>
+                Avaliada em <strong>450.000€</strong>. Entregue <strong>Chave na Mão em Março de 2027.</strong>
               </p>
 
               <div className="hero-bullets">
@@ -79,8 +79,8 @@ export default function HomePage() {
                 {[
                   { val: 'T3', lbl: 'Tipologia' },
                   { val: '185 m²', lbl: 'Área Útil' },
-                  { val: 'Jan 2027', lbl: 'Entrega' },
-                  { val: '295k€', lbl: 'Preço Final' },
+                  { val: 'Mar 2027', lbl: 'Entrega' },
+                  { val: '390k€', lbl: 'Preço Final' },
                 ].map((s) => (
                   <Fragment key={s.lbl}>
                     <div className="stat-item">
@@ -189,7 +189,7 @@ export default function HomePage() {
                 <p className="label">O Desafio Atual</p>
                 <h2 className="title">O mercado imobiliário falhou o comprador.</h2>
                 <p className="section-intro" style={{ marginBottom: 24 }}>
-                  Comprar casa nova tornou-se um desafio. Preços inflexíveis, escassez de opções de qualidade e apartamentos banais a ultrapassarem os 355.000€ na região.
+                  Comprar casa nova tornou-se um desafio. Preços inflexíveis, escassez de opções de qualidade e apartamentos banais a ultrapassarem os 370.000€ na região.
                 </p>
                 <div className="check-list">
                   {[
@@ -280,10 +280,10 @@ export default function HomePage() {
           <div className="lsf-layout">
             <div className="lsf-features">
               {[
-                { title: 'Otimização Fiscal Brutal', body: 'Enquanto a maioria paga IMT sobre o valor total do imóvel pronto (295k€), aqui apenas tributa o lote. Poupança superior a 10.000€ euros perfeitamente legais.' },
+                { title: 'Otimização Fiscal de 28k€', body: 'Enquanto a maioria paga IMT sobre o valor total do imóvel pronto (390k€), aqui apenas tributa o lote. Uma poupança direta de cerca de 28.000€ em impostos.' },
                 { title: 'Sem Dupla Prestação', body: 'O pesadelo de pagar aluguer e crédito ao mesmo tempo desaparece. Paga apenas juros sobre a fração do dinheiro que for utilizada durante os curtos meses da obra.' },
                 { title: 'Crédito Tratado Gratuitamente', body: 'Trabalhamos com parceiros intermediários registados no Banco de Portugal que analisam a sua viabilidade de forma transparente, rápida e isenta de custos.' },
-                { title: 'Valorização Imediata', body: 'O mercado negoceia moradias novas desta dimensão muito acima dos 350.000€. Quem reserva na lista privada e escrituras a 295.000€ solidifica património instantaneamente.' },
+                { title: 'Ganho Imediato de 60.000€', body: 'A moradia foi oficialmente avaliada em 450.000€. Quem reserva na lista privada e escritura a 390.000€ solidifica 60.000€ de capital próprio instantaneamente.' },
               ].map((f, i) => (
                 <RevealWrapper key={f.title} delay={i % 3 as 0 | 1 | 2}>
                   <div className="lsf-feature">
@@ -329,7 +329,7 @@ export default function HomePage() {
               { tag: 'Precisão', title: 'Light Steel Framing', body: 'Estruturas de aço leve produzidas de forma industrial e montadas na obra sem margem para erros estéticos ou logísticos.' },
               { tag: 'Conforto', title: 'Isolamento Térmico Absoluto', body: 'A tecnologia LSF isola as paredes e teto por camadas múltiplas, erradicando humidades e oscilações desconfortáveis de clima.' },
               { tag: 'Acústica', title: 'Silêncio Garantido', body: 'Ao contrário dos reflexos e propagação do tijolo moderno, os materiais absorventes do modelo LSF atenuam ruídos externos de forma esmagadora.' },
-              { tag: 'Prazo', title: 'Rapidez Previsível', body: 'Fugimos dos imponderáveis da mão-de-obra que bloqueia a maioria da construção pesada. A agilidade permite fechar chaves em Janeiro de 2027.' },
+              { tag: 'Prazo', title: 'Rapidez Previsível', body: 'Fugimos dos imponderáveis da mão-de-obra que bloqueia a maioria da construção pesada. A agilidade permite fechar chaves em Março de 2027.' },
             ].map((b, i) => (
               <RevealWrapper key={b.tag} delay={i % 4 as 0 | 1 | 2 | 3}>
                 <div className="benefit-card">
@@ -361,27 +361,42 @@ export default function HomePage() {
           <div className="comparison-grid">
             <RevealWrapper delay={0}>
               <div className="comparison-card comparison-card--default">
-                <span className="comparison-card-label">Mercado Normal (T2 Médio)</span>
-                <h3>Apartamento T2 em Aveiro / Gafanhas</h3>
-                <p>
-                  Sujeito aos caprichos de mercado: cerca de 355.000€. Tributará o IMT global e o Imposto de Selo resultando num encargo extra enorme. Faltarão personalizações, sem cozinha totalmente assegurada, para espaço mais restrito.
-                </p>
+                <span className="comparison-card-label">Mercado Normal</span>
+                <h3>Apartamento T2 — Gafanha / Aveiro</h3>
+                <div style={{ fontSize: '0.95rem', lineHeight: 1.6 }}>
+                  <p><strong>Preço:</strong> 450.000€+</p>
+                  <p><strong>IMT:</strong> ~24.636€+ | <strong>Selo:</strong> ~3.840€+</p>
+                  <p><strong>Total Real Pago:</strong> <span style={{ color: '#f87171' }}>~478.500€+</span></p>
+                  <p style={{ marginTop: '10px', opacity: 0.8 }}>
+                    • Tipologia inferior (T2)<br />
+                    • Sem personalização ou equipamentos<br />
+                    • <em>*Em Planta</em>
+                  </p>
+                </div>
               </div>
             </RevealWrapper>
             <RevealWrapper delay={1}>
               <div className="comparison-card comparison-card--featured">
-                <span className="comparison-card-label"> Silvermont Capital</span>
-                <h3>Lista Privada nas Quintãs (T3)</h3>
-                <p>
-                  Fecho do processo aos <strong>295.000€</strong> redondos. O seu IMT foca-se cirurgicamente no valor restrito do lote inicial. Todo o equipamento é topo de gama e incluído na planta sem um centímetro cedido na flexibilidade.
-                </p>
+                <span className="comparison-card-label">Silvermont Capital</span>
+                <h3>Moradia T3 — Quintãs (Silvermont)</h3>
+                <div style={{ fontSize: '0.95rem', lineHeight: 1.6 }}>
+                  <p><strong>Preço:</strong> 390.000€ | <strong>Avaliação:</strong> 450.000€</p>
+                  <p style={{ color: 'var(--gold)', fontWeight: 'bold' }}>Ganho Imediato: +60.000€</p>
+                  <p><strong>IMT (sobre lote):</strong> ~4.270€ | <strong>Selo Mínimo</strong></p>
+                  <p><strong>Total Real Pago:</strong> <span style={{ color: '#4ade80' }}>~394.270€</span></p>
+                  <p style={{ marginTop: '10px' }}>
+                    • Tipologia superior (T3 com Jardim)<br />
+                    • <strong>100% Equipada e Personalizada</strong><br />
+                    • <strong>Poupança Fiscal: ~28.000€</strong>
+                  </p>
+                </div>
               </div>
             </RevealWrapper>
           </div>
 
           <RevealWrapper delay={1}>
             <div style={{ marginTop: 48, borderRadius: 'var(--radius)', overflow: 'hidden', border: '1px solid var(--border-dark)' }}>
-              <img src="/precos1.png" alt="Comparativo de Preços na Região" style={{ width: '100%', height: 'auto', objectFit: 'contain', display: 'block' }} loading="lazy" />
+              <img src="/Precos-1.png" alt="Comparativo de Preços na Região" style={{ width: '100%', height: 'auto', objectFit: 'contain', display: 'block' }} loading="lazy" />
             </div>
           </RevealWrapper>
         </div>
@@ -419,7 +434,7 @@ export default function HomePage() {
               <h2 className="title title--center">Garanta a sua informação.</h2>
               <p className="section-intro section-intro--center">
                 Apenas 3 unidades estão sob este teto de condições da Lista Privada.
-                Preencha os dados e receberá todo o compêndio de plantas arquitetónicas e pormenores cruciais da obra.
+                Preencha os dados e <strong>receberá via WhatsApp</strong> o compêndio de plantas e todos os pormenores da obra.
               </p>
             </div>
           </RevealWrapper>
@@ -439,7 +454,7 @@ export default function HomePage() {
         <div className="container">
           <div className="footer-inner">
             <div>
-              <span className="footer-logo">Moradia <span>295K</span></span>
+              <span className="footer-logo">Moradia <span>390K</span></span>
               <p className="footer-tagline">Lista Privada — Quintãs, 2026</p>
             </div>
             <p className="footer-disclaimer">
