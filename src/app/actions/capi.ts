@@ -58,7 +58,7 @@ export async function trackCapiLead(userData: {
                     fbc: fbc,
                 },
                 custom_data: {
-                    value: userData.value ?? 295000,
+                    value: userData.value ?? 390000,
                     currency: 'EUR',
                 },
             },

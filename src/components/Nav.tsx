@@ -15,7 +15,7 @@ export default function Nav() {
             <div className="container">
                 <div className="nav-inner">
                     <a href="#hero" className="nav-logo">
-                        Moradia T3 <span>295k</span>
+                        Moradia T3 <span>390k</span>
                     </a>
                     <a href="#formulario" className="btn btn--primary nav-cta">
                         Solicitar Acesso

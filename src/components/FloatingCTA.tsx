@@ -28,7 +28,7 @@ export default function FloatingCTA() {
     return (
         <div className="floating-cta">
             <div className="floating-cta-text">
-                <div className="floating-cta-price">295.000€</div>
+                <div className="floating-cta-price">390.000€</div>
                 Lista Privada — Aveiro
             </div>
             <a href="#formulario" className="btn btn--gold btn--sm">

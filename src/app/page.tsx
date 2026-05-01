@@ -433,8 +433,8 @@ export default function HomePage() {
 
           <RevealWrapper delay={1}>
             <div style={{ position: 'relative', marginTop: 48, borderRadius: 'var(--radius)', overflow: 'hidden', maxWidth: '900px', margin: '48px auto 0', border: '1px solid rgba(255,255,255,0.1)' }}>
-              <div style={{ filter: 'blur(18px)', opacity: 0.35, transform: 'scale(1.05)' }}>
-                <img src="/Planta3 NoBc.png" alt="Planta da Moradia" style={{ width: '100%', height: 'auto', display: 'block' }} />
+              <div style={{ filter: 'blur(15px)', opacity: 0.5, transform: 'scale(1.02)' }}>
+                <img src="/plantas3.png" alt="Planta da Moradia" style={{ width: '100%', height: 'auto', display: 'block' }} />
               </div>
               <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: 'rgba(11, 17, 32, 0.5)', backdropFilter: 'blur(2px)' }}>
                 <div style={{ background: 'var(--gold)', color: '#fff', padding: '12px 24px', borderRadius: '50px', fontWeight: 'bold', marginBottom: '20px', boxShadow: '0 10px 25px rgba(200, 169, 107, 0.4)', display: 'flex', alignItems: 'center', gap: '10px' }}>
