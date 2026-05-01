@@ -69,8 +69,9 @@ export default function HomePage() {
                 <ArrowIcon />
               </a>
 
-              <div style={{ display: 'flex', justifyContent: 'center', marginTop: '-45px', marginBottom: '-90px', pointerEvents: 'none' }}>
-                <img src="/sign2.png" alt="Silvermont Signature" style={{ width: '100%', maxWidth: '220px', height: 'auto', display: 'block' }} loading="lazy" />
+              <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '30px', marginTop: '-45px', marginBottom: '-90px', pointerEvents: 'none' }}>
+                <img src="/sign2.png" alt="Silvermont Signature" style={{ width: '100%', maxWidth: '200px', height: 'auto', display: 'block' }} loading="lazy" />
+                <img src="/freitas1.jpeg" alt="Parceria Freitas" style={{ width: '100%', maxWidth: '120px', height: 'auto', display: 'block', borderRadius: '4px' }} loading="lazy" />
               </div>
             </RevealWrapper>
 
@@ -410,8 +411,9 @@ export default function HomePage() {
           <div className="about-grid" style={{ gridTemplateColumns: '1fr', maxWidth: 640, margin: '48px auto 0' }}>
             <RevealWrapper delay={0}>
               <div className="about-card">
-                <div style={{ background: '#fff', padding: '32px 24px', display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: 'var(--radius) var(--radius) 0 0' }}>
-                  <img src="/sign2.png" alt="Silvermont Capital" style={{ width: '100%', maxWidth: '300px', height: 'auto', display: 'block' }} loading="lazy" />
+                <div style={{ background: '#fff', padding: '32px 24px', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '40px', borderRadius: 'var(--radius) var(--radius) 0 0' }}>
+                  <img src="/sign2.png" alt="Silvermont Capital" style={{ width: '100%', maxWidth: '240px', height: 'auto', display: 'block' }} loading="lazy" />
+                  <img src="/freitas1.jpeg" alt="Parceria Freitas" style={{ width: '100%', maxWidth: '160px', height: 'auto', display: 'block', borderRadius: '4px' }} loading="lazy" />
                 </div>
                 <div className="about-body" style={{ textAlign: 'center' }}>
                   <h3>Silvermont Capital</h3>

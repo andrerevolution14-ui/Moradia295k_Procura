@@ -8,10 +8,10 @@ CREATE TABLE IF NOT EXISTS leads (
   created_at  timestamptz DEFAULT now(),
   nome        text        NOT NULL,
   telefone    text        NOT NULL,
-  finalidade  text        CHECK (finalidade IN ('habitacao', 'investimento')),
-  credito     text        CHECK (credito IN ('sim_acima', 'sim_abaixo', 'em_processo', 'nao_tratei')),
-  prazo       text        CHECK (prazo IN ('ate6', '6a12', 'mais12')),
-  valor       text        CHECK (valor IN ('ate280', '280a300', 'acima300'))
+  finalidade  text,
+  credito     text,
+  prazo       text,
+  valor       text
 );
 
 -- Habilitar Row Level Security
