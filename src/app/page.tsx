@@ -69,9 +69,8 @@ export default function HomePage() {
                 <ArrowIcon />
               </a>
 
-              <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '30px', marginTop: '-45px', marginBottom: '-90px', pointerEvents: 'none' }}>
-                <img src="/sign2.png" alt="Silvermont Signature" style={{ width: '100%', maxWidth: '200px', height: 'auto', display: 'block' }} loading="lazy" />
-                <img src="/freitas1.jpeg" alt="Parceria Freitas" style={{ width: '100%', maxWidth: '120px', height: 'auto', display: 'block', borderRadius: '4px' }} loading="lazy" />
+              <div style={{ display: 'flex', justifyContent: 'center', marginTop: '-45px', marginBottom: '-90px', pointerEvents: 'none' }}>
+                <img src="/sign2.png" alt="Silvermont Signature" style={{ width: '100%', maxWidth: '220px', height: 'auto', display: 'block' }} loading="lazy" />
               </div>
             </RevealWrapper>
 
