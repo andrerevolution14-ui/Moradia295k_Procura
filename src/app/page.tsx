@@ -94,6 +94,14 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+      
+      {/* ── IMAGE BREAK: FACHADA ── */}
+      <div style={{ width: '100%', maxHeight: '700px', overflow: 'hidden', position: 'relative', marginBottom: '-100px', zIndex: 1 }}>
+        <RevealWrapper>
+          <img src="/Fachada1.png" alt="Fachada da Moradia" style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'cover' }} />
+          <div style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: '100%', background: 'linear-gradient(to top, var(--bg) 5%, transparent 40%, transparent 60%, var(--bg) 95%)' }}></div>
+        </RevealWrapper>
+      </div>
 
       {/* ══════════════════════════════════════════════════
           A MORADIA — CARACTERÍSTICAS
@@ -126,6 +134,12 @@ export default function HomePage() {
               </RevealWrapper>
             ))}
           </div>
+
+          <RevealWrapper delay={1}>
+            <div style={{ marginTop: 48, borderRadius: 'var(--radius)', overflow: 'hidden', boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)' }}>
+              <img src="/Sala2.png" alt="Interior da Moradia - Sala" style={{ width: '100%', height: 'auto', display: 'block' }} loading="lazy" />
+            </div>
+          </RevealWrapper>
 
           <RevealWrapper>
             <div className="callout-bar">
@@ -397,6 +411,40 @@ export default function HomePage() {
           <RevealWrapper delay={1}>
             <div style={{ marginTop: 48, borderRadius: 'var(--radius)', overflow: 'hidden', border: '1px solid var(--border-dark)' }}>
               <img src="/Precos-1.png" alt="Comparativo de Preços na Região" style={{ width: '100%', height: 'auto', objectFit: 'contain', display: 'block' }} loading="lazy" />
+            </div>
+          </RevealWrapper>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════
+          O SEGREDO — PLANTA
+          ══════════════════════════════════════════════════ */}
+      <section className="section section--dark" style={{ overflow: 'hidden' }}>
+        <div className="container">
+          <RevealWrapper>
+            <div className="section-header section-header--center">
+              <p className="label">Privacidade & Detalhe</p>
+              <h2 className="title title--center">A Planta Completa.</h2>
+              <p className="section-intro section-intro--center">
+                Desenhada para o máximo aproveitamento. Otimização de cada metro quadrado para o conforto da sua família.
+              </p>
+            </div>
+          </RevealWrapper>
+
+          <RevealWrapper delay={1}>
+            <div style={{ position: 'relative', marginTop: 48, borderRadius: 'var(--radius)', overflow: 'hidden', maxWidth: '900px', margin: '48px auto 0', border: '1px solid rgba(255,255,255,0.1)' }}>
+              <div style={{ filter: 'blur(18px)', opacity: 0.35, transform: 'scale(1.05)' }}>
+                <img src="/Planta3 NoBc.png" alt="Planta da Moradia" style={{ width: '100%', height: 'auto', display: 'block' }} />
+              </div>
+              <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: 'rgba(11, 17, 32, 0.5)', backdropFilter: 'blur(2px)' }}>
+                <div style={{ background: 'var(--gold)', color: '#fff', padding: '12px 24px', borderRadius: '50px', fontWeight: 'bold', marginBottom: '20px', boxShadow: '0 10px 25px rgba(200, 169, 107, 0.4)', display: 'flex', alignItems: 'center', gap: '10px' }}>
+                  <span>🔐</span> Conteúdo Protegido
+                </div>
+                <a href="#formulario" className="btn btn--gold btn--lg">
+                  Desbloquear Plantas em Alta Resolução
+                </a>
+                <p style={{ marginTop: '16px', fontSize: '0.9rem', color: 'rgba(255,255,255,0.6)' }}>Acesso exclusivo via Lista Privada</p>
+              </div>
             </div>
           </RevealWrapper>
         </div>
