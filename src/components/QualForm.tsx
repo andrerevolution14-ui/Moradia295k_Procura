@@ -154,15 +154,33 @@ export default function QualForm() {
 
     if (submitted) {
         return (
-            <div className="qual-form">
-                <div className="form-success visible">
-                    <div className="success-check">
-                        <svg viewBox="0 0 20 20">
-                            <path d="M16.7 5.3a1 1 0 00-1.4 0L8 12.6 4.7 9.3a1 1 0 00-1.4 1.4l4 4a1 1 0 001.4 0l8-8a1 1 0 000-1.4z" />
+            <div className="qual-form" style={{ minHeight: '350px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <div className="form-success visible" style={{ textAlign: 'center', padding: '40px 20px' }}>
+                    <div className="success-check" style={{ 
+                        width: '80px', 
+                        height: '80px', 
+                        background: 'linear-gradient(135deg, #c8a96b, #a68b54)', 
+                        borderRadius: '50%', 
+                        display: 'flex', 
+                        alignItems: 'center', 
+                        justifyContent: 'center', 
+                        margin: '0 auto 24px',
+                        boxShadow: '0 10px 25px rgba(200, 169, 107, 0.4)',
+                    }}>
+                        <svg viewBox="0 0 20 20" style={{ width: '40px', height: '40px', color: '#fff' }}>
+                            <path fill="currentColor" d="M16.7 5.3a1 1 0 00-1.4 0L8 12.6 4.7 9.3a1 1 0 00-1.4 1.4l4 4a1 1 0 001.4 0l8-8a1 1 0 000-1.4z" />
                         </svg>
                     </div>
-                    <h3>Pedido recebido com sucesso.</h3>
-                    <p>Enviaremos agora para o seu WhatsApp a apresentação completa do projeto e o dossier técnico.</p>
+                    <h3 style={{ fontSize: '1.85rem', marginBottom: '16px', color: '#fff', fontWeight: '700' }}>Acesso Confirmado!</h3>
+                    <p style={{ fontSize: '1.15rem', color: 'rgba(255,255,255,0.8)', maxWidth: '400px', margin: '0 auto', lineHeight: '1.6' }}>
+                        O seu pedido foi processado com sucesso. <br />
+                        <strong>Enviaremos agora para o seu WhatsApp</strong> a apresentação completa e o dossier técnico do projeto.
+                    </p>
+                    <div style={{ marginTop: '40px', display: 'flex', justifyContent: 'center', gap: '10px', alignItems: 'center', color: '#c8a96b', fontWeight: '600', letterSpacing: '0.05em', textTransform: 'uppercase', fontSize: '0.85rem' }}>
+                        <span style={{ width: '40px', height: '1px', background: 'currentColor', opacity: 0.3 }}></span>
+                        Até já
+                        <span style={{ width: '40px', height: '1px', background: 'currentColor', opacity: 0.3 }}></span>
+                    </div>
                 </div>
             </div>
         );
