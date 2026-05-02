@@ -181,7 +181,7 @@ export default function HomePage() {
           <div className="location-highlight">
             <div className="location-map">
               <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3030.046!2d-8.617795!3d40.587032!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDDCsDM1JzEzLjMiTiA4wrAzNycwNC4xIlc!5e0!3m2!1spt-PT!2spt!4v1714650000000!5m2!1spt-PT!2spt" 
+                src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d24263.633!2d-8.6366!3d40.53!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e6!4m5!1s0xd23986968d95697%3A0x6b1c4c1a5d6f6e8c!2zNDDCsDM1JzEzLjMiTiA4wrAzNycwNC4xIlc!3m2!1d40.587032!2d-8.617795!4m5!1s0xd2398f5b8423f71%3A0xc3f139e3f6848130!2sGlic%C3%ADnias%20Plaza!3m2!1d40.63!2d-8.64!5e0!3m2!1spt-PT!2spt!4v1714650000000!5m2!1spt-PT!2spt" 
                 width="100%" 
                 height="450" 
                 style={{ border: 0, borderRadius: 'var(--radius)' }} 
