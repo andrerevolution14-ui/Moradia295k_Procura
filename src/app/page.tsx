@@ -34,7 +34,7 @@ export default function HomePage() {
           <div className="nav-actions">
             <a href="#projeto" className="nav-link">A Moradia</a>
             <a href="#modelo" className="nav-link">O Modelo</a>
-            <a href="#formulario" className="btn btn--gold btn--sm">Receber Projeto e PDF</a>
+            <a href="#formulario" className="btn btn--gold btn--sm">Aceder ao Projeto e PDF</a>
           </div>
         </div>
       </nav>
@@ -66,11 +66,11 @@ export default function HomePage() {
 
               <div className="hero-cta-group">
                 <a href="#formulario" className="btn btn--gold btn--lg" id="hero-cta">
-                  Receber Projeto e PDF Completo
+                  Descarregar Dossier e Projeto
                   <ArrowIcon />
                 </a>
                 <a href="#formulario" className="btn btn--outline btn--lg">
-                  Ver Plantas e PDF
+                  Ver Plantas e Detalhes
                 </a>
               </div>
 
@@ -146,7 +146,7 @@ export default function HomePage() {
             </div>
             <div style={{ marginTop: '32px', textAlign: 'center' }}>
               <a href="#formulario" className="btn btn--gold btn--lg">
-                Receber Projeto e PDF Completo
+                Solicitar Dossier de Acabamentos
                 <ArrowIcon />
               </a>
             </div>
@@ -181,7 +181,7 @@ export default function HomePage() {
           <div className="location-highlight">
             <div className="location-map">
               <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3032.553258525791!2d-8.6277777!3d40.5283333!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDDCsDMxJzQyLjAiTiA4wrAzNyI0MC4wIlc!5e0!3m2!1spt-PT!2spt!4v1714650000000!5m2!1spt-PT!2spt" 
+                src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d24263.633!2d-8.6366!3d40.53!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e6!4m5!1s0xd23986968d95697%3A0x6b1c4c1a5d6f6e8c!2sQuint%C3%A3s%2C%20Oliveirinha!3m2!1d40.5283!2d-8.6277!4m5!1s0xd2398f5b8423f71%3A0xc3f139e3f6848130!2sGlic%C3%ADnias%20Plaza!3m2!1d40.63!2d-8.64!5e0!3m2!1spt-PT!2spt!4v1714650000000!5m2!1spt-PT!2spt" 
                 width="100%" 
                 height="450" 
                 style={{ border: 0, borderRadius: 'var(--radius)' }} 
@@ -208,7 +208,7 @@ export default function HomePage() {
 
           <div style={{ marginTop: '40px', textAlign: 'center' }}>
             <a href="#formulario" className="btn btn--gold btn--lg">
-              Receber Projeto e PDF da Localização
+              Receber Mapa e Projeto Completo
               <ArrowIcon />
             </a>
           </div>
@@ -261,7 +261,7 @@ export default function HomePage() {
                 </div>
                 <div style={{ marginTop: '24px' }}>
                   <a href="#formulario" className="btn btn--gold btn--sm btn--full">
-                    Receber Projeto e PDF da Solução
+                    Consultar Dossier da Solução
                   </a>
                 </div>
               </div>
@@ -304,7 +304,7 @@ export default function HomePage() {
 
           <div style={{ marginTop: '48px', textAlign: 'center' }}>
             <a href="#formulario" className="btn btn--gold btn--lg">
-              Receber Projeto e PDF Financeiro
+              Descarregar Estudo Financeiro
               <ArrowIcon />
             </a>
           </div>
@@ -392,7 +392,7 @@ export default function HomePage() {
 
           <div style={{ marginTop: '32px', textAlign: 'center' }}>
             <a href="#formulario" className="btn btn--gold btn--lg">
-              Receber Projeto e PDF da Tecnologia
+              Solicitar Dossier Técnico LSF
               <ArrowIcon />
             </a>
           </div>
@@ -456,7 +456,7 @@ export default function HomePage() {
             </div>
             <div style={{ marginTop: '32px', textAlign: 'center' }}>
               <a href="#formulario" className="btn btn--gold btn--lg">
-                Receber Projeto e PDF (Venda Direta)
+                Aceder à Oportunidade (PDF)
                 <ArrowIcon />
               </a>
             </div>
@@ -489,7 +489,7 @@ export default function HomePage() {
                   <span>🔐</span> Conteúdo Protegido
                 </div>
                 <a href="#formulario" className="btn btn--gold btn--lg">
-                  Desbloquear Projeto e PDF Completo
+                  Desbloquear Dossier e Plantas
                 </a>
                 <p style={{ marginTop: '16px', fontSize: '0.9rem', color: 'rgba(255,255,255,0.6)' }}>Acesso exclusivo via Lista Privada</p>
               </div>
