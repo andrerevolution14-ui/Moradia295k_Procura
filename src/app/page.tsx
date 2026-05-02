@@ -280,7 +280,7 @@ export default function HomePage() {
               <p className="label">O Modelo Silvermont</p>
               <h2 className="title title--center">Autoconstrução Assistida.</h2>
               <p className="section-intro section-intro--center">
-                A junção perfeita: as enormes vantagens fiscais e financeiras da autoconstrução, totalmente geridas por nós para garantir a simplicidade de um produto 'Chave na Mão'.
+                A junção perfeita: as enormes vantagens fiscais e financeiras da autoconstrução, totalmente geridas por nós para garantir a simplicidade de um produto &apos;Chave na Mão&apos;.
               </p>
             </div>
           </RevealWrapper>
@@ -349,7 +349,7 @@ export default function HomePage() {
             <RevealWrapper delay={1}>
               <div className="lsf-highlight-box" style={{ borderColor: 'rgba(239, 68, 68, 0.4)' }}>
                 <h3 style={{ color: '#f87171' }}>Segurança Jurídica Total</h3>
-                <p>Introduzimos a 'Cláusula de Confiança Total' no Contrato Promessa.</p>
+                <p>Introduzimos a &apos;Cláusula de Confiança Total&apos; no Contrato Promessa.</p>
                 <div style={{ marginTop: 20, fontSize: '0.95rem', color: 'var(--text-light)', lineHeight: 1.7 }}>
                   Se assinar o contrato connosco e o banco rejeitar inesperadamente o financiamento essencial à sua operação — ou a avaliação divergir fatalmente — <strong>o sinal depositado ser-lhe-á devolvido na íntegra.</strong>
                   <br /><br />
@@ -512,7 +512,7 @@ export default function HomePage() {
                 </div>
                 <div className="about-body" style={{ textAlign: 'center' }}>
                   <h3>Silvermont Capital</h3>
-                  <p>A força administrativa que não tem medo das datas nem da complexidade logística. Transformando a promessa de obra na verdadeira definição de 'Chave na Mão'.</p>
+                  <p>A força administrativa que não tem medo das datas nem da complexidade logística. Transformando a promessa de obra na verdadeira definição de &apos;Chave na Mão&apos;.</p>
                 </div>
               </div>
             </RevealWrapper>

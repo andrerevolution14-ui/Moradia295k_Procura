@@ -38,6 +38,11 @@ function validate(data: FormData): FormErrors {
     if (!data.valor) errors.valor = 'Selecione uma opção.';
     return errors;
 }
+declare global {
+  interface Window {
+    fbq: (command: string, action: string, params?: Record<string, unknown>, options?: Record<string, unknown>) => void;
+  }
+}
 
 export default function QualForm() {
     const formId = useId();
@@ -91,9 +96,9 @@ export default function QualForm() {
             console.log('[Tracking] Supabase insertion successful');
 
             // 2. Track Lead on Client (Pixel)
-            if (typeof window !== 'undefined' && (window as any).fbq) {
+            if (typeof window !== 'undefined' && window.fbq) {
                 console.log('[Tracking] Firing Meta Pixel Lead event...');
-                (window as any).fbq('track', 'Lead', {
+                window.fbq('track', 'Lead', {
                     value: leadValue,
                     currency: 'EUR',
                 }, { eventID: eventId });
@@ -112,7 +117,7 @@ export default function QualForm() {
 
             console.log('[Tracking] All tracking events triggered successfully');
             setSubmitted(true);
-        } catch (err: any) {
+        } catch (err: unknown) {
             console.error('Submission error:', err);
             setSubmitError('Ocorreu um erro ao enviar o formulário. Por favor, tente novamente.');
         } finally {

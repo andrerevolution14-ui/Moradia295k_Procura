@@ -1,6 +1,5 @@
 'use server';
 
-import { PIXEL_ID } from '@/components/MetaPixel';
 import { headers } from 'next/headers';
 import crypto from 'crypto';
 

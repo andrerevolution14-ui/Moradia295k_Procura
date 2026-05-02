@@ -4,38 +4,24 @@ import { usePathname, useSearchParams } from 'next/navigation';
 import Script from 'next/script';
 import { useEffect } from 'react';
 
-export const PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID;
+// Hardcoded for reliability as requested
+export const PIXEL_ID = '26022738390737044';
 
 export default function MetaPixel() {
     const pathname = usePathname();
     const searchParams = useSearchParams();
 
     useEffect(() => {
-        if (!PIXEL_ID) {
-            console.warn('[Meta Pixel] PIXEL_ID is missing. Check your environment variables.');
-            return;
+        if (typeof window !== 'undefined' && window.fbq) {
+            window.fbq('track', 'PageView');
         }
-
-        if (typeof window !== 'undefined' && (window as any).fbq) {
-            if (process.env.NODE_ENV === 'development') {
-                console.log(`[Meta Pixel] Tracking PageView: ${pathname}`);
-            }
-            (window as any).fbq('track', 'PageView');
-        }
-    }, [pathname, searchParams, PIXEL_ID]);
-
-    if (!PIXEL_ID) return null;
+    }, [pathname, searchParams]);
 
     return (
         <>
             <Script
                 id="fb-pixel"
                 strategy="afterInteractive"
-                onLoad={() => {
-                    if (process.env.NODE_ENV === 'development') {
-                        console.log('[Meta Pixel] Script loaded successfully');
-                    }
-                }}
                 dangerouslySetInnerHTML={{
                     __html: `
             !function(f,b,e,v,n,t,s)
@@ -55,8 +41,9 @@ export default function MetaPixel() {
                 <img
                     height="1"
                     width="1"
+                    alt=""
                     style={{ display: 'none' }}
-                    src={`https://www.facebook.com/tr?id=${PIXEL_ID}&ev=PageView&noscript=1`}
+                    src={`https://www.facebook.com/tr?id=${PIXEL_ID}\u0026ev=PageView\u0026noscript=1`}
                 />
             </noscript>
         </>
@@ -64,8 +51,7 @@ export default function MetaPixel() {
 }
 
 export const pageview = () => {
-    const PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID;
-    if (typeof window !== 'undefined' && (window as any).fbq && PIXEL_ID) {
-        (window as any).fbq('track', 'PageView');
+    if (typeof window !== 'undefined' && window.fbq) {
+        window.fbq('track', 'PageView');
     }
 };
