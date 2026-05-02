@@ -32,7 +32,7 @@ export default function FloatingCTA() {
                 Lista Privada — Aveiro
             </div>
             <a href="#formulario" className="btn btn--gold btn--sm">
-                Ver Plantas
+                Receber Projeto e PDF
             </a>
         </div>
     );

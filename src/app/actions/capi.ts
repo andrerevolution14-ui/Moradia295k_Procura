@@ -51,7 +51,11 @@ export async function trackCapiLead(userData: {
                 user_data: {
                     fn: hash(firstName),
                     ln: hash(lastName),
-                    ph: hash(userData.telefone.replace(/\D/g, '')),
+                    ph: hash(
+                        userData.telefone.replace(/\D/g, '').length === 9 
+                        ? '351' + userData.telefone.replace(/\D/g, '') 
+                        : userData.telefone.replace(/\D/g, '')
+                    ),
                     client_ip_address: clientIp,
                     client_user_agent: userAgent,
                     fbp: fbp,

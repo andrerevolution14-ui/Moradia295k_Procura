@@ -6,8 +6,6 @@ import { trackCapiLead } from '@/app/actions/capi';
 interface FormData {
     nome: string;
     telefone: string;
-    finalidade: string;
-    credito: string;
     prazo: string;
     valor: string;
 }
@@ -15,8 +13,6 @@ interface FormData {
 interface FormErrors {
     nome?: string;
     telefone?: string;
-    finalidade?: string;
-    credito?: string;
     prazo?: string;
     valor?: string;
 }
@@ -38,8 +34,6 @@ function validate(data: FormData): FormErrors {
         }
     }
 
-    if (!data.finalidade) errors.finalidade = 'Selecione uma opção.';
-    if (!data.credito) errors.credito = 'Selecione uma opção.';
     if (!data.prazo) errors.prazo = 'Selecione uma opção.';
     if (!data.valor) errors.valor = 'Selecione uma opção.';
     return errors;
@@ -50,8 +44,6 @@ export default function QualForm() {
     const [data, setData] = useState<FormData>({
         nome: '',
         telefone: '+351 ',
-        finalidade: '',
-        credito: '',
         prazo: '',
         valor: '',
     });
@@ -64,17 +56,20 @@ export default function QualForm() {
         e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
     ) => setData((prev) => ({ ...prev, [field]: e.target.value }));
 
+
     const selectRadio = (field: keyof FormData, value: string) =>
         setData((prev) => ({ ...prev, [field]: value }));
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        if (loading) return;
+
         setSubmitError(null);
         const errs = validate(data);
         setErrors(errs);
+        
         if (Object.keys(errs).length > 0) {
             console.log('Validation failed:', errs);
-            // Scroll to the first error if it exists
             const firstError = Object.keys(errs)[0];
             const element = document.getElementById(`${formId}-${firstError}`);
             if (element) {
@@ -83,6 +78,7 @@ export default function QualForm() {
             return;
         }
 
+        setLoading(true);
         try {
             // Generate unique event ID for deduplication
             const eventId = 'lead_' + Date.now() + '_' + Math.random().toString(36).substring(2, 9);
@@ -123,6 +119,7 @@ export default function QualForm() {
             setLoading(false);
         }
     };
+
 
     const RadioCards = ({
         field,
@@ -223,58 +220,23 @@ export default function QualForm() {
             </div>
 
             <div className="field">
-                <label>Pretende adquirir para: <span style={{ color: 'var(--clr-gold)' }}>*</span></label>
-                <RadioCards
-                    field="finalidade"
-                    options={[
-                        { value: 'habitacao', label: 'Habitação própria' },
-                        { value: 'investimento', label: 'Investimento' },
-                    ]}
-                />
-                {errors.finalidade && <span className="field-error">{errors.finalidade}</span>}
-            </div>
-
-            <div className="form-two-col">
-                <div className="field">
-                    <label htmlFor={`${formId}-credito`}>
-                        Crédito aprovado? <span style={{ color: 'var(--clr-gold)' }}>*</span>
-                    </label>
-                    <div className="select-wrap">
-                        <select
-                            id={`${formId}-credito`}
-                            value={data.credito}
-                            onChange={set('credito')}
-                            className={errors.credito ? 'is-error' : ''}
-                        >
-                            <option value="">Selecione...</option>
-                            <option value="sim_acima">Sim, aprovado + de 300k€</option>
-                            <option value="sim_abaixo">Sim, mas abaixo de 300k€</option>
-                            <option value="em_processo">Em processo</option>
-                            <option value="nao_tratei">Ainda não tratei</option>
-                        </select>
-                    </div>
-                    {errors.credito && <span className="field-error">{errors.credito}</span>}
+                <label htmlFor={`${formId}-prazo`}>
+                    Prazo de compra previsto: <span style={{ color: 'var(--clr-gold)' }}>*</span>
+                </label>
+                <div className="select-wrap">
+                    <select
+                        id={`${formId}-prazo`}
+                        value={data.prazo}
+                        onChange={set('prazo')}
+                        className={errors.prazo ? 'is-error' : ''}
+                    >
+                        <option value="">Selecione...</option>
+                        <option value="ate6">Até 6 meses</option>
+                        <option value="6a12">6 a 12 meses</option>
+                        <option value="mais12">Mais de 12 meses</option>
+                    </select>
                 </div>
-
-                <div className="field">
-                    <label htmlFor={`${formId}-prazo`}>
-                        Prazo de compra previsto: <span style={{ color: 'var(--clr-gold)' }}>*</span>
-                    </label>
-                    <div className="select-wrap">
-                        <select
-                            id={`${formId}-prazo`}
-                            value={data.prazo}
-                            onChange={set('prazo')}
-                            className={errors.prazo ? 'is-error' : ''}
-                        >
-                            <option value="">Selecione...</option>
-                            <option value="ate6">Até 6 meses</option>
-                            <option value="6a12">6 a 12 meses</option>
-                            <option value="mais12">Mais de 12 meses</option>
-                        </select>
-                    </div>
-                    {errors.prazo && <span className="field-error">{errors.prazo}</span>}
-                </div>
+                {errors.prazo && <span className="field-error">{errors.prazo}</span>}
             </div>
 
             <div className="field">
@@ -283,7 +245,7 @@ export default function QualForm() {
                     field="valor"
                     options={[
                         { value: 'menos_60k', label: 'Menos de 60.000€' },
-                        { value: 'mais_60k', label: '60.000€ ou mais' },
+                        { value: '60k_ou_mais', label: '60.000€ ou mais' },
                     ]}
                 />
                 {errors.valor && <span className="field-error">{errors.valor}</span>}
@@ -322,17 +284,13 @@ export default function QualForm() {
                     </>
                 ) : (
                     <>
-                        Receber Apresentação Completa
+                        Receber Projeto e PDF Completo
                         <svg className="btn-arrow" viewBox="0 0 20 20">
                             <path d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" />
                         </svg>
                     </>
                 )}
             </button>
-            <div className="form-credit-note" style={{ marginTop: '24px', fontSize: '0.82rem', color: 'var(--text-light)', lineHeight: 1.6, textAlign: 'center', background: 'rgba(200, 169, 107, 0.05)', padding: '16px', borderRadius: 'var(--radius)', border: '1px solid rgba(200, 169, 107, 0.15)' }}>
-                <span style={{ fontSize: '1.2rem', display: 'block', marginBottom: '8px' }}>🔐</span>
-                Ao submeter, terá acesso prioritário a uma <strong>consulta gratuita com o nosso especialista em crédito</strong> para validar a sua capacidade de compra — sem compromisso.
-            </div>
         </form>
     );
 }

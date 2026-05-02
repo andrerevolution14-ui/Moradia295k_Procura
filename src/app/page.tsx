@@ -34,7 +34,7 @@ export default function HomePage() {
           <div className="nav-actions">
             <a href="#projeto" className="nav-link">A Moradia</a>
             <a href="#modelo" className="nav-link">O Modelo</a>
-            <a href="#formulario" className="btn btn--gold btn--sm">Acesso Exclusivo</a>
+            <a href="#formulario" className="btn btn--gold btn--sm">Receber Projeto e PDF</a>
           </div>
         </div>
       </nav>
@@ -64,10 +64,15 @@ export default function HomePage() {
                 <span className="hero-bullet">💡 Financeiramente Inteligente</span>
               </div>
 
-              <a href="#formulario" className="btn btn--gold btn--lg" id="hero-cta">
-                Solicitar Apresentação e Plantas
-                <ArrowIcon />
-              </a>
+              <div className="hero-cta-group">
+                <a href="#formulario" className="btn btn--gold btn--lg" id="hero-cta">
+                  Receber Projeto e PDF Completo
+                  <ArrowIcon />
+                </a>
+                <a href="#formulario" className="btn btn--outline btn--lg">
+                  Ver Plantas e PDF
+                </a>
+              </div>
 
               <div style={{ display: 'flex', justifyContent: 'center', marginTop: '-45px', marginBottom: '-90px', pointerEvents: 'none' }}>
                 <img src="/sign2.png" alt="Silvermont Signature" style={{ width: '100%', maxWidth: '220px', height: 'auto', display: 'block' }} loading="lazy" />
@@ -139,6 +144,12 @@ export default function HomePage() {
             <div style={{ marginTop: 48, borderRadius: 'var(--radius)', overflow: 'hidden', boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)' }}>
               <img src="/Sala2.png" alt="Interior da Moradia - Sala" style={{ width: '100%', height: 'auto', display: 'block' }} loading="lazy" />
             </div>
+            <div style={{ marginTop: '32px', textAlign: 'center' }}>
+              <a href="#formulario" className="btn btn--gold btn--lg">
+                Receber Projeto e PDF Completo
+                <ArrowIcon />
+              </a>
+            </div>
           </RevealWrapper>
 
           <RevealWrapper>
@@ -160,35 +171,47 @@ export default function HomePage() {
           <RevealWrapper>
             <div className="section-header">
               <p className="label">A Localização</p>
-              <h2 className="title">Tranquilidade com<br />o centro a 10 minutos.</h2>
+              <h2 className="title">Tranquilidade com<br />Aveiro a apenas 5 minutos.</h2>
               <p className="section-intro">
                 O lote situa-se nas Quintãs (Rua da Capela Nova), inserido num loteamento organizado, seguro e de forte pendor familiar. O equilíbrio perfeito entre a pacatez residencial e a proximidade aos principais acessos.
               </p>
             </div>
           </RevealWrapper>
 
-          <div className="benefits-grid">
-            {[
-              { tag: 'Distância', title: 'Centro de Aveiro', body: 'Apenas 8 a 10 minutos de carro da cidade, garantindo proximidade a comércio, escolas e transportes.' },
-              { tag: 'Conveniência', title: 'Autoestrada a 2 min', body: 'Acesso quase imediato às vias rápidas, facilitando qualquer deslocação diária ou profissional.' },
-              { tag: 'Ambiente', title: 'Zona Residencial', body: 'Vizinhança consolidada e pacífica, longe da confusão urbana mas dotada de boas infraestruturas locais.' },
-              { tag: 'O Lote', title: 'Espaço Exterior Otimizado', body: 'Terreno de aproximadamente 194m² desenhado para ser prático e de baixa manutenção, complementando a área útil de habitação.' },
-            ].map((b, i) => (
-              <RevealWrapper key={b.tag} delay={i % 4 as 0 | 1 | 2 | 3}>
-                <div className="benefit-card">
-                  <span className="benefit-tag">{b.tag}</span>
-                  <h3>{b.title}</h3>
-                  <p>{b.body}</p>
-                </div>
-              </RevealWrapper>
-            ))}
+          <div className="location-highlight">
+            <div className="location-map">
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3032.553258525791!2d-8.6277777!3d40.5283333!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDDCsDMxJzQyLjAiTiA4wrAzNyI0MC4wIlc!5e0!3m2!1spt-PT!2spt!4v1714650000000!5m2!1spt-PT!2spt" 
+                width="100%" 
+                height="450" 
+                style={{ border: 0, borderRadius: 'var(--radius)' }} 
+                allowFullScreen={true} 
+                loading="lazy" 
+                referrerPolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+            <div className="location-stats-large">
+              <div className="loc-stat-card">
+                <span className="loc-stat-time">5 min</span>
+                <span className="loc-stat-desc">A 5 min do centro de Aveiro</span>
+              </div>
+              <div className="loc-stat-card">
+                <span className="loc-stat-time">2 min</span>
+                <span className="loc-stat-desc">da Autoestrada (A17)</span>
+              </div>
+              <div className="loc-stat-card">
+                <span className="loc-stat-time">8 min</span>
+                <span className="loc-stat-desc">das Praias</span>
+              </div>
+            </div>
           </div>
 
-          <RevealWrapper delay={1}>
-            <div style={{ marginTop: 48, borderRadius: 'var(--radius)', overflow: 'hidden' }}>
-              <img src="/aveiro1.webp" alt="Visão de Aveiro" style={{ width: '100%', height: 'auto', objectFit: 'cover', display: 'block' }} loading="lazy" />
-            </div>
-          </RevealWrapper>
+          <div style={{ marginTop: '40px', textAlign: 'center' }}>
+            <a href="#formulario" className="btn btn--gold btn--lg">
+              Receber Projeto e PDF da Localização
+              <ArrowIcon />
+            </a>
+          </div>
         </div>
       </section>
 
@@ -236,6 +259,11 @@ export default function HomePage() {
                     <CheckSvg /> <span>Posicionamento de preço abaixo da média</span>
                   </div>
                 </div>
+                <div style={{ marginTop: '24px' }}>
+                  <a href="#formulario" className="btn btn--gold btn--sm btn--full">
+                    Receber Projeto e PDF da Solução
+                  </a>
+                </div>
               </div>
             </RevealWrapper>
           </div>
@@ -272,6 +300,13 @@ export default function HomePage() {
                 </div>
               </RevealWrapper>
             ))}
+          </div>
+
+          <div style={{ marginTop: '48px', textAlign: 'center' }}>
+            <a href="#formulario" className="btn btn--gold btn--lg">
+              Receber Projeto e PDF Financeiro
+              <ArrowIcon />
+            </a>
           </div>
         </div>
       </section>
@@ -354,6 +389,13 @@ export default function HomePage() {
               </RevealWrapper>
             ))}
           </div>
+
+          <div style={{ marginTop: '32px', textAlign: 'center' }}>
+            <a href="#formulario" className="btn btn--gold btn--lg">
+              Receber Projeto e PDF da Tecnologia
+              <ArrowIcon />
+            </a>
+          </div>
         </div>
       </section>
 
@@ -412,6 +454,12 @@ export default function HomePage() {
             <div style={{ marginTop: 48, borderRadius: 'var(--radius)', overflow: 'hidden', border: '1px solid var(--border-dark)' }}>
               <img src="/Precos-1.png" alt="Comparativo de Preços na Região" style={{ width: '100%', height: 'auto', objectFit: 'contain', display: 'block' }} loading="lazy" />
             </div>
+            <div style={{ marginTop: '32px', textAlign: 'center' }}>
+              <a href="#formulario" className="btn btn--gold btn--lg">
+                Receber Projeto e PDF (Venda Direta)
+                <ArrowIcon />
+              </a>
+            </div>
           </RevealWrapper>
         </div>
       </section>
@@ -441,7 +489,7 @@ export default function HomePage() {
                   <span>🔐</span> Conteúdo Protegido
                 </div>
                 <a href="#formulario" className="btn btn--gold btn--lg">
-                  Desbloquear Plantas em Alta Resolução
+                  Desbloquear Projeto e PDF Completo
                 </a>
                 <p style={{ marginTop: '16px', fontSize: '0.9rem', color: 'rgba(255,255,255,0.6)' }}>Acesso exclusivo via Lista Privada</p>
               </div>
@@ -464,7 +512,7 @@ export default function HomePage() {
                 </div>
                 <div className="about-body" style={{ textAlign: 'center' }}>
                   <h3>Silvermont Capital</h3>
-                  <p>A força administrativa que não tem medo das datas nem da complexidade logística. Transformando a promessa de obra na verdadeira definição de 'Chave na Mão'. Parceiros com mediação de crédito imobiliário à disposição, a custo zero.</p>
+                  <p>A força administrativa que não tem medo das datas nem da complexidade logística. Transformando a promessa de obra na verdadeira definição de 'Chave na Mão'.</p>
                 </div>
               </div>
             </RevealWrapper>

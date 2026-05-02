@@ -14,8 +14,6 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 export interface Lead {
     nome: string;
     telefone: string;
-    finalidade: string;
-    credito: string;
     prazo: string;
     valor: string;
 }
