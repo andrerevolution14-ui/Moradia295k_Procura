@@ -4,12 +4,12 @@ import './globals.css';
 import MetaPixel from '@/components/MetaPixel';
 
 export const metadata: Metadata = {
-  title: 'Moradia T3 Moderna em Aveiro — 390.000€ | Oportunidade Única',
+  title: 'Moradia T3 Moderna — 390.000€ | Oportunidade Única',
   description:
-    'Projeto exclusivo com tecnologia LSF e Inteligência Financeira. Entrega Março de 2027. Localização privilegiada a 10 minutos de Aveiro.',
-  keywords: 'moradia aveiro, casa nova t3, construção lsf portugal, investimento imobiliário aveiro, autoconstrução assistida',
+    'Projeto exclusivo com tecnologia LSF e Inteligência Financeira. Entrega Março de 2027. Localização privilegiada a 10 minutos da cidade.',
+  keywords: 'casa nova t3, construção lsf portugal, investimento imobiliário, autoconstrução assistida',
   openGraph: {
-    title: 'Nova Moradia T3 Moderna — 390k€ | Aveiro',
+    title: 'Nova Moradia T3 Moderna — 390k€',
     description: 'Aceda à lista privada para este projeto exclusivo com entrega em Março de 2027.',
     type: 'website',
     images: [{ url: '/og-image.jpg', width: 1200, height: 630 }],

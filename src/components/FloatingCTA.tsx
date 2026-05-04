@@ -29,10 +29,10 @@ export default function FloatingCTA() {
         <div className="floating-cta">
             <div className="floating-cta-text">
                 <div className="floating-cta-price">390.000€</div>
-                Lista Privada — Aveiro
+                Lista Privada
             </div>
             <a href="#formulario" className="btn btn--gold btn--sm">
-                Receber Projeto e PDF
+                Receber Apresentação
             </a>
         </div>
     );

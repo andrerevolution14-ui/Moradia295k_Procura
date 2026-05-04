@@ -171,7 +171,7 @@ export default function HomePage() {
           <RevealWrapper>
             <div className="section-header">
               <p className="label">A Localização</p>
-              <h2 className="title">Tranquilidade com<br />Aveiro a apenas 5 minutos.</h2>
+              <h2 className="title">Tranquilidade com a<br />Cidade a apenas 5 minutos.</h2>
               <p className="section-intro">
                 O lote situa-se nas Quintãs (Rua da Capela Nova), inserido num loteamento organizado, seguro e de forte pendor familiar. O equilíbrio perfeito entre a pacatez residencial e a proximidade aos principais acessos.
               </p>
@@ -193,7 +193,7 @@ export default function HomePage() {
             <div className="location-stats-large">
               <div className="loc-stat-card">
                 <span className="loc-stat-time">8 min</span>
-                <span className="loc-stat-desc">Do Centro de Aveiro</span>
+                <span className="loc-stat-desc">Do Centro da Cidade</span>
               </div>
               <div className="loc-stat-card">
                 <span className="loc-stat-time">2 min</span>
@@ -418,7 +418,7 @@ export default function HomePage() {
             <RevealWrapper delay={0}>
               <div className="comparison-card comparison-card--default">
                 <span className="comparison-card-label">Mercado Normal</span>
-                <h3>Apartamento T2 — Gafanha / Aveiro</h3>
+                <h3>Apartamento T2 — Novo (Comparativo)</h3>
                 <div style={{ fontSize: '0.95rem', lineHeight: 1.6 }}>
                   <p><strong>Preço:</strong> 450.000€+</p>
                   <p><strong>IMT:</strong> ~24.636€+ | <strong>Selo:</strong> ~3.840€+</p>
@@ -528,10 +528,17 @@ export default function HomePage() {
           <RevealWrapper>
             <div className="section-header section-header--center">
               <p className="label">Reserva Antecipada</p>
-              <h2 className="title title--center">Garanta a sua informação.</h2>
+              <h2 className="title title--center">Onde devemos enviar a apresentação?</h2>
               <p className="section-intro section-intro--center">
-                Apenas 3 unidades estão sob este teto de condições da Lista Privada.
-                Preencha os dados e <strong>receberá via WhatsApp</strong> o compêndio de plantas e todos os pormenores da obra.
+                Preencha para receber as <strong>Plantas com Medidas</strong>, o <strong>Mapa de Acabamentos</strong> e a <strong>Brochura Completa</strong>.
+                <br /><br />
+                Ao descarregar, terá acesso a:
+                <ul style={{ textAlign: 'left', marginTop: '16px', fontSize: '0.95rem', color: 'rgba(255,255,255,0.7)', listStyle: 'none' }}>
+                  <li style={{ marginBottom: '8px' }}>✅ <strong>Medidas Reais:</strong> Áreas exatas de cada divisão para planear a sua mobília.</li>
+                  <li style={{ marginBottom: '8px' }}>✅ <strong>Lista de Marcas:</strong> Conheça a qualidade premium dos equipamentos e materiais.</li>
+                  <li style={{ marginBottom: '8px' }}>✅ <strong>Simulação Fiscal:</strong> O estudo detalhado da poupança de 28.000€ em impostos.</li>
+                  <li style={{ marginBottom: '8px' }}>✅ <strong>Acesso Prioritário:</strong> Condições exclusivas para as últimas 3 unidades.</li>
+                </ul>
               </p>
             </div>
           </RevealWrapper>

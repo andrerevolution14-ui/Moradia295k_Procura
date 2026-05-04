@@ -18,7 +18,7 @@ export default function Nav() {
                         Moradia T3 <span>390k</span>
                     </a>
                     <a href="#formulario" className="btn btn--primary nav-cta">
-                        Receber Projeto e PDF
+                        Receber Projeto e Apresentação
                     </a>
                 </div>
             </div>

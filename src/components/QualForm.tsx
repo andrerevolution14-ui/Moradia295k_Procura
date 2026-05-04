@@ -193,7 +193,7 @@ export default function QualForm() {
             <div className="form-two-col">
                 <div className="field">
                     <label htmlFor={`${formId}-nome`}>
-                        Nome completo <span style={{ color: 'var(--clr-gold)' }}>*</span>
+                        Como se chama? <span style={{ color: 'var(--clr-gold)' }}>*</span>
                     </label>
                     <input
                         id={`${formId}-nome`}
@@ -209,11 +209,12 @@ export default function QualForm() {
 
                 <div className="field">
                     <label htmlFor={`${formId}-telefone`}>
-                        Telefone (WhatsApp) <span style={{ color: 'var(--clr-gold)' }}>*</span>
+                        WhatsApp para envio da Apresentação <span style={{ color: 'var(--clr-gold)' }}>*</span>
                     </label>
                     <input
                         id={`${formId}-telefone`}
                         type="tel"
+                        inputMode="tel"
                         placeholder="+351 9XX XXX XXX"
                         value={data.telefone}
                         onChange={set('telefone')}
@@ -226,7 +227,7 @@ export default function QualForm() {
 
             <div className="field">
                 <label htmlFor={`${formId}-prazo`}>
-                    Prazo de compra previsto: <span style={{ color: 'var(--clr-gold)' }}>*</span>
+                    Quando planeia comprar a sua nova casa? <span style={{ color: 'var(--clr-gold)' }}>*</span>
                 </label>
                 <div className="select-wrap">
                     <select
@@ -289,7 +290,7 @@ export default function QualForm() {
                     </>
                 ) : (
                     <>
-                        Receber Projeto e PDF Completo
+                        Receber Apresentação por WhatsApp
                         <svg className="btn-arrow" viewBox="0 0 20 20">
                             <path d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" />
                         </svg>
