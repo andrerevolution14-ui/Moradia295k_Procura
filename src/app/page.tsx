@@ -33,7 +33,7 @@ export default function HomePage() {
           </a>
           <div className="nav-actions">
             <a href="#projeto" className="nav-link">A Moradia</a>
-            <a href="#modelo" className="nav-link">O Modelo</a>
+            <a href="#modelo" className="nav-link">Como Funciona</a>
             <a href="#formulario" className="btn btn--gold btn--sm">Aceder ao Projeto e PDF</a>
           </div>
         </div>
@@ -61,7 +61,7 @@ export default function HomePage() {
               <div className="hero-bullets">
                 <span className="hero-bullet">📍 Localização de Ouro</span>
                 <span className="hero-bullet">⏳ Entrega em 10 Meses</span>
-                <span className="hero-bullet">💡 Financeiramente Inteligente</span>
+                <span className="hero-bullet">💡 Compra Simples e Segura</span>
               </div>
 
               <div className="hero-cta-group">
@@ -271,25 +271,25 @@ export default function HomePage() {
       </section>
 
       {/* ══════════════════════════════════════════════════
-          O MODELO SILVERMONT E FASES
+          COMO FUNCIONA
           ══════════════════════════════════════════════════ */}
       <section className="section section--dark" id="modelo">
         <div className="container">
           <RevealWrapper>
             <div className="section-header section-header--center">
-              <p className="label">O Modelo Silvermont</p>
-              <h2 className="title title--center">Autoconstrução Assistida.</h2>
+              <p className="label">Como Funciona</p>
+              <h2 className="title title--center">Compra em planta.<br />Com apoio total do banco.</h2>
               <p className="section-intro section-intro--center">
-                A junção perfeita: as enormes vantagens fiscais e financeiras da autoconstrução, totalmente geridas por nós para garantir a simplicidade de um produto &apos;Chave na Mão&apos;.
+                É como comprar um apartamento em planta — mas numa moradia T3 com jardim, inteiramente gerida por nós. O banco financia a obra diretamente, passo a passo, enquanto a Silvermont coordena tudo. O resultado para si: chave na mão, sem complicações.
               </p>
             </div>
           </RevealWrapper>
 
           <div className="phases-layout">
             {[
-              { step: '01', badge: 'Terreno', title: 'Proprietário no Dia 1', body: 'A escritura do lote (com projeto aprovado) passa imediatamente para si. Tem a segurança máxima sobre o investimento.' },
-              { step: '02', badge: 'Financiamento', title: 'Construção por Tranches', body: 'O banco aprova a operação total e só liberta fundos à medida que a casa é construída. Controlo e transparência absolutos.' },
-              { step: '03', badge: 'Chave na Mão', title: 'Gestão 100% Silvermont', body: 'Sem dores de cabeça. Coordenamos as equipas, tratamos das burocracias e entregamos-lhe a casa concluída.' },
+              { step: '01', badge: 'Reserva', title: 'Reserva com Segurança Total', body: 'Assina o Contrato Promessa e garante o seu lugar na lista privada. O projeto está aprovado, os prazos são reais e o preço é fechado desde o primeiro dia.' },
+              { step: '02', badge: 'Crédito', title: 'Crédito Habitual — Condições Excecionais', body: 'Usa o seu banco de habituação normal. A nossa estrutura permite aceder a condições financeiras que um apartamento novo equivalente simplesmente não oferece.' },
+              { step: '03', badge: 'Entrega', title: 'Chave na Mão em Março 2027', body: 'A Silvermont gere todas as equipas e burocracias. Recebe a sua moradia completa, equipada e pronta a habitar, sem uma única dor de cabeça.' },
             ].map((p, i) => (
               <RevealWrapper key={p.step} delay={i as 0 | 1 | 2}>
                 <div className="phase-card">
@@ -304,7 +304,7 @@ export default function HomePage() {
 
           <div style={{ marginTop: '48px', textAlign: 'center' }}>
             <a href="#formulario" className="btn btn--gold btn--lg">
-              Descarregar Estudo Financeiro
+              Ver Dossier Completo
               <ArrowIcon />
             </a>
           </div>
@@ -329,8 +329,8 @@ export default function HomePage() {
           <div className="lsf-layout">
             <div className="lsf-features">
               {[
-                { title: 'Otimização Fiscal de 28k€', body: 'Enquanto a maioria paga IMT sobre o valor total do imóvel pronto (390k€), aqui apenas tributa o lote. Uma poupança direta de cerca de 28.000€ em impostos.' },
-                { title: 'Sem Dupla Prestação', body: 'O pesadelo de pagar aluguer e crédito ao mesmo tempo desaparece. Paga apenas juros sobre a fração do dinheiro que for utilizada durante os curtos meses da obra.' },
+                { title: 'Vantagem Fiscal Significativa', body: 'A estrutura desta aquisição permite uma poupança considerável em impostos de transação face à compra de um imóvel equivalente já construído. O nosso consultor explica em detalhe.' },
+                { title: 'Sem Dupla Prestação', body: 'Durante a obra, paga apenas juros sobre o montante efetivamente utilizado — muito abaixo do valor da prestação final. Não acumula renda e crédito ao mesmo tempo.' },
                 { title: 'Crédito Tratado Gratuitamente', body: 'Trabalhamos com parceiros intermediários registados no Banco de Portugal que analisam a sua viabilidade de forma transparente, rápida e isenta de custos.' },
                 { title: 'Ganho Imediato de 60.000€', body: 'A moradia foi oficialmente avaliada em 450.000€. Quem reserva na lista privada e escritura a 390.000€ solidifica 60.000€ de capital próprio instantaneamente.' },
               ].map((f, i) => (
@@ -438,12 +438,12 @@ export default function HomePage() {
                 <div style={{ fontSize: '0.95rem', lineHeight: 1.6 }}>
                   <p><strong>Preço:</strong> 390.000€ | <strong>Avaliação:</strong> 450.000€</p>
                   <p style={{ color: 'var(--gold)', fontWeight: 'bold' }}>Ganho Imediato: +60.000€</p>
-                  <p><strong>IMT (sobre lote):</strong> ~4.270€ | <strong>Selo Mínimo</strong></p>
-                  <p><strong>Total Real Pago:</strong> <span style={{ color: '#4ade80' }}>~394.270€</span></p>
+                  <p><strong>Impostos:</strong> Reduzidos (ver dossier) | <strong>Crédito Gratuito</strong></p>
+                  <p><strong>Total Real Pago:</strong> <span style={{ color: '#4ade80' }}>Muito abaixo do mercado</span></p>
                   <p style={{ marginTop: '10px' }}>
                     • Tipologia superior (T3 com Jardim)<br />
                     • <strong>100% Equipada e Personalizada</strong><br />
-                    • <strong>Poupança Fiscal: ~28.000€</strong>
+                    • <strong>Vantagem Fiscal Incluída</strong>
                   </p>
                 </div>
               </div>
@@ -534,10 +534,10 @@ export default function HomePage() {
                 <br /><br />
                 Ao descarregar, terá acesso a:
                 <ul style={{ textAlign: 'left', marginTop: '16px', fontSize: '0.95rem', color: 'rgba(255,255,255,0.7)', listStyle: 'none' }}>
-                  <li style={{ marginBottom: '8px' }}>✅ <strong>Medidas Reais:</strong> Áreas exatas de cada divisão para planear a sua mobília.</li>
-                  <li style={{ marginBottom: '8px' }}>✅ <strong>Lista de Marcas:</strong> Conheça a qualidade premium dos equipamentos e materiais.</li>
-                  <li style={{ marginBottom: '8px' }}>✅ <strong>Simulação Fiscal:</strong> O estudo detalhado da poupança de 28.000€ em impostos.</li>
-                  <li style={{ marginBottom: '8px' }}>✅ <strong>Acesso Prioritário:</strong> Condições exclusivas para as últimas 3 unidades.</li>
+                  <li style={{ marginBottom: '8px' }}>✅ <strong>Plantas com Medidas:</strong> Áreas exatas de cada divisão para planear a sua mobília.</li>
+                  <li style={{ marginBottom: '8px' }}>✅ <strong>Mapa de Acabamentos:</strong> Conheça a qualidade premium dos equipamentos e materiais.</li>
+                  <li style={{ marginBottom: '8px' }}>✅ <strong>Estudo Financeiro:</strong> Como funciona o crédito e as vantagens fiscais desta aquisição.</li>
+                  <li style={{ marginBottom: '8px' }}>✅ <strong>Acesso Prioritário:</strong> Condições exclusivas para as últimas 3 unidades disponíveis.</li>
                 </ul>
               </p>
             </div>

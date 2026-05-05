@@ -7,14 +7,12 @@ interface FormData {
     nome: string;
     telefone: string;
     prazo: string;
-    valor: string;
 }
 
 interface FormErrors {
     nome?: string;
     telefone?: string;
     prazo?: string;
-    valor?: string;
 }
 
 function validate(data: FormData): FormErrors {
@@ -25,17 +23,15 @@ function validate(data: FormData): FormErrors {
         errors.nome = 'O nome é demasiado curto.';
     }
 
-    if (!data.telefone.trim() || data.telefone.trim() === '+351') {
-        errors.telefone = 'Por favor, introduza o seu telefone.';
-    } else {
-        const cleaned = data.telefone.replace(/[\s\-().+]/g, '');
-        if (!/^\d{9,15}$/.test(cleaned)) {
-            errors.telefone = 'Número de telefone inválido.';
-        }
+    const phoneCleaned = data.telefone.replace(/[\s\-().]/g, '');
+    // Must start with +351 and be followed by exactly 9 digits
+    if (!phoneCleaned || phoneCleaned === '+351') {
+        errors.telefone = 'Por favor, introduza o seu número de telemóvel.';
+    } else if (!/^\+351\d{9}$/.test(phoneCleaned)) {
+        errors.telefone = 'Introduza um número português válido: +351 seguido de 9 dígitos.';
     }
 
     if (!data.prazo) errors.prazo = 'Selecione uma opção.';
-    if (!data.valor) errors.valor = 'Selecione uma opção.';
     return errors;
 }
 declare global {
@@ -50,7 +46,6 @@ export default function QualForm() {
         nome: '',
         telefone: '+351 ',
         prazo: '',
-        valor: '',
     });
     const [errors, setErrors] = useState<FormErrors>({});
     const [loading, setLoading] = useState(false);
@@ -60,6 +55,18 @@ export default function QualForm() {
     const set = (field: keyof FormData) => (
         e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
     ) => setData((prev) => ({ ...prev, [field]: e.target.value }));
+
+    const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        let val = e.target.value;
+        // Always ensure the +351 prefix is present
+        if (!val.startsWith('+351')) {
+            val = '+351 ';
+        }
+        // After +351, only allow digits and spaces
+        const prefix = '+351';
+        const rest = val.slice(prefix.length).replace(/[^\d\s]/g, '');
+        setData((prev) => ({ ...prev, telefone: prefix + rest }));
+    };
 
 
     const selectRadio = (field: keyof FormData, value: string) =>
@@ -214,12 +221,18 @@ export default function QualForm() {
                     <input
                         id={`${formId}-telefone`}
                         type="tel"
-                        inputMode="tel"
+                        inputMode="numeric"
                         placeholder="+351 9XX XXX XXX"
                         value={data.telefone}
-                        onChange={set('telefone')}
+                        onChange={handlePhoneChange}
+                        onFocus={(e) => {
+                            // Place cursor at end
+                            const len = e.target.value.length;
+                            e.target.setSelectionRange(len, len);
+                        }}
                         className={errors.telefone ? 'is-error' : ''}
                         autoComplete="tel"
+                        maxLength={16}
                     />
                     {errors.telefone && <span className="field-error">{errors.telefone}</span>}
                 </div>
@@ -245,17 +258,6 @@ export default function QualForm() {
                 {errors.prazo && <span className="field-error">{errors.prazo}</span>}
             </div>
 
-            <div className="field">
-                <label>Capital próprio disponível para entrada: <span style={{ color: 'var(--clr-gold)' }}>*</span></label>
-                <RadioCards
-                    field="valor"
-                    options={[
-                        { value: 'menos_60k', label: 'Menos de 60.000€' },
-                        { value: '60k_ou_mais', label: '60.000€ ou mais' },
-                    ]}
-                />
-                {errors.valor && <span className="field-error">{errors.valor}</span>}
-            </div>
 
             <div className="privacy-row">
                 <svg viewBox="0 0 20 20"><path d="M10 2a6 6 0 00-6 6v1H3a1 1 0 00-1 1v7a1 1 0 001 1h14a1 1 0 001-1v-7a1 1 0 00-1-1h-1V8a6 6 0 00-6-6zm-4 7V8a4 4 0 118 0v1H6z" /></svg>
