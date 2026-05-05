@@ -7,12 +7,14 @@ interface FormData {
     nome: string;
     telefone: string;
     prazo: string;
+    valor: string;
 }
 
 interface FormErrors {
     nome?: string;
     telefone?: string;
     prazo?: string;
+    valor?: string;
 }
 
 function validate(data: FormData): FormErrors {
@@ -32,6 +34,7 @@ function validate(data: FormData): FormErrors {
     }
 
     if (!data.prazo) errors.prazo = 'Selecione uma opção.';
+    if (!data.valor) errors.valor = 'Selecione uma opção.';
     return errors;
 }
 declare global {
@@ -46,6 +49,7 @@ export default function QualForm() {
         nome: '',
         telefone: '+351 ',
         prazo: '',
+        valor: '',
     });
     const [errors, setErrors] = useState<FormErrors>({});
     const [loading, setLoading] = useState(false);
@@ -258,6 +262,17 @@ export default function QualForm() {
                 {errors.prazo && <span className="field-error">{errors.prazo}</span>}
             </div>
 
+            <div className="field">
+                <label>Capital próprio disponível para entrada: <span style={{ color: 'var(--clr-gold)' }}>*</span></label>
+                <RadioCards
+                    field="valor"
+                    options={[
+                        { value: 'menos_60k', label: 'Menos de 60.000€' },
+                        { value: '60k_ou_mais', label: '60.000€ ou mais' },
+                    ]}
+                />
+                {errors.valor && <span className="field-error">{errors.valor}</span>}
+            </div>
 
             <div className="privacy-row">
                 <svg viewBox="0 0 20 20"><path d="M10 2a6 6 0 00-6 6v1H3a1 1 0 00-1 1v7a1 1 0 001 1h14a1 1 0 001-1v-7a1 1 0 00-1-1h-1V8a6 6 0 00-6-6zm-4 7V8a4 4 0 118 0v1H6z" /></svg>
