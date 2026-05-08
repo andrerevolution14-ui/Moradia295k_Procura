@@ -4,12 +4,12 @@ import './globals.css';
 import MetaPixel from '@/components/MetaPixel';
 
 export const metadata: Metadata = {
-  title: 'Moradia T3 Moderna — 390.000€ | Oportunidade Única',
+  title: 'Nova Moradia T3 Moderna — 390.000€ | Lista Privada',
   description:
-    'Projeto exclusivo com tecnologia LSF e Inteligência Financeira. Entrega Março de 2027. Localização privilegiada a 10 minutos da cidade.',
+    'Acesso antecipado a projeto de moradia T3 contemporânea em zona residencial tranquila. Entrega Março de 2027. 390.000€ para compradores qualificados.',
   keywords: 'casa nova t3, construção lsf portugal, investimento imobiliário, autoconstrução assistida',
   openGraph: {
-    title: 'Nova Moradia T3 Moderna — 390k€',
+    title: 'Nova Moradia T3 Moderna — 390.000€ | Lista Privada',
     description: 'Aceda à lista privada para este projeto exclusivo com entrega em Março de 2027.',
     type: 'website',
     images: [{ url: '/og-image.jpg', width: 1200, height: 630 }],

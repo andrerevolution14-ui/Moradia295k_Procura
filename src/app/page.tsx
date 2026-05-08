@@ -85,7 +85,7 @@ export default function HomePage() {
                   { val: 'T3', lbl: 'Tipologia' },
                   { val: '185 m²', lbl: 'Área Útil' },
                   { val: 'Mar 2027', lbl: 'Entrega' },
-                  { val: '390k€', lbl: 'Preço Final' },
+                  { val: '390.000€', lbl: 'Preço Final' },
                 ].map((s) => (
                   <Fragment key={s.lbl}>
                     <div className="stat-item">
