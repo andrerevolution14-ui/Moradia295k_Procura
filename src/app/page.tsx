@@ -142,7 +142,7 @@ export default function HomePage() {
               { num: '01', title: 'Espaço que respira', body: 'Três quartos, sala ampla e jardim privativo. Espaço suficiente para uma família a crescer, para ter um escritório em casa, ou simplesmente para respirar fundo.' },
               { num: '02', title: 'Luz todo o dia', body: 'Orientação solar estudada e vãos generosos. A luz da manhã acorda contigo. A luz da tarde acompanha o jantar. Conforto térmico natural, sem esforço.' },
               { num: '03', title: 'Tudo incluído, nada por fazer', body: 'Cozinha equipada, casas de banho completas, pavimentos e pinturas incluídos no preço. Ao receber as chaves em março de 2027, a casa já está a teu gosto — sem obras, sem surpresas.' },
-              { num: '04', title: 'Feita à tua medida', body: 'Ainda está em planta — isso é uma vantagem. Podes escolher os acabamentos, os materiais, a cor das paredes. A casa que sonhaste, construída como tu queres.' },
+              { num: '04', title: 'Feita à tua medida', body: 'Ainda em planta, com total liberdade de escolha. Podes personalizar os acabamentos e existe a possibilidade de converter para um T4 com quarto no rés-do-chão.' },
             ].map((card, i) => (
               <RevealWrapper key={card.num} delay={i % 4 as 0 | 1 | 2 | 3}>
                 <div className="problem-card">
@@ -177,7 +177,7 @@ export default function HomePage() {
               <p className="label">A Casa por Dentro</p>
               <h2 className="title title--center">Imagina-te aqui.</h2>
               <p className="section-intro section-intro--center">
-                Renderíações e plantas do projeto. Podes imaginar cada espaço e já personalizá-lo ao teu gosto antes da obra começar.
+                Renderizações e plantas do projeto. Possibilidade de personalização total e de adicionar um quarto no rés-do-chão (T4). A casa adapta-se a ti.
               </p>
             </div>
           </RevealWrapper>
