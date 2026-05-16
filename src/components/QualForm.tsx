@@ -6,15 +6,11 @@ import { trackCapiLead } from '@/app/actions/capi';
 interface FormData {
     nome: string;
     telefone: string;
-    prazo: string;
-    valor: string;
 }
 
 interface FormErrors {
     nome?: string;
     telefone?: string;
-    prazo?: string;
-    valor?: string;
 }
 
 function validate(data: FormData): FormErrors {
@@ -26,17 +22,15 @@ function validate(data: FormData): FormErrors {
     }
 
     const phoneCleaned = data.telefone.replace(/[\s\-().]/g, '');
-    // Must start with +351 and be followed by exactly 9 digits
     if (!phoneCleaned || phoneCleaned === '+351') {
         errors.telefone = 'Por favor, introduza o seu número de telemóvel.';
     } else if (!/^\+351\d{9}$/.test(phoneCleaned)) {
         errors.telefone = 'Introduza um número português válido: +351 seguido de 9 dígitos.';
     }
 
-    if (!data.prazo) errors.prazo = 'Selecione uma opção.';
-    if (!data.valor) errors.valor = 'Selecione uma opção.';
     return errors;
 }
+
 declare global {
   interface Window {
     fbq: (command: string, action: string, params?: Record<string, unknown>, options?: Record<string, unknown>) => void;
@@ -48,8 +42,6 @@ export default function QualForm() {
     const [data, setData] = useState<FormData>({
         nome: '',
         telefone: '+351 ',
-        prazo: '',
-        valor: '',
     });
     const [errors, setErrors] = useState<FormErrors>({});
     const [loading, setLoading] = useState(false);
@@ -57,24 +49,18 @@ export default function QualForm() {
     const [submitError, setSubmitError] = useState<string | null>(null);
 
     const set = (field: keyof FormData) => (
-        e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+        e: React.ChangeEvent<HTMLInputElement>
     ) => setData((prev) => ({ ...prev, [field]: e.target.value }));
 
     const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         let val = e.target.value;
-        // Always ensure the +351 prefix is present
         if (!val.startsWith('+351')) {
             val = '+351 ';
         }
-        // After +351, only allow digits and spaces
         const prefix = '+351';
         const rest = val.slice(prefix.length).replace(/[^\d\s]/g, '');
         setData((prev) => ({ ...prev, telefone: prefix + rest }));
     };
-
-
-    const selectRadio = (field: keyof FormData, value: string) =>
-        setData((prev) => ({ ...prev, [field]: value }));
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -83,9 +69,8 @@ export default function QualForm() {
         setSubmitError(null);
         const errs = validate(data);
         setErrors(errs);
-        
+
         if (Object.keys(errs).length > 0) {
-            console.log('Validation failed:', errs);
             const firstError = Object.keys(errs)[0];
             const element = document.getElementById(`${formId}-${firstError}`);
             if (element) {
@@ -96,29 +81,21 @@ export default function QualForm() {
 
         setLoading(true);
         try {
-            // Generate unique event ID for deduplication
             const eventId = 'lead_' + Date.now() + '_' + Math.random().toString(36).substring(2, 9);
             const leadValue = 390000;
 
-            console.log(`[Tracking] Generating eventID: ${eventId}`);
-
-            // 1. Insert into Supabase
-            await insertLead(data);
-            console.log('[Tracking] Supabase insertion successful');
+            // 1. Insert into Supabase (with empty prazo/valor for backwards compatibility)
+            await insertLead({ ...data, prazo: '', valor: '' });
 
             // 2. Track Lead on Client (Pixel)
             if (typeof window !== 'undefined' && window.fbq) {
-                console.log('[Tracking] Firing Meta Pixel Lead event...');
                 window.fbq('track', 'Lead', {
                     value: leadValue,
                     currency: 'EUR',
                 }, { eventID: eventId });
-            } else {
-                console.warn('[Tracking] Meta Pixel (fbq) not found on window');
             }
 
             // 3. Track Lead on Server (CAPI)
-            console.log('[Tracking] Firing Meta CAPI Lead event...');
             await trackCapiLead({
                 nome: data.nome,
                 telefone: data.telefone,
@@ -126,57 +103,27 @@ export default function QualForm() {
                 value: leadValue
             });
 
-            console.log('[Tracking] All tracking events triggered successfully');
             setSubmitted(true);
         } catch (err: unknown) {
             console.error('Submission error:', err);
-            setSubmitError('Ocorreu um erro ao enviar o formulário. Por favor, tente novamente.');
+            setSubmitError('Ocorreu um erro ao enviar. Por favor, tente novamente.');
         } finally {
             setLoading(false);
         }
     };
 
-
-    const RadioCards = ({
-        field,
-        options,
-    }: {
-        field: keyof FormData;
-        options: { value: string; label: string }[];
-    }) => (
-        <div className="radio-cards">
-            {options.map((opt) => (
-                <label
-                    key={opt.value}
-                    className={`radio-card${data[field] === opt.value ? ' is-selected' : ''}`}
-                >
-                    <input
-                        type="radio"
-                        id={`${formId}-${field}`}
-                        name={`${formId}-${field}`}
-                        value={opt.value}
-                        checked={data[field] === opt.value}
-                        onChange={() => selectRadio(field, opt.value)}
-                    />
-                    <span className="radio-dot" />
-                    {opt.label}
-                </label>
-            ))}
-        </div>
-    );
-
     if (submitted) {
         return (
-            <div className="qual-form" style={{ minHeight: '350px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <div className="qual-form" style={{ minHeight: '300px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <div className="form-success visible" style={{ textAlign: 'center', padding: '40px 20px' }}>
-                    <div className="success-check" style={{ 
-                        width: '80px', 
-                        height: '80px', 
-                        background: 'linear-gradient(135deg, #c8a96b, #a68b54)', 
-                        borderRadius: '50%', 
-                        display: 'flex', 
-                        alignItems: 'center', 
-                        justifyContent: 'center', 
+                    <div className="success-check" style={{
+                        width: '80px',
+                        height: '80px',
+                        background: 'linear-gradient(135deg, #c8a96b, #a68b54)',
+                        borderRadius: '50%',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
                         margin: '0 auto 24px',
                         boxShadow: '0 10px 25px rgba(200, 169, 107, 0.4)',
                     }}>
@@ -184,14 +131,14 @@ export default function QualForm() {
                             <path fill="currentColor" d="M16.7 5.3a1 1 0 00-1.4 0L8 12.6 4.7 9.3a1 1 0 00-1.4 1.4l4 4a1 1 0 001.4 0l8-8a1 1 0 000-1.4z" />
                         </svg>
                     </div>
-                    <h3 style={{ fontSize: '1.85rem', marginBottom: '16px', color: '#fff', fontWeight: '700' }}>Acesso Confirmado!</h3>
-                    <p style={{ fontSize: '1.15rem', color: 'rgba(255,255,255,0.8)', maxWidth: '400px', margin: '0 auto', lineHeight: '1.6' }}>
-                        O seu pedido foi processado com sucesso. <br />
-                        <strong>Enviaremos agora para o seu WhatsApp</strong> a apresentação completa e o dossier técnico do projeto.
+                    <h3 style={{ fontSize: '1.85rem', marginBottom: '16px', color: '#fff', fontWeight: '700' }}>Até já! 🏡</h3>
+                    <p style={{ fontSize: '1.1rem', color: 'rgba(255,255,255,0.8)', maxWidth: '400px', margin: '0 auto', lineHeight: '1.7' }}>
+                        Recebemos o teu contacto.<br />
+                        <strong>Entraremos em contacto em breve</strong> para agendar a tua visita ao lote e tirar todas as dúvidas.
                     </p>
                     <div style={{ marginTop: '40px', display: 'flex', justifyContent: 'center', gap: '10px', alignItems: 'center', color: '#c8a96b', fontWeight: '600', letterSpacing: '0.05em', textTransform: 'uppercase', fontSize: '0.85rem' }}>
                         <span style={{ width: '40px', height: '1px', background: 'currentColor', opacity: 0.3 }}></span>
-                        Até já
+                        Até à visita
                         <span style={{ width: '40px', height: '1px', background: 'currentColor', opacity: 0.3 }}></span>
                     </div>
                 </div>
@@ -204,12 +151,12 @@ export default function QualForm() {
             <div className="form-two-col">
                 <div className="field">
                     <label htmlFor={`${formId}-nome`}>
-                        Como se chama? <span style={{ color: 'var(--clr-gold)' }}>*</span>
+                        O teu nome <span style={{ color: 'var(--clr-gold)' }}>*</span>
                     </label>
                     <input
                         id={`${formId}-nome`}
                         type="text"
-                        placeholder="O seu nome completo"
+                        placeholder="Como te chamamos?"
                         value={data.nome}
                         onChange={set('nome')}
                         className={errors.nome ? 'is-error' : ''}
@@ -220,7 +167,7 @@ export default function QualForm() {
 
                 <div className="field">
                     <label htmlFor={`${formId}-telefone`}>
-                        WhatsApp para envio da Apresentação <span style={{ color: 'var(--clr-gold)' }}>*</span>
+                        Número de telemóvel <span style={{ color: 'var(--clr-gold)' }}>*</span>
                     </label>
                     <input
                         id={`${formId}-telefone`}
@@ -230,7 +177,6 @@ export default function QualForm() {
                         value={data.telefone}
                         onChange={handlePhoneChange}
                         onFocus={(e) => {
-                            // Place cursor at end
                             const len = e.target.value.length;
                             e.target.setSelectionRange(len, len);
                         }}
@@ -242,41 +188,9 @@ export default function QualForm() {
                 </div>
             </div>
 
-            <div className="field">
-                <label htmlFor={`${formId}-prazo`}>
-                    Quando planeia comprar a sua nova casa? <span style={{ color: 'var(--clr-gold)' }}>*</span>
-                </label>
-                <div className="select-wrap">
-                    <select
-                        id={`${formId}-prazo`}
-                        value={data.prazo}
-                        onChange={set('prazo')}
-                        className={errors.prazo ? 'is-error' : ''}
-                    >
-                        <option value="">Selecione...</option>
-                        <option value="ate6">Até 6 meses</option>
-                        <option value="6a12">6 a 12 meses</option>
-                        <option value="mais12">Mais de 12 meses</option>
-                    </select>
-                </div>
-                {errors.prazo && <span className="field-error">{errors.prazo}</span>}
-            </div>
-
-            <div className="field">
-                <label>Capital próprio disponível para entrada: <span style={{ color: 'var(--clr-gold)' }}>*</span></label>
-                <RadioCards
-                    field="valor"
-                    options={[
-                        { value: 'menos_60k', label: 'Menos de 60.000€' },
-                        { value: '60k_ou_mais', label: '60.000€ ou mais' },
-                    ]}
-                />
-                {errors.valor && <span className="field-error">{errors.valor}</span>}
-            </div>
-
             <div className="privacy-row">
                 <svg viewBox="0 0 20 20"><path d="M10 2a6 6 0 00-6 6v1H3a1 1 0 00-1 1v7a1 1 0 001 1h14a1 1 0 001-1v-7a1 1 0 00-1-1h-1V8a6 6 0 00-6-6zm-4 7V8a4 4 0 118 0v1H6z" /></svg>
-                <p>Os seus dados são utilizados exclusivamente para contacto sobre este projeto e não serão partilhados com terceiros.</p>
+                <p>Os teus dados são utilizados exclusivamente para contacto sobre este projeto e não serão partilhados com terceiros.</p>
             </div>
 
             {submitError && (
@@ -307,7 +221,7 @@ export default function QualForm() {
                     </>
                 ) : (
                     <>
-                        Receber Apresentação por WhatsApp
+                        Quero Agendar uma Visita
                         <svg className="btn-arrow" viewBox="0 0 20 20">
                             <path d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" />
                         </svg>

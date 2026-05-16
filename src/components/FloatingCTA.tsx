@@ -27,12 +27,8 @@ export default function FloatingCTA() {
 
     return (
         <div className="floating-cta">
-            <div className="floating-cta-text">
-                <div className="floating-cta-price">390.000€</div>
-                Lista Privada
-            </div>
-            <a href="#formulario" className="btn btn--gold btn--sm">
-                Receber Apresentação
+            <a href="#formulario" className="btn btn--gold btn--sm" style={{ width: '100%', padding: '14px 24px', fontSize: '1rem' }}>
+                Agendar Visita
             </a>
         </div>
     );

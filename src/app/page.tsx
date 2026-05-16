@@ -2,6 +2,7 @@ import { Fragment } from 'react';
 import FloatingCTA from '@/components/FloatingCTA';
 import RevealWrapper from '@/components/RevealWrapper';
 import QualForm from '@/components/QualForm';
+import GalleryLightbox from '@/components/GalleryLightbox';
 
 /* ── Icons ── */
 const ArrowIcon = () => (
@@ -29,12 +30,12 @@ export default function HomePage() {
       <nav className="nav" aria-label="Navegação principal">
         <div className="container nav-container">
           <a href="#hero" className="nav-logo" aria-label="Voltar ao topo">
-            Moradia <span>390K</span>
+            Moradia <span>T3 Quintãs</span>
           </a>
           <div className="nav-actions">
-            <a href="#projeto" className="nav-link">A Moradia</a>
-            <a href="#modelo" className="nav-link">Como Funciona</a>
-            <a href="#formulario" className="btn btn--gold btn--sm">Aceder ao Projeto e PDF</a>
+            <a href="#projeto" className="nav-link">A Casa</a>
+            <a href="#galeria" className="nav-link">Galeria</a>
+            <a href="#formulario" className="btn btn--gold btn--sm">Marcar Visita</a>
           </div>
         </div>
       </nav>
@@ -43,39 +44,39 @@ export default function HomePage() {
           HERO
           ══════════════════════════════════════════════════ */}
       <section className="hero" id="hero">
+        <div className="hero-bg">
+          <img src="/Exterior Capa.png" alt="" aria-hidden="true" />
+          <div className="hero-bg-overlay" />
+        </div>
         <div className="container">
           <div className="hero-inner">
             <RevealWrapper>
-              <div className="hero-eyebrow">Lista Privada — Acesso Antecipado</div>
+              <div className="hero-eyebrow">T3 · 185m² · Jardim Privativo · Março 2027</div>
 
               <h1 className="hero-title">
-                Moradia T3 Moderna<br />
-                <em>nas Quintãs.</em>
+                A casa onde a tua<br />
+                <em>vida começa a fazer sentido.</em>
                 <span className="hero-price">390.000€</span>
               </h1>
 
-              <p className="hero-sub" style={{ fontSize: '1.2rem', color: 'var(--white)' }}>
-                Avaliada em <strong>450.000€</strong>. Entregue <strong>Chave na Mão em Março de 2027.</strong>
+              <p className="hero-sub">
+                Um T3 de 185m² com jardim privativo, a <strong>8 minutos do centro</strong> e a <strong>17 minutos das praias.</strong><br />
+                Compra em planta com apoio total do banco.
               </p>
 
               <div className="hero-bullets">
-                <span className="hero-bullet">📍 Localização de Ouro</span>
-                <span className="hero-bullet">⏳ Entrega em 10 Meses</span>
-                <span className="hero-bullet">💡 Compra Simples e Segura</span>
+                <span className="hero-bullet">🌿 Jardim e Estacionamento Privativos</span>
+                <span className="hero-bullet">🎨 Acabamentos escolhidos por ti</span>
               </div>
 
               <div className="hero-cta-group">
                 <a href="#formulario" className="btn btn--gold btn--lg" id="hero-cta">
-                  Descarregar Dossier e Projeto
+                  Agendar Visita Gratuita
                   <ArrowIcon />
                 </a>
-                <a href="#formulario" className="btn btn--outline btn--lg">
-                  Ver Plantas e Detalhes
+                <a href="#galeria" className="btn btn--outline btn--lg">
+                  Ver Fotos e Plantas
                 </a>
-              </div>
-
-              <div style={{ display: 'flex', justifyContent: 'center', marginTop: '-45px', marginBottom: '-90px', pointerEvents: 'none' }}>
-                <img src="/sign2.png" alt="Silvermont Signature" style={{ width: '100%', maxWidth: '220px', height: 'auto', display: 'block' }} loading="lazy" />
               </div>
             </RevealWrapper>
 
@@ -85,7 +86,7 @@ export default function HomePage() {
                   { val: 'T3', lbl: 'Tipologia' },
                   { val: '185 m²', lbl: 'Área Útil' },
                   { val: 'Mar 2027', lbl: 'Entrega' },
-                  { val: '390.000€', lbl: 'Preço Final' },
+                  { val: '390.000€', lbl: 'Preço Direto' },
                 ].map((s) => (
                   <Fragment key={s.lbl}>
                     <div className="stat-item">
@@ -100,35 +101,48 @@ export default function HomePage() {
         </div>
       </section>
       
-      {/* ── IMAGE BREAK: FACHADA ── */}
-      <div style={{ width: '100%', maxHeight: '700px', overflow: 'hidden', position: 'relative', marginBottom: '-100px', zIndex: 1 }}>
-        <RevealWrapper>
-          <img src="/Fachada1.png" alt="Fachada da Moradia" style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'cover' }} />
-          <div style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', height: '100%', background: 'linear-gradient(to top, var(--bg) 5%, transparent 40%, transparent 60%, var(--bg) 95%)' }}></div>
-        </RevealWrapper>
+      {/* ── BANK SUPPORT BANNER ── */}
+      <div className="bank-banner">
+        <div className="container">
+          <span className="bank-banner-icon">🏦</span>
+          <p><strong>Compra em Planta com Apoio Total do Banco</strong> — o banco financia a obra directamente. Na visita explicamos tudo.  <span style={{ color: 'var(--gold)', fontWeight: 600 }}>Só resta 1 moradia disponível.</span></p>
+        </div>
+      </div>
+
+      {/* ── SCARCITY BANNER ── */}
+      <div className="scarcity-banner">
+        <div className="container scarcity-inner">
+          <div className="scarcity-left">
+            <span className="scarcity-dot" />
+            <strong>Apenas 1 moradia disponível</strong> (2 de 3 já reservadas).
+          </div>
+          <div className="scarcity-right">
+            <strong>Se reservares agora, garantes os 390.000€.</strong> Mais tarde o preço subirá até aos 450.000€.
+          </div>
+        </div>
       </div>
 
       {/* ══════════════════════════════════════════════════
-          A MORADIA — CARACTERÍSTICAS
+          A CASA — PILARES EMOCIONAIS
           ══════════════════════════════════════════════════ */}
       <section className="section section--mid" id="projeto">
         <div className="container">
           <RevealWrapper>
             <div className="section-header section-header--center">
-              <p className="label">O Produto</p>
-              <h2 className="title title--center">Arquitetura Contemporânea<br />e Inteligente.</h2>
+              <p className="label">A Tua Nova Casa</p>
+              <h2 className="title title--center">185m² onde cabe<br />a vida toda.</h2>
               <p className="section-intro section-intro--center">
-                Uma moradia pensada para proporcionar conforto e estética no dia a dia. Com uma distribuição inteligente e excelente exposição solar, desenhada à medida das necessidades de uma família moderna.
+                Não é apenas uma casa. É o sítio onde vais acordar com luz natural, ouvir as crianças a brincar no jardim, e sentir que finalmente chegaste a casa — mesmo antes de entrar.
               </p>
             </div>
           </RevealWrapper>
 
           <div className="problem-grid">
             {[
-              { num: '01', title: 'Distribuição Inteligente', body: 'Tipologia T3 com espaços bem proporcionados. Cada divisão foi planeada para maximizar o conforto, a organização e o aproveitamento do espaço.' },
-              { num: '02', title: 'Exposição Solar', body: 'Luminosidade garantida. Orientação estudada e vãos generosos para assegurar luz natural em toda a habitação ao longo do dia.' },
-              { num: '03', title: '100% Equipada', body: 'Pronta a habitar. Cozinha com eletrodomésticos de gama alta e casas de banho premium (loiças e torneiras incluídas).' },
-              { num: '04', title: 'Acabamentos à sua Medida', body: 'Pavimentos, revestimentos e pinturas incluídos no orçamento, com a opção de personalização dos materiais interiores.' },
+              { num: '01', title: 'Espaço que respira', body: 'Três quartos, sala ampla e jardim privativo. Espaço suficiente para uma família a crescer, para ter um escritório em casa, ou simplesmente para respirar fundo.' },
+              { num: '02', title: 'Luz todo o dia', body: 'Orientação solar estudada e vãos generosos. A luz da manhã acorda contigo. A luz da tarde acompanha o jantar. Conforto térmico natural, sem esforço.' },
+              { num: '03', title: 'Tudo incluído, nada por fazer', body: 'Cozinha equipada, casas de banho completas, pavimentos e pinturas incluídos no preço. Ao receber as chaves em março de 2027, a casa já está a teu gosto — sem obras, sem surpresas.' },
+              { num: '04', title: 'Feita à tua medida', body: 'Ainda está em planta — isso é uma vantagem. Podes escolher os acabamentos, os materiais, a cor das paredes. A casa que sonhaste, construída como tu queres.' },
             ].map((card, i) => (
               <RevealWrapper key={card.num} delay={i % 4 as 0 | 1 | 2 | 3}>
                 <div className="problem-card">
@@ -140,23 +154,13 @@ export default function HomePage() {
             ))}
           </div>
 
-          <RevealWrapper delay={1}>
-            <div style={{ marginTop: 48, borderRadius: 'var(--radius)', overflow: 'hidden', boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)' }}>
-              <img src="/Sala2.png" alt="Interior da Moradia - Sala" style={{ width: '100%', height: 'auto', display: 'block' }} loading="lazy" />
-            </div>
-            <div style={{ marginTop: '32px', textAlign: 'center' }}>
-              <a href="#formulario" className="btn btn--gold btn--lg">
-                Solicitar Dossier de Acabamentos
-                <ArrowIcon />
-              </a>
-            </div>
-          </RevealWrapper>
+
 
           <RevealWrapper>
             <div className="callout-bar">
               <div className="callout-bar-line" aria-hidden />
               <p>
-                <strong>O nosso compromisso:</strong> Chave na mão. O preço fechado reflete uma casa pronta a habitar, sem adjudicações extras ou surpresas no fim da obra.
+                <strong>Chave na mão, de verdade.</strong> Preço fechado desde o primeiro dia. Sem surpresas, sem obras por fazer, sem custos escondidos. Entras e já é teu.
               </p>
             </div>
           </RevealWrapper>
@@ -164,9 +168,35 @@ export default function HomePage() {
       </section>
 
       {/* ══════════════════════════════════════════════════
+          GALERIA
+          ══════════════════════════════════════════════════ */}
+      <section className="section section--dark" id="galeria">
+        <div className="container">
+          <RevealWrapper>
+            <div className="section-header section-header--center">
+              <p className="label">A Casa por Dentro</p>
+              <h2 className="title title--center">Imagina-te aqui.</h2>
+              <p className="section-intro section-intro--center">
+                Renderíações e plantas do projeto. Podes imaginar cada espaço e já personalizá-lo ao teu gosto antes da obra começar.
+              </p>
+            </div>
+          </RevealWrapper>
+
+          <GalleryLightbox />
+
+          <div style={{ marginTop: '40px', textAlign: 'center' }}>
+            <a href="#formulario" className="btn btn--gold btn--lg">
+              Agendar Visita para Discutir Possibilidades
+              <ArrowIcon />
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════
           LOCALIZAÇÃO
           ══════════════════════════════════════════════════ */}
-      <section className="section section--dark" id="localizacao">
+      <section className="section section--mid" id="localizacao">
         <div className="container">
           <RevealWrapper>
             <div className="section-header">
@@ -208,7 +238,7 @@ export default function HomePage() {
 
           <div style={{ marginTop: '40px', textAlign: 'center' }}>
             <a href="#formulario" className="btn btn--gold btn--lg">
-              Receber Mapa e Projeto Completo
+              Agendar Visita ao Lote
               <ArrowIcon />
             </a>
           </div>
@@ -216,24 +246,24 @@ export default function HomePage() {
       </section>
 
       {/* ══════════════════════════════════════════════════
-          O PROBLEMA DO MERCADO
+          PARA QUEM É ESTA CASA
           ══════════════════════════════════════════════════ */}
       <section className="section section--mid" id="contexto">
         <div className="container">
           <div className="lsf-layout">
             <RevealWrapper>
               <div>
-                <p className="label">O Desafio Atual</p>
-                <h2 className="title">O mercado imobiliário falhou o comprador.</h2>
+                <p className="label">Esta casa é para ti se...</p>
+                <h2 className="title">Há momentos em que sentimos que já é hora de ter algo que é nosso.</h2>
                 <p className="section-intro" style={{ marginBottom: 24 }}>
-                  Comprar casa nova tornou-se um desafio. Preços inflexíveis, escassez de opções de qualidade e apartamentos banais a ultrapassarem os 370.000€ na região.
+                  Seja a primeira vez, seja um novo começo — há momentos em que sentimos que já é hora. De ter espaço. De ter raízes. De ter algo que é verdadeiramente nosso.
                 </p>
                 <div className="check-list">
                   {[
-                    'Concorrência inflacionada entre compradores',
-                    'Falta de transparência e prazos de entrega incertos',
-                    'Casas usadas a pedir obras de atualização dispendiosas',
-                    'Relação qualidade/preço completamente desequilibrada',
+                    'Casal a comprar a primeira casa juntos',
+                    'Família a crescer que precisa de mais espaço e jardim',
+                    'Quem quer sair do arrendamento de vez',
+                    'Quem está numa nova fase e quer recomeçar bem',
                   ].map((item) => (
                     <div key={item} className="check-item">
                       <CheckSvg />
@@ -246,22 +276,22 @@ export default function HomePage() {
 
             <RevealWrapper delay={1}>
               <div className="lsf-highlight-box">
-                <h3 style={{ color: 'var(--gold)' }}>A Nossa Solução</h3>
-                <p>Criámos de raiz um projeto desenhado para oferecer qualidade de vida sem abdicar da inteligência financeira.</p>
+                <h3 style={{ color: 'var(--gold)' }}>Um preço justo por algo real</h3>
+                <p>390.000€ por um T3 de 185m² com jardim, estacionamento e tudo equipado. Avaliado em 450.000€ — a diferença fica no teu bolso, não no do intermediário.</p>
                 <div className="check-list">
                   <div className="check-item" style={{ color: 'var(--white)' }}>
-                    <CheckSvg /> <span>Construção de ponta, completamente nova</span>
+                    <CheckSvg /> <span>Construção nova, sem obras à chegada</span>
                   </div>
                   <div className="check-item" style={{ color: 'var(--white)' }}>
-                    <CheckSvg /> <span>Entrada em fase inicial com vantagens reais</span>
+                    <CheckSvg /> <span>Jardim e estacionamento privativos incluídos</span>
                   </div>
                   <div className="check-item" style={{ color: 'var(--white)' }}>
-                    <CheckSvg /> <span>Posicionamento de preço abaixo da média</span>
+                    <CheckSvg /> <span>Ainda podes personalizar os acabamentos</span>
                   </div>
                 </div>
                 <div style={{ marginTop: '24px' }}>
                   <a href="#formulario" className="btn btn--gold btn--sm btn--full">
-                    Consultar Dossier da Solução
+                    Quero Conhecer Melhor
                   </a>
                 </div>
               </div>
@@ -277,19 +307,19 @@ export default function HomePage() {
         <div className="container">
           <RevealWrapper>
             <div className="section-header section-header--center">
-              <p className="label">Como Funciona</p>
-              <h2 className="title title--center">Compra em planta.<br />Com apoio total do banco.</h2>
+              <p className="label">Simples como devia ser</p>
+              <h2 className="title title--center">Da conversa à chave na mão.<br />Nós tratamos do resto.</h2>
               <p className="section-intro section-intro--center">
-                É como comprar um apartamento em planta — mas numa moradia T3 com jardim, inteiramente gerida por nós. O banco financia a obra diretamente, passo a passo, enquanto a Silvermont coordena tudo. O resultado para si: chave na mão, sem complicações.
+                Compras em planta com apoio bancário — como num apartamento normal, mas numa moradia T3 com jardim. O banco financia a obra, nós gerimos tudo. Tu escolhes a casa dos teus sonhos.
               </p>
             </div>
           </RevealWrapper>
 
           <div className="phases-layout">
             {[
-              { step: '01', badge: 'Reserva', title: 'Reserva com Segurança Total', body: 'Assina o Contrato Promessa e garante o seu lugar na lista privada. O projeto está aprovado, os prazos são reais e o preço é fechado desde o primeiro dia.' },
-              { step: '02', badge: 'Crédito', title: 'Crédito Habitual — Condições Excecionais', body: 'Usa o seu banco de habituação normal. A nossa estrutura permite aceder a condições financeiras que um apartamento novo equivalente simplesmente não oferece.' },
-              { step: '03', badge: 'Entrega', title: 'Chave na Mão em Março 2027', body: 'A Silvermont gere todas as equipas e burocracias. Recebe a sua moradia completa, equipada e pronta a habitar, sem uma única dor de cabeça.' },
+              { step: '01', badge: 'Visita', title: 'Vem ver o lote pessoalmente', body: 'Marca uma visita gratuita. Vens ao terreno, tens a planta na mão, vês a orientação solar, imaginas o jardim. Sentes se é mesmo o sítio.' },
+              { step: '02', badge: 'Reserva', title: 'Reservas com segurança total', body: 'Preço fechado, projeto aprovado, prazo real. Assinas o contrato e o teu lugar fica garantido. Se o banco não financiar por razões alheias a ti, tens o sinal de volta.' },
+              { step: '03', badge: 'Entrega', title: 'Em março de 2027 abres a porta', body: 'Desde o sinal que o projeto e o terreno já são teus. Em março de 2027 recebes a chave e podes mudar-te — moradia completa, equipada e personalizada, gerida por nós do início ao fim.' },
             ].map((p, i) => (
               <RevealWrapper key={p.step} delay={i as 0 | 1 | 2}>
                 <div className="phase-card">
@@ -304,7 +334,7 @@ export default function HomePage() {
 
           <div style={{ marginTop: '48px', textAlign: 'center' }}>
             <a href="#formulario" className="btn btn--gold btn--lg">
-              Ver Dossier Completo
+              Marcar a Minha Visita
               <ArrowIcon />
             </a>
           </div>
@@ -312,16 +342,16 @@ export default function HomePage() {
       </section>
 
       {/* ══════════════════════════════════════════════════
-          INTELIGÊNCIA FINANCEIRA & BENEFÍCIOS
+          POR QUE ESTA CASA MERECE ATENÇÃO
           ══════════════════════════════════════════════════ */}
       <section className="section section--mid" id="beneficios">
         <div className="container">
           <RevealWrapper>
             <div className="section-header section-header--center">
-              <p className="label">Inteligência Financeira</p>
-              <h2 className="title title--center">Razões que a matemática aprova.</h2>
+              <p className="label">O que tens aqui</p>
+              <h2 className="title title--center">Tudo o que sempre quiseste.<br />No sítio certo.</h2>
               <p className="section-intro section-intro--center">
-                Não maximizamos apenas a arquitetura. Maximizamos ativamente a eficácia do seu capital através de uma engenharia processual inovadora.
+                Não é só uma casa. É o jardim onde as crianças vão crescer, a garagem que é tua, a luz da tarde que entra pela sala, a tranquilidade de chegar a casa e sentir que chegaste mesmo.
               </p>
             </div>
           </RevealWrapper>
@@ -329,10 +359,10 @@ export default function HomePage() {
           <div className="lsf-layout">
             <div className="lsf-features">
               {[
-                { title: 'Vantagem Fiscal Significativa', body: 'A estrutura desta aquisição permite uma poupança considerável em impostos de transação face à compra de um imóvel equivalente já construído. O nosso consultor explica em detalhe.' },
-                { title: 'Sem Dupla Prestação', body: 'Durante a obra, paga apenas juros sobre o montante efetivamente utilizado — muito abaixo do valor da prestação final. Não acumula renda e crédito ao mesmo tempo.' },
-                { title: 'Crédito Tratado Gratuitamente', body: 'Trabalhamos com parceiros intermediários registados no Banco de Portugal que analisam a sua viabilidade de forma transparente, rápida e isenta de custos.' },
-                { title: 'Ganho Imediato de 60.000€', body: 'A moradia foi oficialmente avaliada em 450.000€. Quem reserva na lista privada e escritura a 390.000€ solidifica 60.000€ de capital próprio instantaneamente.' },
+                { title: 'Jardim e privacidade', body: 'Um jardim privativo onde podes tomar café de manhã, deixar os miúdos a brincar à tarde, ou simplesmente respirar fundo ao fim do dia. Espaço a mais não existe.' },
+                { title: 'Luz e conforto térmico', body: 'Orientação solar otimizada e isolamento premium (tecnologia LSF). A casa mantém-se fresca no verão e quente no inverno, sem esforço e sem contas pesadas de energia.' },
+                { title: 'Personalização antes da obra', body: 'Como ainda está em planta, tens a possibilidade única de escolher os acabamentos à tua medida. Pavimentos, pinturas, revestimentos — a casa não é genérica, é tua.' },
+                { title: 'Localização e qualidade de vida', body: 'Zona residencial tranquila e organizada. Supermercados, escolas e serviços a minutos. O centro a 8 min, a praia a 17 min, a autoestrada a 2 min. O dia a dia simplificado.' },
               ].map((f, i) => (
                 <RevealWrapper key={f.title} delay={i % 3 as 0 | 1 | 2}>
                   <div className="lsf-feature">
@@ -347,17 +377,32 @@ export default function HomePage() {
             </div>
 
             <RevealWrapper delay={1}>
-              <div className="lsf-highlight-box" style={{ borderColor: 'rgba(239, 68, 68, 0.4)' }}>
-                <h3 style={{ color: '#f87171' }}>Segurança Jurídica Total</h3>
-                <p>Introduzimos a &apos;Cláusula de Confiança Total&apos; no Contrato Promessa.</p>
+              <div className="lsf-highlight-box">
+                <h3 style={{ color: 'var(--gold)' }}>Zero riscos para a tua família</h3>
+                <p>Incluimos uma cláusula no Contrato Promessa: se o banco não aprovar o financiamento por razões alheias a ti, o sinal é devolvido na íntegra.</p>
                 <div style={{ marginTop: 20, fontSize: '0.95rem', color: 'var(--text-light)', lineHeight: 1.7 }}>
-                  Se assinar o contrato connosco e o banco rejeitar inesperadamente o financiamento essencial à sua operação — ou a avaliação divergir fatalmente — <strong>o sinal depositado ser-lhe-á devolvido na íntegra.</strong>
-                  <br /><br />
-                  <span style={{ color: 'var(--white)' }}>Sem penalizações obscuras. Sem riscos para a sua família. Risco zero para fechar negócio.</span>
+                  <span style={{ color: 'var(--white)' }}>Sem letras miudinhas. Sem surpresas no fim. Só a certeza de que, se avançares, estás protegido.</span>
+                </div>
+                <div style={{ marginTop: '24px' }}>
+                  <a href="#formulario" className="btn btn--gold btn--sm btn--full">
+                    Agendar uma Chamada
+                  </a>
                 </div>
               </div>
             </RevealWrapper>
           </div>
+
+          <RevealWrapper delay={1}>
+            <div style={{ marginTop: 48, borderRadius: 'var(--radius)', overflow: 'hidden', boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)' }}>
+              <img src="/Sala de Jantar.png" alt="Sala de jantar" style={{ width: '100%', height: 'auto', display: 'block' }} loading="lazy" />
+            </div>
+            <div style={{ marginTop: '32px', textAlign: 'center' }}>
+              <a href="#formulario" className="btn btn--gold btn--lg">
+                Quero Conhecer esta Casa
+                <ArrowIcon />
+              </a>
+            </div>
+          </RevealWrapper>
         </div>
       </section>
 
@@ -392,114 +437,19 @@ export default function HomePage() {
 
           <div style={{ marginTop: '32px', textAlign: 'center' }}>
             <a href="#formulario" className="btn btn--gold btn--lg">
-              Solicitar Dossier Técnico LSF
+              Marcar Visita Gratuita
               <ArrowIcon />
             </a>
           </div>
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════════════
-          COMPARATIVO FINAL
-          ══════════════════════════════════════════════════ */}
-      <section className="section section--mid" id="comparativo">
-        <div className="container">
-          <RevealWrapper>
-            <div className="section-header section-header--center">
-              <p className="label">Posicionamento</p>
-              <h2 className="title title--center">A transparência da Venda Direta.</h2>
-              <p className="section-intro section-intro--center">
-                Ignoramos a intermediação imobiliária para reinvestir os 10% nas suas poupanças. Como os números confirmam:
-              </p>
-            </div>
-          </RevealWrapper>
 
-          <div className="comparison-grid">
-            <RevealWrapper delay={0}>
-              <div className="comparison-card comparison-card--default">
-                <span className="comparison-card-label">Mercado Normal</span>
-                <h3>Apartamento T2 — Novo (Comparativo)</h3>
-                <div style={{ fontSize: '0.95rem', lineHeight: 1.6 }}>
-                  <p><strong>Preço:</strong> 450.000€+</p>
-                  <p><strong>IMT:</strong> ~24.636€+ | <strong>Selo:</strong> ~3.840€+</p>
-                  <p><strong>Total Real Pago:</strong> <span style={{ color: '#f87171' }}>~478.500€+</span></p>
-                  <p style={{ marginTop: '10px', opacity: 0.8 }}>
-                    • Tipologia inferior (T2)<br />
-                    • Sem personalização ou equipamentos<br />
-                    • <em>*Em Planta</em>
-                  </p>
-                </div>
-              </div>
-            </RevealWrapper>
-            <RevealWrapper delay={1}>
-              <div className="comparison-card comparison-card--featured">
-                <span className="comparison-card-label">Silvermont Capital</span>
-                <h3>Moradia T3 — Quintãs (Silvermont)</h3>
-                <div style={{ fontSize: '0.95rem', lineHeight: 1.6 }}>
-                  <p><strong>Preço:</strong> 390.000€ | <strong>Avaliação:</strong> 450.000€</p>
-                  <p style={{ color: 'var(--gold)', fontWeight: 'bold' }}>Ganho Imediato: +60.000€</p>
-                  <p><strong>Impostos:</strong> Reduzidos (ver dossier) | <strong>Crédito Gratuito</strong></p>
-                  <p><strong>Total Real Pago:</strong> <span style={{ color: '#4ade80' }}>Muito abaixo do mercado</span></p>
-                  <p style={{ marginTop: '10px' }}>
-                    • Tipologia superior (T3 com Jardim)<br />
-                    • <strong>100% Equipada e Personalizada</strong><br />
-                    • <strong>Vantagem Fiscal Incluída</strong>
-                  </p>
-                </div>
-              </div>
-            </RevealWrapper>
-          </div>
 
-          <RevealWrapper delay={1}>
-            <div style={{ marginTop: 48, borderRadius: 'var(--radius)', overflow: 'hidden', border: '1px solid var(--border-dark)' }}>
-              <img src="/Precos-1.png" alt="Comparativo de Preços na Região" style={{ width: '100%', height: 'auto', objectFit: 'contain', display: 'block' }} loading="lazy" />
-            </div>
-            <div style={{ marginTop: '32px', textAlign: 'center' }}>
-              <a href="#formulario" className="btn btn--gold btn--lg">
-                Aceder à Oportunidade (PDF)
-                <ArrowIcon />
-              </a>
-            </div>
-          </RevealWrapper>
-        </div>
-      </section>
+
 
       {/* ══════════════════════════════════════════════════
-          O SEGREDO — PLANTA
-          ══════════════════════════════════════════════════ */}
-      <section className="section section--dark" style={{ overflow: 'hidden' }}>
-        <div className="container">
-          <RevealWrapper>
-            <div className="section-header section-header--center">
-              <p className="label">Privacidade & Detalhe</p>
-              <h2 className="title title--center">A Planta Completa.</h2>
-              <p className="section-intro section-intro--center">
-                Desenhada para o máximo aproveitamento. Otimização de cada metro quadrado para o conforto da sua família.
-              </p>
-            </div>
-          </RevealWrapper>
-
-          <RevealWrapper delay={1}>
-            <div style={{ position: 'relative', marginTop: 48, borderRadius: 'var(--radius)', overflow: 'hidden', maxWidth: '900px', margin: '48px auto 0', border: '1px solid rgba(255,255,255,0.1)' }}>
-              <div style={{ filter: 'blur(15px)', opacity: 0.5, transform: 'scale(1.02)' }}>
-                <img src="/plantas3.png" alt="Planta da Moradia" style={{ width: '100%', height: 'auto', display: 'block' }} />
-              </div>
-              <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: 'rgba(11, 17, 32, 0.5)', backdropFilter: 'blur(2px)' }}>
-                <div style={{ background: 'var(--gold)', color: '#fff', padding: '12px 24px', borderRadius: '50px', fontWeight: 'bold', marginBottom: '20px', boxShadow: '0 10px 25px rgba(200, 169, 107, 0.4)', display: 'flex', alignItems: 'center', gap: '10px' }}>
-                  <span>🔐</span> Conteúdo Protegido
-                </div>
-                <a href="#formulario" className="btn btn--gold btn--lg">
-                  Desbloquear Dossier e Plantas
-                </a>
-                <p style={{ marginTop: '16px', fontSize: '0.9rem', color: 'rgba(255,255,255,0.6)' }}>Acesso exclusivo via Lista Privada</p>
-              </div>
-            </div>
-          </RevealWrapper>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════
-          QUEM SOMOS E CTA
+          QUEM SOMOS
           ══════════════════════════════════════════════════ */}
       <section className="section section--dark" id="autoridade">
         <div className="container">
@@ -512,13 +462,30 @@ export default function HomePage() {
                 </div>
                 <div className="about-body" style={{ textAlign: 'center' }}>
                   <h3>Silvermont Capital</h3>
-                  <p>A força administrativa que não tem medo das datas nem da complexidade logística. Transformando a promessa de obra na verdadeira definição de &apos;Chave na Mão&apos;.</p>
+                  <p>Somos a equipa que gere a obra do início ao fim, que respeita prazos e que acredita que comprar casa deve ser uma experiência boa — não um pesadelo burocrático. Estás em boas mãos.</p>
                 </div>
               </div>
             </RevealWrapper>
           </div>
         </div>
       </section>
+
+      {/* ── FINAL CTA TEASER ── */}
+      <div className="final-cta-band">
+        <RevealWrapper>
+          <div className="container" style={{ textAlign: 'center' }}>
+            <p className="label">Antes de te decidires</p>
+            <h2 className="title title--center" style={{ marginBottom: 24 }}>Vem ver tudo.<br />Sem compromisso.</h2>
+            <p style={{ color: 'var(--text-light)', maxWidth: 520, margin: '0 auto 32px', fontSize: '1.05rem', lineHeight: 1.7 }}>
+              A visita é gratuita. Vens ao lote, vês a orientação solar, tens a planta na mão e ficamos a par das tuas dúvidas. Só depois decides.
+            </p>
+            <a href="#formulario" className="btn btn--gold btn--lg">
+              Marcar a Minha Visita Gratuita
+              <ArrowIcon />
+            </a>
+          </div>
+        </RevealWrapper>
+      </div>
 
       {/* ══════════════════════════════════════════════════
           FORMULÁRIO
@@ -527,19 +494,19 @@ export default function HomePage() {
         <div className="container container--narrow">
           <RevealWrapper>
             <div className="section-header section-header--center">
-              <p className="label">Reserva Antecipada</p>
-              <h2 className="title title--center">Onde devemos enviar a apresentação?</h2>
+              <p className="label">Marca a tua visita — resta 1 vaga</p>
+              <h2 className="title title--center">Vem ver a casa<br />antes de te decidires.</h2>
               <p className="section-intro section-intro--center">
-                Preencha para receber as <strong>Plantas com Medidas</strong>, o <strong>Mapa de Acabamentos</strong> e a <strong>Brochura Completa</strong>.
-                <br /><br />
-                Ao descarregar, terá acesso a:
-                <ul style={{ textAlign: 'left', marginTop: '16px', fontSize: '0.95rem', color: 'rgba(255,255,255,0.7)', listStyle: 'none' }}>
-                  <li style={{ marginBottom: '8px' }}>✅ <strong>Plantas com Medidas:</strong> Áreas exatas de cada divisão para planear a sua mobília.</li>
-                  <li style={{ marginBottom: '8px' }}>✅ <strong>Mapa de Acabamentos:</strong> Conheça a qualidade premium dos equipamentos e materiais.</li>
-                  <li style={{ marginBottom: '8px' }}>✅ <strong>Estudo Financeiro:</strong> Como funciona o crédito e as vantagens fiscais desta aquisição.</li>
-                  <li style={{ marginBottom: '8px' }}>✅ <strong>Acesso Prioritário:</strong> Condições exclusivas para as últimas 3 unidades disponíveis.</li>
-                </ul>
+                Deixa o teu nome e telemóvel. Entraremos em contacto em menos de 24 horas para agendar a tua visita gratuita.
               </p>
+              <div className="urgency-box">
+                <div className="urgency-row">
+                  <span className="scarcity-dot" /> <span><strong>Apenas 1 moradia disponível</strong> das 3 construídas — as outras 2 já estão reservadas.</span>
+                </div>
+                <div className="urgency-row">
+                  <span><strong>Se reservares agora, garantes o valor de 390.000€.</strong> Se deixares para mais tarde, o preço subirá até alcançar a avaliação de 450.000€.</span>
+                </div>
+              </div>
             </div>
           </RevealWrapper>
 
@@ -558,8 +525,8 @@ export default function HomePage() {
         <div className="container">
           <div className="footer-inner">
             <div>
-              <span className="footer-logo">Moradia <span>390K</span></span>
-              <p className="footer-tagline">Lista Privada — Quintãs, 2026</p>
+              <span className="footer-logo">Moradia <span>T3 Quintãs</span></span>
+              <p className="footer-tagline">Quintãs, Aveiro — Entrega Março 2027</p>
             </div>
             <p className="footer-disclaimer">
               Material indicativo sujeito a afinações em fase de desenvolvimento. Valores perspetivados de modo indicial e a proposta documentada pode carecer de verificação por meios legais. Não consubstancia a compra final em si sem prévia autorização das partes intervenientes.
