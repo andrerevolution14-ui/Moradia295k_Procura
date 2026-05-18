@@ -103,7 +103,7 @@ export default function QualForm() {
                 value: leadValue
             });
 
-            setSubmitted(true);
+            window.location.href = "https://calendly.com/queirosenterprise/30min";
         } catch (err: unknown) {
             console.error('Submission error:', err);
             setSubmitError('Ocorreu um erro ao enviar. Por favor, tente novamente.');
