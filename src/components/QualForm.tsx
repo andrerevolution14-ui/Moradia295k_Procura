@@ -103,7 +103,10 @@ export default function QualForm() {
                 value: leadValue
             });
 
-            window.location.href = "https://calendly.com/queirosenterprise/30min";
+            setSubmitted(true);
+            setTimeout(() => {
+                window.location.href = "https://calendly.com/queirosenterprise/30min";
+            }, 1500);
         } catch (err: unknown) {
             console.error('Submission error:', err);
             setSubmitError('Ocorreu um erro ao enviar. Por favor, tente novamente.');
@@ -131,14 +134,14 @@ export default function QualForm() {
                             <path fill="currentColor" d="M16.7 5.3a1 1 0 00-1.4 0L8 12.6 4.7 9.3a1 1 0 00-1.4 1.4l4 4a1 1 0 001.4 0l8-8a1 1 0 000-1.4z" />
                         </svg>
                     </div>
-                    <h3 style={{ fontSize: '1.85rem', marginBottom: '16px', color: '#fff', fontWeight: '700' }}>Até já! 🏡</h3>
+                    <h3 style={{ fontSize: '1.85rem', marginBottom: '16px', color: '#fff', fontWeight: '700' }}>Dados Submetidos! 🏡</h3>
                     <p style={{ fontSize: '1.1rem', color: 'rgba(255,255,255,0.8)', maxWidth: '400px', margin: '0 auto', lineHeight: '1.7' }}>
-                        Recebemos o teu contacto.<br />
-                        <strong>Entraremos em contacto em breve</strong> para agendar a tua visita ao lote e tirar todas as dúvidas.
+                        Recebemos os teus dados com sucesso.<br />
+                        <strong>A redirecionar para o agendamento no Calendly...</strong>
                     </p>
                     <div style={{ marginTop: '40px', display: 'flex', justifyContent: 'center', gap: '10px', alignItems: 'center', color: '#c8a96b', fontWeight: '600', letterSpacing: '0.05em', textTransform: 'uppercase', fontSize: '0.85rem' }}>
                         <span style={{ width: '40px', height: '1px', background: 'currentColor', opacity: 0.3 }}></span>
-                        Até à visita
+                        A Redirecionar...
                         <span style={{ width: '40px', height: '1px', background: 'currentColor', opacity: 0.3 }}></span>
                     </div>
                 </div>
