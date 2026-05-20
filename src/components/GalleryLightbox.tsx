@@ -14,7 +14,6 @@ const PHOTOS: Photo[] = [
   { src: '/Quarto e varanda.png',          alt: 'Quarto com varanda',     caption: 'Quarto com Varanda' },
   { src: '/Quarto Porta.png',              alt: 'Quarto — entrada',       caption: 'Quarto' },
   { src: '/Corredor quartos.png',          alt: 'Corredor dos quartos',   caption: 'Corredor' },
-  { src: '/plantas3.png',                  alt: 'Planta da moradia T3',   caption: 'Planta — T3 185m²' },
 ];
 
 export default function GalleryLightbox() {

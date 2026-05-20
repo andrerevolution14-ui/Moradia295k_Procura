@@ -3,6 +3,7 @@ import FloatingCTA from '@/components/FloatingCTA';
 import RevealWrapper from '@/components/RevealWrapper';
 import QualForm from '@/components/QualForm';
 import GalleryLightbox from '@/components/GalleryLightbox';
+import PlansLightbox from '@/components/PlansLightbox';
 
 /* ── Icons ── */
 const ArrowIcon = () => (
@@ -187,6 +188,32 @@ export default function HomePage() {
           <div style={{ marginTop: '40px', textAlign: 'center' }}>
             <a href="#formulario" className="btn btn--gold btn--lg">
               Agendar Visita para Discutir Possibilidades
+              <ArrowIcon />
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════
+          PLANTAS
+          ══════════════════════════════════════════════════ */}
+      <section className="section section--mid" id="plantas">
+        <div className="container">
+          <RevealWrapper>
+            <div className="section-header section-header--center">
+              <p className="label">As Plantas</p>
+              <h2 className="title title--center">Conhece o teu futuro espaço.</h2>
+              <p className="section-intro section-intro--center">
+                Visualiza a disposição na planta em 3D e analisa a distribuição detalhada das áreas na planta técnica.
+              </p>
+            </div>
+          </RevealWrapper>
+
+          <PlansLightbox />
+          
+          <div style={{ marginTop: '40px', textAlign: 'center' }}>
+            <a href="#formulario" className="btn btn--gold btn--lg">
+              Discutir Planta na Visita
               <ArrowIcon />
             </a>
           </div>
@@ -534,7 +561,11 @@ export default function HomePage() {
           </div>
           <div className="footer-bottom">
             <span>&copy; 2026 Silvermont Capital. Todos os direitos reservados.</span>
-            <span>Venda Exclusiva.</span>
+            <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
+              <a href="/termos" style={{ color: 'inherit', textDecoration: 'underline' }}>Termos e Condições</a>
+              <a href="/privacidade" style={{ color: 'inherit', textDecoration: 'underline' }}>Política de Privacidade</a>
+              <span>Venda Exclusiva.</span>
+            </div>
           </div>
         </div>
       </footer>
