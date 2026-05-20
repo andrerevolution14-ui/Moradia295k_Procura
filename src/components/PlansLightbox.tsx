@@ -6,7 +6,7 @@ interface PlanPhoto { src: string; alt: string; caption: string; }
 
 const PLAN_PHOTOS: PlanPhoto[] = [
   { src: '/planta-3d.png',      alt: 'Planta em 3D',      caption: 'Planta em 3D' },
-  { src: '/planta-tecnica.png', alt: 'Planta Técnica',    caption: 'Planta Técnica' },
+  { src: '/Planta-tecnica.png', alt: 'Planta Técnica',    caption: 'Planta Técnica' },
 ];
 
 export default function PlansLightbox() {
