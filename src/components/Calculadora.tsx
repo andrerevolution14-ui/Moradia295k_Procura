@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react';
 import RevealWrapper from './RevealWrapper';
+import { CTA_PRIMARY } from '@/lib/cta';
 
 const TOTAL_PROJECT = 390000;
 const TERRENO = 60000;
@@ -166,10 +167,12 @@ export default function Calculadora() {
         </div>
       </div>
 
-      <div style={{ textAlign: 'center', borderTop: '1px solid var(--border-dark)', paddingTop: '32px' }}>
-        <a href="#formulario" className="btn btn--gold btn--lg" style={{ minWidth: '320px' }}>
-          Validar Simulação e Agendar Chamada (10 min)
+      <div className="calc-cta-block">
+        <p>Gostaste dos números? O próximo passo é uma chamada rápida para validar a viabilidade.</p>
+        <a href="#formulario" className="btn btn--gold btn--lg">
+          {CTA_PRIMARY}
         </a>
+        <span className="calc-cta-note">Chamada gratuita · ~30 min · Resposta em 24h</span>
       </div>
     </div>
   );

@@ -1,29 +1,16 @@
 'use client';
 import { useState, useEffect, useCallback } from 'react';
-
-interface Photo { src: string; alt: string; caption: string; }
-
-const PHOTOS: Photo[] = [
-  { src: '/Exterior Capa.png',            alt: 'Fachada principal',       caption: 'Exterior — Fachada Principal' },
-  { src: '/Exterior traseiro completo.png', alt: 'Exterior traseiro',     caption: 'Exterior — Vista Traseira' },
-  { src: '/Exterior Traseiro.jpg',         alt: 'Exterior traseiro',      caption: 'Exterior — Traseiro' },
-  { src: '/Sala de Jantar.png',            alt: 'Sala de jantar',         caption: 'Sala de Jantar' },
-  { src: '/Cozinha.png',                   alt: 'Cozinha equipada',       caption: 'Cozinha' },
-  { src: '/Terceiro Andar.png',            alt: 'Interior terceiro andar',caption: 'Terceiro Andar' },
-  { src: '/Quarto Cama.png',               alt: 'Quarto principal',       caption: 'Quarto' },
-  { src: '/Quarto e varanda.png',          alt: 'Quarto com varanda',     caption: 'Quarto com Varanda' },
-  { src: '/Quarto Porta.png',              alt: 'Quarto — entrada',       caption: 'Quarto' },
-  { src: '/Corredor quartos.png',          alt: 'Corredor dos quartos',   caption: 'Corredor' },
-];
+import OptimizedImage from '@/components/OptimizedImage';
+import { GALLERY_PHOTOS, GALLERY_SIZES } from '@/lib/images';
 
 export default function GalleryLightbox() {
   const [active, setActive] = useState<number | null>(null);
 
   const close = useCallback(() => setActive(null), []);
   const prev = useCallback(() =>
-    setActive((a) => (a === null ? null : (a - 1 + PHOTOS.length) % PHOTOS.length)), []);
+    setActive((a) => (a === null ? null : (a - 1 + GALLERY_PHOTOS.length) % GALLERY_PHOTOS.length)), []);
   const next = useCallback(() =>
-    setActive((a) => (a === null ? null : (a + 1) % PHOTOS.length)), []);
+    setActive((a) => (a === null ? null : (a + 1) % GALLERY_PHOTOS.length)), []);
 
   useEffect(() => {
     if (active === null) return;
@@ -40,30 +27,46 @@ export default function GalleryLightbox() {
     };
   }, [active, close, prev, next]);
 
+  useEffect(() => {
+    if (active === null) return;
+    const preload = (idx: number) => {
+      const src = GALLERY_PHOTOS[idx]?.full;
+      if (!src) return;
+      const link = document.createElement('link');
+      link.rel = 'prefetch';
+      link.as = 'image';
+      link.href = src;
+      document.head.appendChild(link);
+    };
+    preload((active + 1) % GALLERY_PHOTOS.length);
+    preload((active - 1 + GALLERY_PHOTOS.length) % GALLERY_PHOTOS.length);
+  }, [active]);
+
   return (
     <>
       <div className="gallery-grid">
-        {PHOTOS.map((photo, i) => (
+        {GALLERY_PHOTOS.map((photo, i) => (
           <div
-            key={photo.src}
-            className={`gallery-item${i === 0 ? ' gallery-item--tall' : ''}${photo.src.includes('plantas3') ? ' gallery-item--plan' : ''}`}
+            key={photo.full}
+            className={`gallery-item${i === 0 ? ' gallery-item--tall' : ''}${photo.isPlan ? ' gallery-item--plan' : ''}`}
             onClick={() => setActive(i)}
             role="button"
             tabIndex={0}
             onKeyDown={(e) => e.key === 'Enter' && setActive(i)}
             aria-label={`Ver ${photo.caption} em ecrã completo`}
           >
-            <img
-              src={photo.src}
+            <OptimizedImage
+              src={photo.thumb}
               alt={photo.alt}
-              style={photo.src.includes('plantas3') ? { objectFit: 'contain', background: '#fff', padding: '8px' } : {}}
+              fill
+              sizes={GALLERY_SIZES}
+              style={photo.isPlan ? { objectFit: 'contain', background: '#fff', padding: '8px' } : { objectFit: 'cover' }}
             />
             <div className="gallery-caption">{photo.caption} ↗</div>
           </div>
         ))}
       </div>
 
-      {/* Lightbox */}
       {active !== null && (
         <div
           className="lightbox-backdrop"
@@ -73,15 +76,20 @@ export default function GalleryLightbox() {
           aria-label="Visualizador de foto"
         >
           <button className="lightbox-close" onClick={close} aria-label="Fechar">✕</button>
-          <div className="lightbox-caption-top">{PHOTOS[active].caption}</div>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            className="lightbox-img"
-            src={PHOTOS[active].src}
-            alt={PHOTOS[active].alt}
-            onClick={(e) => e.stopPropagation()}
-            style={PHOTOS[active].src.includes('plantas3') ? { objectFit: 'contain', background: '#fff', padding: 16, borderRadius: 8 } : {}}
-          />
+          <div className="lightbox-caption-top">{GALLERY_PHOTOS[active].caption}</div>
+          <div className="lightbox-img-wrap" onClick={(e) => e.stopPropagation()}>
+            <OptimizedImage
+              className="lightbox-img"
+              src={GALLERY_PHOTOS[active].full}
+              alt={GALLERY_PHOTOS[active].alt}
+              width={1400}
+              height={933}
+              sizes="100vw"
+              quality={85}
+              priority
+              style={GALLERY_PHOTOS[active].isPlan ? { objectFit: 'contain', background: '#fff', padding: 16, borderRadius: 8, width: 'auto', height: 'auto', maxWidth: '100%', maxHeight: '80svh' } : { width: 'auto', height: 'auto', maxWidth: '100%', maxHeight: '80svh' }}
+            />
+          </div>
           <button
             className="lightbox-nav lightbox-nav--prev"
             onClick={(e) => { e.stopPropagation(); prev(); }}
@@ -92,7 +100,7 @@ export default function GalleryLightbox() {
             onClick={(e) => { e.stopPropagation(); next(); }}
             aria-label="Próxima foto"
           >›</button>
-          <div className="lightbox-counter">{active + 1} / {PHOTOS.length}</div>
+          <div className="lightbox-counter">{active + 1} / {GALLERY_PHOTOS.length}</div>
         </div>
       )}
     </>

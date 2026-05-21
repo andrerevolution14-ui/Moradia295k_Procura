@@ -1,10 +1,24 @@
 import { Fragment } from 'react';
-import FloatingCTA from '@/components/FloatingCTA';
+import { preload } from 'react-dom';
+import dynamic from 'next/dynamic';
 import RevealWrapper from '@/components/RevealWrapper';
+import OptimizedImage from '@/components/OptimizedImage';
 import QualForm from '@/components/QualForm';
-import GalleryLightbox from '@/components/GalleryLightbox';
-import PlansLightbox from '@/components/PlansLightbox';
-import Calculadora from '@/components/Calculadora';
+import TrustBadges from '@/components/TrustBadges';
+import VisitSteps from '@/components/VisitSteps';
+import FormHighlight from '@/components/FormHighlight';
+import { IMAGES, CONTENT_IMAGE_SIZES } from '@/lib/images';
+import { CTA_PRIMARY, CTA_SHORT } from '@/lib/cta';
+
+const FloatingCTA = dynamic(() => import('@/components/FloatingCTA'));
+const VisitFaq = dynamic(() => import('@/components/VisitFaq'));
+const GalleryLightbox = dynamic(() => import('@/components/GalleryLightbox'), {
+  loading: () => <div className="gallery-grid gallery-grid--skeleton" aria-hidden />,
+});
+const PlansLightbox = dynamic(() => import('@/components/PlansLightbox'), {
+  loading: () => <div className="plans-stack plans-stack--skeleton" aria-hidden />,
+});
+const Calculadora = dynamic(() => import('@/components/Calculadora'));
 
 /* ── Icons ── */
 const ArrowIcon = () => (
@@ -18,6 +32,8 @@ const CheckSvg = () => (
     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z" clipRule="evenodd" />
   </svg>
 );
+
+preload(IMAGES.hero, { as: 'image' });
 
 /* ============================================================
    PAGE
@@ -34,8 +50,11 @@ export default function HomePage() {
           <a href="#hero" className="nav-logo" aria-label="Voltar ao topo">
             Moradia <span>T3 Quintãs</span>
           </a>
+          <a href="#formulario" className="nav-cta-mobile btn btn--gold btn--sm">
+            {CTA_SHORT}
+          </a>
           <div className="nav-actions">
-            <a href="#formulario" className="nav-link btn btn--gold btn--sm">Agendar Visita</a>
+            <a href="#formulario" className="nav-link btn btn--gold btn--sm">{CTA_PRIMARY}</a>
             <a href="#galeria" className="nav-link btn btn--outline btn--sm">Fotos & Plantas</a>
             <a href="#simulador" className="nav-link btn btn--ghost btn--sm">Simular Financiamento</a>
           </div>
@@ -47,7 +66,16 @@ export default function HomePage() {
           ══════════════════════════════════════════════════ */}
       <section className="hero" id="hero">
         <div className="hero-bg">
-          <img src="/Exterior Capa.png" alt="" aria-hidden="true" />
+          <OptimizedImage
+            src={IMAGES.hero}
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            quality={82}
+            className="hero-bg-image"
+            aria-hidden
+          />
           <div className="hero-bg-overlay" />
         </div>
         <div className="container">
@@ -73,15 +101,23 @@ export default function HomePage() {
 
               <div className="hero-cta-group">
                 <a href="#formulario" className="btn btn--gold btn--lg" id="hero-cta">
-                  Agendar Visita Gratuita
+                  {CTA_PRIMARY}
                   <ArrowIcon />
                 </a>
-                <a href="#galeria" className="btn btn--outline btn--lg">
-                  Ver Fotos e Plantas
-                </a>
-                <a href="#simulador" className="btn btn--ghost btn--lg">
-                  Simular Financiamento
-                </a>
+                <div className="hero-cta-secondary">
+                  <a href="#galeria">Ver fotos e plantas</a>
+                  <span aria-hidden>·</span>
+                  <a href="#simulador">Simular financiamento</a>
+                </div>
+              </div>
+
+              <TrustBadges className="trust-badges--hero" />
+
+              <div className="hero-lead-card">
+                <p className="hero-lead-title">
+                  <strong>Agenda a tua chamada de viabilidade</strong> — resposta em menos de 24 horas
+                </p>
+                <QualForm variant="compact" />
               </div>
             </RevealWrapper>
 
@@ -191,9 +227,10 @@ export default function HomePage() {
 
           <div style={{ marginTop: '40px', textAlign: 'center' }}>
             <a href="#formulario" className="btn btn--gold btn--lg">
-              Agendar Visita para Discutir Possibilidades
+              {CTA_PRIMARY}
               <ArrowIcon />
             </a>
+            <p className="cta-microcopy">Chamada rápida para validar preço, financiamento e próximos passos.</p>
           </div>
         </div>
       </section>
@@ -217,9 +254,10 @@ export default function HomePage() {
           
           <div style={{ marginTop: '40px', textAlign: 'center' }}>
             <a href="#formulario" className="btn btn--gold btn--lg">
-              Discutir Planta na Visita
+              {CTA_PRIMARY}
               <ArrowIcon />
             </a>
+            <p className="cta-microcopy">Esclarece plantas e personalização — depois marcamos visita ao lote, se fizer sentido.</p>
           </div>
         </div>
       </section>
@@ -269,9 +307,10 @@ export default function HomePage() {
 
           <div style={{ marginTop: '40px', textAlign: 'center' }}>
             <a href="#formulario" className="btn btn--gold btn--lg">
-              Agendar Visita ao Lote
+              {CTA_PRIMARY}
               <ArrowIcon />
             </a>
+            <p className="cta-microcopy">Na chamada falamos localização, preço e viabilidade do teu caso.</p>
           </div>
         </div>
       </section>
@@ -322,7 +361,7 @@ export default function HomePage() {
                 </div>
                 <div style={{ marginTop: '24px' }}>
                   <a href="#formulario" className="btn btn--gold btn--sm btn--full">
-                    Quero Conhecer Melhor
+                    {CTA_PRIMARY}
                   </a>
                 </div>
               </div>
@@ -348,7 +387,7 @@ export default function HomePage() {
 
           <div className="phases-layout">
             {[
-              { step: '01', badge: 'Visita', title: 'Vem ver o lote pessoalmente', body: 'Marca uma visita gratuita. Vens ao terreno, tens a planta na mão, vês a orientação solar, imaginas o jardim. Sentes se é mesmo o sítio.' },
+              { step: '01', badge: 'Chamada', title: 'Chamada de viabilidade', body: 'Em cerca de 30 minutos percebes se o projeto encaixa: preço, financiamento, prazos e personalização. Sem compromisso.' },
               { step: '02', badge: 'Reserva', title: 'Reservas com segurança total', body: 'Preço fechado, projeto aprovado, prazo real. Assinas o contrato e o teu lugar fica garantido. Se o banco não financiar por razões alheias a ti, tens o sinal de volta.' },
               { step: '03', badge: 'Entrega', title: 'Em março de 2027 abres a porta', body: 'Desde o sinal que o projeto e o terreno já são teus. Em março de 2027 recebes a chave e podes mudar-te — moradia completa, equipada e personalizada, gerida por nós do início ao fim.' },
             ].map((p, i) => (
@@ -365,9 +404,10 @@ export default function HomePage() {
 
           <div style={{ marginTop: '48px', textAlign: 'center' }}>
             <a href="#formulario" className="btn btn--gold btn--lg">
-              Marcar a Minha Visita
+              {CTA_PRIMARY}
               <ArrowIcon />
             </a>
+            <p className="cta-microcopy">Primeiro passo: chamada de viabilidade (~30 min).</p>
           </div>
         </div>
       </section>
@@ -416,7 +456,7 @@ export default function HomePage() {
                 </div>
                 <div style={{ marginTop: '24px' }}>
                   <a href="#formulario" className="btn btn--gold btn--sm btn--full">
-                    Agendar uma Chamada
+                    {CTA_PRIMARY}
                   </a>
                 </div>
               </div>
@@ -425,11 +465,18 @@ export default function HomePage() {
 
           <RevealWrapper delay={1}>
             <div style={{ marginTop: 48, borderRadius: 'var(--radius)', overflow: 'hidden', boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)' }}>
-              <img src="/Sala de Jantar.png" alt="Sala de jantar" style={{ width: '100%', height: 'auto', display: 'block' }} loading="lazy" />
+              <OptimizedImage
+                src={IMAGES.salaJantar}
+                alt="Sala de jantar"
+                width={1400}
+                height={933}
+                sizes={CONTENT_IMAGE_SIZES}
+                style={{ width: '100%', height: 'auto', display: 'block' }}
+              />
             </div>
             <div style={{ marginTop: '32px', textAlign: 'center' }}>
               <a href="#formulario" className="btn btn--gold btn--lg">
-                Quero Conhecer esta Casa
+                {CTA_PRIMARY}
                 <ArrowIcon />
               </a>
             </div>
@@ -468,7 +515,7 @@ export default function HomePage() {
 
           <div style={{ marginTop: '32px', textAlign: 'center' }}>
             <a href="#formulario" className="btn btn--gold btn--lg">
-              Marcar Visita Gratuita
+              {CTA_PRIMARY}
               <ArrowIcon />
             </a>
           </div>
@@ -488,8 +535,8 @@ export default function HomePage() {
             <RevealWrapper delay={0}>
               <div className="about-card">
                 <div style={{ background: '#fff', padding: '32px 24px', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '40px', borderRadius: 'var(--radius) var(--radius) 0 0' }}>
-                  <img src="/sign2.png" alt="Silvermont Capital" style={{ width: '100%', maxWidth: '240px', height: 'auto', display: 'block' }} loading="lazy" />
-                  <img src="/freitas1.jpeg" alt="Parceria Freitas" style={{ width: '100%', maxWidth: '160px', height: 'auto', display: 'block', borderRadius: '4px' }} loading="lazy" />
+                  <OptimizedImage src={IMAGES.sign2} alt="Silvermont Capital" width={480} height={120} sizes="240px" style={{ width: '100%', maxWidth: '240px', height: 'auto', display: 'block' }} />
+                  <OptimizedImage src={IMAGES.freitas1} alt="Parceria Freitas" width={320} height={320} sizes="160px" style={{ width: '100%', maxWidth: '160px', height: 'auto', display: 'block', borderRadius: '4px' }} />
                 </div>
                 <div className="about-body" style={{ textAlign: 'center' }}>
                   <h3>Silvermont Capital</h3>
@@ -508,38 +555,28 @@ export default function HomePage() {
             <p className="label">Antes de te decidires</p>
             <h2 className="title title--center" style={{ marginBottom: 24 }}>Vem ver tudo.<br />Sem compromisso.</h2>
             <p style={{ color: 'var(--text-light)', maxWidth: 520, margin: '0 auto 32px', fontSize: '1.05rem', lineHeight: 1.7 }}>
-              A visita é gratuita. Vens ao lote, vês a orientação solar, tens a planta na mão e ficamos a par das tuas dúvidas. Só depois decides.
+              A chamada é gratuita e leve. Em ~30 minutos avaliamos viabilidade, financiamento e dúvidas. Só depois decides se queres visitar o lote.
             </p>
             <a href="#formulario" className="btn btn--gold btn--lg">
-              Marcar a Minha Visita Gratuita
+              {CTA_PRIMARY}
               <ArrowIcon />
             </a>
+            <TrustBadges className="trust-badges--center" />
           </div>
         </RevealWrapper>
       </div>
 
       {/* ══════════════════════════════════════════════════
-          SIMULADOR (CALCULADORA)
-          ══════════════════════════════════════════════════ */}
-      <section className="section section--mid" id="simulador">
-        <div className="container">
-          <RevealWrapper>
-            <Calculadora />
-          </RevealWrapper>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════
-          FORMULÁRIO
+          FORMULÁRIO (antes do simulador — menos fricção)
           ══════════════════════════════════════════════════ */}
       <section className="section section--mid" id="formulario">
         <div className="container container--narrow">
           <RevealWrapper>
             <div className="section-header section-header--center">
-              <p className="label">Marca a tua visita — resta 1 vaga</p>
-              <h2 className="title title--center">Vem ver a casa<br />antes de te decidires.</h2>
+              <p className="label">Chamada de viabilidade — resta 1 vaga</p>
+              <h2 className="title title--center">Valida se este projeto<br />encaixa contigo.</h2>
               <p className="section-intro section-intro--center">
-                Deixa o teu nome e telemóvel. Entraremos em contacto em menos de 24 horas para agendar a tua visita gratuita.
+                Deixa o teu nome e telemóvel. Em menos de 24 horas agendamos a chamada (~30 min) para esclarecer preço, financiamento e próximos passos.
               </p>
               <div className="urgency-box">
                 <div className="urgency-row">
@@ -553,9 +590,30 @@ export default function HomePage() {
           </RevealWrapper>
 
           <RevealWrapper>
-            <div className="form-wrap">
-              <QualForm />
-            </div>
+            <VisitSteps />
+          </RevealWrapper>
+
+          <RevealWrapper>
+            <FormHighlight>
+              <div className="form-wrap">
+                <QualForm />
+              </div>
+            </FormHighlight>
+          </RevealWrapper>
+
+          <RevealWrapper>
+            <VisitFaq />
+          </RevealWrapper>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════
+          SIMULADOR (CALCULADORA)
+          ══════════════════════════════════════════════════ */}
+      <section className="section section--mid" id="simulador">
+        <div className="container">
+          <RevealWrapper>
+            <Calculadora />
           </RevealWrapper>
         </div>
       </section>

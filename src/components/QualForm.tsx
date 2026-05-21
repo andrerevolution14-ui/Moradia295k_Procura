@@ -2,6 +2,8 @@
 import { useState, useId } from 'react';
 import { insertLead } from '@/lib/supabase';
 import { trackCapiLead } from '@/app/actions/capi';
+import { CALENDLY_URL, CTA_PRIMARY } from '@/lib/cta';
+import TrustBadges from '@/components/TrustBadges';
 
 interface FormData {
     nome: string;
@@ -37,8 +39,9 @@ declare global {
   }
 }
 
-export default function QualForm() {
+export default function QualForm({ variant = 'full' }: { variant?: 'full' | 'compact' }) {
     const formId = useId();
+    const isCompact = variant === 'compact';
     const [data, setData] = useState<FormData>({
         nome: '',
         telefone: '+351 ',
@@ -84,10 +87,8 @@ export default function QualForm() {
             const eventId = 'lead_' + Date.now() + '_' + Math.random().toString(36).substring(2, 9);
             const leadValue = 390000;
 
-            // 1. Insert into Supabase (with empty prazo/valor for backwards compatibility)
             await insertLead({ ...data, prazo: '', valor: '' });
 
-            // 2. Track Lead on Client (Pixel)
             if (typeof window !== 'undefined' && window.fbq) {
                 window.fbq('track', 'Lead', {
                     value: leadValue,
@@ -95,7 +96,6 @@ export default function QualForm() {
                 }, { eventID: eventId });
             }
 
-            // 3. Track Lead on Server (CAPI)
             await trackCapiLead({
                 nome: data.nome,
                 telefone: data.telefone,
@@ -104,9 +104,9 @@ export default function QualForm() {
             });
 
             setSubmitted(true);
-            setTimeout(() => {
-                window.location.href = "https://calendly.com/queirosenterprise/30min";
-            }, 1500);
+            window.setTimeout(() => {
+                window.location.href = CALENDLY_URL;
+            }, 1200);
         } catch (err: unknown) {
             console.error('Submission error:', err);
             setSubmitError('Ocorreu um erro ao enviar. Por favor, tente novamente.');
@@ -117,49 +117,55 @@ export default function QualForm() {
 
     if (submitted) {
         return (
-            <div className="qual-form" style={{ minHeight: '300px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <div className="form-success visible" style={{ textAlign: 'center', padding: '40px 20px' }}>
+            <div className={`qual-form${isCompact ? ' qual-form--compact' : ''}`} style={{ minHeight: isCompact ? 'auto' : '300px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <div className="form-success visible" style={{ textAlign: 'center', padding: isCompact ? '24px 12px' : '40px 20px', width: '100%' }}>
                     <div className="success-check" style={{
-                        width: '80px',
-                        height: '80px',
+                        width: isCompact ? '64px' : '80px',
+                        height: isCompact ? '64px' : '80px',
                         background: 'linear-gradient(135deg, #c8a96b, #a68b54)',
                         borderRadius: '50%',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        margin: '0 auto 24px',
+                        margin: '0 auto 20px',
                         boxShadow: '0 10px 25px rgba(200, 169, 107, 0.4)',
                     }}>
-                        <svg viewBox="0 0 20 20" style={{ width: '40px', height: '40px', color: '#fff' }}>
+                        <svg viewBox="0 0 20 20" style={{ width: '36px', height: '36px', color: '#fff' }}>
                             <path fill="currentColor" d="M16.7 5.3a1 1 0 00-1.4 0L8 12.6 4.7 9.3a1 1 0 00-1.4 1.4l4 4a1 1 0 001.4 0l8-8a1 1 0 000-1.4z" />
                         </svg>
                     </div>
-                    <h3 style={{ fontSize: '1.85rem', marginBottom: '16px', color: '#fff', fontWeight: '700' }}>Dados Submetidos! 🏡</h3>
-                    <p style={{ fontSize: '1.1rem', color: 'rgba(255,255,255,0.8)', maxWidth: '400px', margin: '0 auto', lineHeight: '1.7' }}>
-                        Recebemos os teus dados com sucesso.<br />
-                        <strong>A redirecionar para o agendamento no Calendly...</strong>
+                    <h3 style={{ fontSize: isCompact ? '1.35rem' : '1.85rem', marginBottom: '12px', color: '#fff', fontWeight: '700' }}>
+                        Pedido recebido!
+                    </h3>
+                    <p style={{ fontSize: '1rem', color: 'rgba(255,255,255,0.8)', maxWidth: '400px', margin: '0 auto 20px', lineHeight: '1.7' }}>
+                        Vamos contactar-te em breve. Enquanto isso, podes escolher já o horário da chamada:
                     </p>
-                    <div style={{ marginTop: '40px', display: 'flex', justifyContent: 'center', gap: '10px', alignItems: 'center', color: '#c8a96b', fontWeight: '600', letterSpacing: '0.05em', textTransform: 'uppercase', fontSize: '0.85rem' }}>
-                        <span style={{ width: '40px', height: '1px', background: 'currentColor', opacity: 0.3 }}></span>
-                        A Redirecionar...
-                        <span style={{ width: '40px', height: '1px', background: 'currentColor', opacity: 0.3 }}></span>
-                    </div>
+                    <a href={CALENDLY_URL} className="btn btn--gold btn--lg" style={{ marginTop: '8px' }}>
+                        Escolher horário da chamada
+                    </a>
+                    <p style={{ marginTop: '16px', fontSize: '0.8rem', color: 'rgba(255,255,255,0.45)' }}>
+                        A redirecionar automaticamente...
+                    </p>
                 </div>
             </div>
         );
     }
 
     return (
-        <form className="qual-form" onSubmit={handleSubmit} noValidate>
-            <div className="form-two-col">
+        <form
+            className={`qual-form${isCompact ? ' qual-form--compact' : ''}`}
+            onSubmit={handleSubmit}
+            noValidate
+        >
+            <div className={isCompact ? 'form-compact-row' : 'form-two-col'}>
                 <div className="field">
                     <label htmlFor={`${formId}-nome`}>
-                        O teu nome <span style={{ color: 'var(--clr-gold)' }}>*</span>
+                        O teu nome <span className="field-required">*</span>
                     </label>
                     <input
                         id={`${formId}-nome`}
                         type="text"
-                        placeholder="Como te chamamos?"
+                        placeholder="Ex: Ana Silva"
                         value={data.nome}
                         onChange={set('nome')}
                         className={errors.nome ? 'is-error' : ''}
@@ -170,7 +176,7 @@ export default function QualForm() {
 
                 <div className="field">
                     <label htmlFor={`${formId}-telefone`}>
-                        Número de telemóvel <span style={{ color: 'var(--clr-gold)' }}>*</span>
+                        Telemóvel <span className="field-required">*</span>
                     </label>
                     <input
                         id={`${formId}-telefone`}
@@ -191,20 +197,24 @@ export default function QualForm() {
                 </div>
             </div>
 
+            {!isCompact && (
+                <p className="form-reassurance">
+                  Só precisamos disto para agendar a tua chamada de viabilidade. Sem spam, sem pressão.
+                </p>
+            )}
+
             <div className="privacy-row">
-                <svg viewBox="0 0 20 20"><path d="M10 2a6 6 0 00-6 6v1H3a1 1 0 00-1 1v7a1 1 0 001 1h14a1 1 0 001-1v-7a1 1 0 00-1-1h-1V8a6 6 0 00-6-6zm-4 7V8a4 4 0 118 0v1H6z" /></svg>
-                <p>Os teus dados são utilizados exclusivamente para contacto sobre este projeto e não serão partilhados com terceiros.</p>
+                <svg viewBox="0 0 20 20" aria-hidden><path d="M10 2a6 6 0 00-6 6v1H3a1 1 0 00-1 1v7a1 1 0 001 1h14a1 1 0 001-1v-7a1 1 0 00-1-1h-1V8a6 6 0 00-6-6zm-4 7V8a4 4 0 118 0v1H6z" /></svg>
+                <p>Dados usados apenas para agendar a chamada de viabilidade deste projeto.</p>
             </div>
 
             {submitError && (
-                <div style={{ color: 'var(--clr-error)', fontSize: '0.85rem', marginBottom: '16px', textAlign: 'center' }}>
-                    {submitError}
-                </div>
+                <div className="form-submit-error">{submitError}</div>
             )}
 
             <button
                 type="submit"
-                className="btn btn--gold btn--lg btn--full"
+                className={`btn btn--gold btn--full${isCompact ? '' : ' btn--lg'}`}
                 disabled={loading}
             >
                 {loading ? (
@@ -217,6 +227,7 @@ export default function QualForm() {
                             stroke="currentColor"
                             strokeWidth="2.5"
                             style={{ animation: 'spin 0.8s linear infinite' }}
+                            aria-hidden
                         >
                             <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
                         </svg>
@@ -224,13 +235,15 @@ export default function QualForm() {
                     </>
                 ) : (
                     <>
-                        Quero Agendar uma Visita
-                        <svg className="btn-arrow" viewBox="0 0 20 20">
+                        {CTA_PRIMARY}
+                        <svg className="btn-arrow" viewBox="0 0 20 20" aria-hidden>
                             <path d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" />
                         </svg>
                     </>
                 )}
             </button>
+
+            <TrustBadges className={isCompact ? 'trust-badges--compact' : 'trust-badges--form'} />
         </form>
     );
 }
