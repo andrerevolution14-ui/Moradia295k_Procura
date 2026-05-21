@@ -11,8 +11,9 @@ const POUPANCA_IMPOSTOS = 23700; // Valor de poupança aproximado indicado
 const IMPOSTO_TRADICIONAL = IMPOSTO_AUTOCONSTRUCAO + POUPANCA_IMPOSTOS;
 
 // Cálculo da média de juros durante a obra (10 meses)
-// Considera-se utilização média de 50% do capital de construção
-const CAPITAL_MEDIO_OBRA = CONSTRUCAO / 2;
+// Considera-se utilização média de 30% do capital de construção para reduzir custo
+const MEDIA_CAPITAL_PERCENTAGE = 0.30;
+const CAPITAL_MEDIO_OBRA = CONSTRUCAO * MEDIA_CAPITAL_PERCENTAGE;
 const PRESTACAO_OBRA_MEDIA = (CAPITAL_MEDIO_OBRA * TAXA_JURO) / 12;
 
 export default function Calculadora() {
@@ -40,7 +41,7 @@ export default function Calculadora() {
     }}>
       <div style={{ textAlign: 'center', marginBottom: '40px' }}>
         <h3 style={{ fontSize: '1.8rem', color: 'var(--white)', fontFamily: 'var(--font-heading)', marginBottom: '8px' }}>
-          Simulador de Autoconstrução
+          Simulador de GPI Premium
         </h3>
         <p style={{ color: 'var(--text-light)', fontSize: '0.95rem' }}>
           Descobre quanto vais poupar e simula a tua prestação para a moradia de 390.000€.
@@ -132,8 +133,8 @@ export default function Calculadora() {
 
           {/* BLOCO 2 */}
           <div style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid var(--border-dark)', padding: '20px', borderRadius: 'var(--radius)' }}>
-            <div style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '8px' }}>
-              Bloco 2: Fase de Construção
+            <div style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--gold)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '8px' }}>
+              Bloco 2: Fase de Construção (Custo Médio Reduzido)
             </div>
             <p style={{ fontSize: '0.85rem', color: 'var(--text-light)', marginBottom: '12px', lineHeight: 1.5 }}>
               Durante os 10 meses de obra, pagas apenas os juros do capital libertado progressivamente (carência de capital).

@@ -35,9 +35,9 @@ export default function HomePage() {
             Moradia <span>T3 Quintãs</span>
           </a>
           <div className="nav-actions">
-            <a href="#projeto" className="nav-link">A Casa</a>
-            <a href="#galeria" className="nav-link">Galeria</a>
-            <a href="#formulario" className="btn btn--gold btn--sm">Marcar Visita</a>
+            <a href="#formulario" className="nav-link btn btn--gold btn--sm">Agendar Visita</a>
+            <a href="#galeria" className="nav-link btn btn--outline btn--sm">Fotos & Plantas</a>
+            <a href="#simulador" className="nav-link btn btn--ghost btn--sm">Simular Financiamento</a>
           </div>
         </div>
       </nav>
