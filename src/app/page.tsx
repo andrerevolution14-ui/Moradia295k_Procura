@@ -4,6 +4,7 @@ import RevealWrapper from '@/components/RevealWrapper';
 import QualForm from '@/components/QualForm';
 import GalleryLightbox from '@/components/GalleryLightbox';
 import PlansLightbox from '@/components/PlansLightbox';
+import Calculadora from '@/components/Calculadora';
 
 /* ── Icons ── */
 const ArrowIcon = () => (
@@ -77,6 +78,9 @@ export default function HomePage() {
                 </a>
                 <a href="#galeria" className="btn btn--outline btn--lg">
                   Ver Fotos e Plantas
+                </a>
+                <a href="#simulador" className="btn btn--ghost btn--lg">
+                  Simular Financiamento
                 </a>
               </div>
             </RevealWrapper>
@@ -513,6 +517,17 @@ export default function HomePage() {
           </div>
         </RevealWrapper>
       </div>
+
+      {/* ══════════════════════════════════════════════════
+          SIMULADOR (CALCULADORA)
+          ══════════════════════════════════════════════════ */}
+      <section className="section section--mid" id="simulador">
+        <div className="container">
+          <RevealWrapper>
+            <Calculadora />
+          </RevealWrapper>
+        </div>
+      </section>
 
       {/* ══════════════════════════════════════════════════
           FORMULÁRIO
