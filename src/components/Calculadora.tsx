@@ -45,7 +45,7 @@ export default function Calculadora() {
           Simulador de GPI Premium
         </h3>
         <p style={{ color: 'var(--text-light)', fontSize: '0.95rem' }}>
-          Descobre quanto vais poupar e simula a tua prestação para a moradia de 390.000€.
+          Simulação indicativa para compradores qualificados do Domaine du Vingt-Cinq (390.000€).
         </p>
       </div>
 
@@ -168,11 +168,11 @@ export default function Calculadora() {
       </div>
 
       <div className="calc-cta-block">
-        <p>Gostaste dos números? O próximo passo é uma chamada rápida para validar a viabilidade.</p>
+        <p>Se os números fazem sentido para o seu perfil, o passo seguinte é a chamada de viabilidade.</p>
         <a href="#formulario" className="btn btn--gold btn--lg">
           {CTA_PRIMARY}
         </a>
-        <span className="calc-cta-note">Chamada gratuita · ~30 min · Resposta em 24h</span>
+        <span className="calc-cta-note">Depois, o gestor esclarece tudo na chamada · ~10 min</span>
       </div>
     </div>
   );

@@ -1,46 +1,59 @@
+import { PROJECT } from '@/lib/project';
+
 export const CALENDLY_URL = 'https://calendly.com/queirosenterprise/30min';
 
-/** CTA principal — tom leve, foco em viabilidade (não visita presencial) */
-export const CTA_PRIMARY = 'Agendar Chamada de Viabilidade';
+/** Objectivo da LP: vender a chamada com o gestor — o gestor conduz a venda */
+export const CTA_PRIMARY = 'Agendar Chamada com o Gestor';
 
-/** Variante curta para nav mobile e barra fixa */
-export const CTA_SHORT = 'Chamada de Viabilidade';
+export const CTA_SHORT = 'Falar com o Gestor';
 
 export const TRUST_POINTS = [
-  { icon: '✓', text: 'Chamada gratuita' },
-  { icon: '✓', text: 'Sem compromisso' },
-  { icon: '✓', text: 'Resposta em 24h' },
+  { icon: '◆', text: PROJECT.managerTitle },
+  { icon: '◆', text: `${PROJECT.callDuration} em média` },
+  { icon: '◆', text: 'Resposta em 24h' },
 ] as const;
 
 export const VIABILITY_STEPS = [
-  { step: '1', title: 'Deixas o contacto', body: 'Nome e telemóvel — menos de 30 segundos.' },
-  { step: '2', title: 'Agendamos a chamada', body: 'Em menos de 24 horas confirmamos o horário que te convém.' },
-  { step: '3', title: 'Avaliamos a viabilidade', body: 'Em cerca de 30 minutos esclarecemos preço, financiamento e próximos passos — sem pressão.' },
+  {
+    step: '1',
+    title: 'Deixa o contacto',
+    body: 'Indica nome e telemóvel. A equipa agenda a chamada com o gestor.',
+  },
+  {
+    step: '2',
+    title: 'Fala com o gestor',
+    body: `Em média ${PROJECT.callDuration}: projeto, financiamento, personalização e avaliação bancária (${PROJECT.priceAppraisal}€).`,
+  },
+  {
+    step: '3',
+    title: 'Gestor acompanha',
+    body: 'Se fizer sentido, visita ao lote, reserva e obra — sempre com o mesmo gestor.',
+  },
 ] as const;
 
 export const VIABILITY_FAQ = [
   {
-    q: 'A chamada é gratuita e sem compromisso?',
-    a: 'Sim. É uma conversa para perceber se o projeto encaixa contigo — preço, prazos e financiamento. Não há obrigação de avançar.',
+    q: 'O que acontece na chamada?',
+    a: `Conversa com o ${PROJECT.managerTitle} (~${PROJECT.callDuration.replace('~', '')} em média): moradia, preço (${PROJECT.price}€), avaliação bancária (${PROJECT.priceAppraisal}€), financiamento e personalização. Sem compromisso.`,
   },
   {
-    q: 'Preciso de ter o crédito aprovado antes da chamada?',
-    a: 'Não. Na chamada explicamos o modelo de compra em planta e como o banco financia a obra. A simulação fazemos contigo.',
+    q: 'Quantas unidades restam?',
+    a: `${PROJECT.unitsAvailable} unidades disponíveis — ${PROJECT.unitsReserved} já foi reservada (de ${PROJECT.unitsTotal} no empreendimento).`,
   },
   {
-    q: 'Quanto tempo demoram a contactar-me?',
-    a: 'Normalmente no mesmo dia útil ou, no máximo, em menos de 24 horas após o pedido.',
+    q: 'O que posso personalizar?',
+    a: 'Todas as áreas e acabamentos, com o gestor a orientar as escolhas enquanto a obra está em curso.',
   },
   {
-    q: 'O que tratamos na chamada de viabilidade?',
-    a: 'Preço, entrada, prestação estimada, prazos de obra, personalização e, se fizer sentido, agendamos visita ao lote.',
+    q: 'Porque comprar em planta?',
+    a: 'Apoio bancário à obra, benefícios fiscais e preço fechado com personalização total.',
   },
   {
-    q: 'Posso falar com o meu parceiro ou família na chamada?',
-    a: 'Claro. Podes estar os dois na linha ou marcar um horário em que estejam disponíveis.',
+    q: 'Preciso de crédito aprovado antes?',
+    a: 'Não. O gestor esclarece financiamento na chamada.',
   },
   {
-    q: 'E se o banco não aprovar o financiamento?',
-    a: 'Tens cláusula de proteção: se a reprovação for por motivos alheios a ti, o sinal é devolvido na íntegra.',
+    q: 'E se o banco recusar o crédito?',
+    a: 'Proteção contratual: sinal devolvido se a recusa for por motivos alheios ao comprador.',
   },
 ] as const;

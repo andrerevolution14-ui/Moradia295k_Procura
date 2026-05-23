@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { CTA_SHORT } from '@/lib/cta';
+import { UNITS_LABEL } from '@/lib/project';
 
 export default function FloatingCTA() {
     const [visible, setVisible] = useState(false);
@@ -35,9 +36,9 @@ export default function FloatingCTA() {
             <div className="floating-cta-text">
                 <span className="floating-cta-scarcity">
                     <span className="scarcity-dot" aria-hidden />
-                    Só resta 1 moradia
+                    {UNITS_LABEL}
                 </span>
-                <span className="floating-cta-sub">Gratuita · ~30 min · Sem compromisso</span>
+                <span className="floating-cta-sub">Gestor dedicado · chamada rápida</span>
             </div>
             <a href="#formulario" className="btn btn--gold btn--sm floating-cta-btn">
                 {CTA_SHORT}

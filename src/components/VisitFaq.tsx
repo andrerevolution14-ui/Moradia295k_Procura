@@ -8,7 +8,7 @@ export default function VisitFaq() {
 
   return (
     <div className="visit-faq">
-      <h3 className="visit-faq-title">Dúvidas antes de agendar a chamada</h3>
+      <h3 className="visit-faq-title">Perguntas frequentes</h3>
       <div className="visit-faq-list">
         {VIABILITY_FAQ.map((item, i) => {
           const isOpen = open === i;

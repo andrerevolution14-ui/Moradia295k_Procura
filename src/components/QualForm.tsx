@@ -3,6 +3,7 @@ import { useState, useId } from 'react';
 import { insertLead } from '@/lib/supabase';
 import { trackCapiLead } from '@/app/actions/capi';
 import { CALENDLY_URL, CTA_PRIMARY } from '@/lib/cta';
+import { PROJECT } from '@/lib/project';
 import TrustBadges from '@/components/TrustBadges';
 
 interface FormData {
@@ -138,10 +139,10 @@ export default function QualForm({ variant = 'full' }: { variant?: 'full' | 'com
                         Pedido recebido!
                     </h3>
                     <p style={{ fontSize: '1rem', color: 'rgba(255,255,255,0.8)', maxWidth: '400px', margin: '0 auto 20px', lineHeight: '1.7' }}>
-                        Vamos contactar-te em breve. Enquanto isso, podes escolher já o horário da chamada:
+                        O seu pedido foi registado. O {PROJECT.managerTitle} entrará em contacto — ou escolha já o horário:
                     </p>
                     <a href={CALENDLY_URL} className="btn btn--gold btn--lg" style={{ marginTop: '8px' }}>
-                        Escolher horário da chamada
+                        Agendar chamada com o gestor
                     </a>
                     <p style={{ marginTop: '16px', fontSize: '0.8rem', color: 'rgba(255,255,255,0.45)' }}>
                         A redirecionar automaticamente...
@@ -160,12 +161,12 @@ export default function QualForm({ variant = 'full' }: { variant?: 'full' | 'com
             <div className={isCompact ? 'form-compact-row' : 'form-two-col'}>
                 <div className="field">
                     <label htmlFor={`${formId}-nome`}>
-                        O teu nome <span className="field-required">*</span>
+                        O seu nome <span className="field-required">*</span>
                     </label>
                     <input
                         id={`${formId}-nome`}
                         type="text"
-                        placeholder="Ex: Ana Silva"
+                        placeholder="Nome completo"
                         value={data.nome}
                         onChange={set('nome')}
                         className={errors.nome ? 'is-error' : ''}
@@ -176,7 +177,7 @@ export default function QualForm({ variant = 'full' }: { variant?: 'full' | 'com
 
                 <div className="field">
                     <label htmlFor={`${formId}-telefone`}>
-                        Telemóvel <span className="field-required">*</span>
+                        O seu telemóvel <span className="field-required">*</span>
                     </label>
                     <input
                         id={`${formId}-telefone`}
@@ -199,13 +200,13 @@ export default function QualForm({ variant = 'full' }: { variant?: 'full' | 'com
 
             {!isCompact && (
                 <p className="form-reassurance">
-                  Só precisamos disto para agendar a tua chamada de viabilidade. Sem spam, sem pressão.
+                  Para o {PROJECT.managerTitle} agendar a sua chamada ({PROJECT.callDuration}).
                 </p>
             )}
 
             <div className="privacy-row">
                 <svg viewBox="0 0 20 20" aria-hidden><path d="M10 2a6 6 0 00-6 6v1H3a1 1 0 00-1 1v7a1 1 0 001 1h14a1 1 0 001-1v-7a1 1 0 00-1-1h-1V8a6 6 0 00-6-6zm-4 7V8a4 4 0 118 0v1H6z" /></svg>
-                <p>Dados usados apenas para agendar a chamada de viabilidade deste projeto.</p>
+                <p>Informação tratada de forma confidencial. Sem partilha com terceiros.</p>
             </div>
 
             {submitError && (
