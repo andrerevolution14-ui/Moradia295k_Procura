@@ -139,10 +139,10 @@ export default function QualForm({ variant = 'full' }: { variant?: 'full' | 'com
                         Pedido recebido!
                     </h3>
                     <p style={{ fontSize: '1rem', color: 'rgba(255,255,255,0.8)', maxWidth: '400px', margin: '0 auto 20px', lineHeight: '1.7' }}>
-                        O seu pedido foi registado. O {PROJECT.managerTitle} entrará em contacto — ou escolha já o horário:
+                        O mapa de acabamentos será enviado em breve. Se pretender avançar já ou tiver dúvidas, fale connosco:
                     </p>
                     <a href={CALENDLY_URL} className="btn btn--gold btn--lg" style={{ marginTop: '8px' }}>
-                        Agendar chamada com o gestor
+                        Agendar chamada de acompanhamento
                     </a>
                     <p style={{ marginTop: '16px', fontSize: '0.8rem', color: 'rgba(255,255,255,0.45)' }}>
                         A redirecionar automaticamente...
@@ -200,7 +200,7 @@ export default function QualForm({ variant = 'full' }: { variant?: 'full' | 'com
 
             {!isCompact && (
                 <p className="form-reassurance">
-                  Para o {PROJECT.managerTitle} agendar a sua chamada ({PROJECT.callDuration}).
+                  Para enviarmos o mapa de acabamentos para o seu WhatsApp.
                 </p>
             )}
 

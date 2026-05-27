@@ -39,8 +39,8 @@ export const PROJECT_HIGHLIGHTS = [
     detail: 'Valor avaliado pelo banco',
   },
   {
-    label: 'Primeiro contacto',
-    value: PROJECT.callDuration,
-    detail: `Chamada com o ${PROJECT.managerTitle}`,
+    label: 'Acesso imediato',
+    value: 'Envio no minuto',
+    detail: 'Mapa de acabamentos no WhatsApp',
   },
 ] as const;

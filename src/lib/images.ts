@@ -21,6 +21,7 @@ export const GALLERY_PHOTOS: GalleryPhoto[] = [
   { thumb: '/images/exterior-traseiro-thumb.webp', full: '/images/exterior-traseiro.webp', alt: 'Exterior traseiro', caption: 'Exterior — Traseiro' },
   { thumb: '/images/sala-jantar-thumb.webp', full: '/images/sala-jantar.webp', alt: 'Sala de jantar', caption: 'Sala de Jantar' },
   { thumb: '/images/cozinha-thumb.webp', full: '/images/cozinha.webp', alt: 'Cozinha equipada', caption: 'Cozinha' },
+  { thumb: '/WC F2.png', full: '/WC F2.png', alt: 'Casa de banho', caption: 'Casa de Banho' },
   { thumb: '/images/terceiro-andar-thumb.webp', full: '/images/terceiro-andar.webp', alt: 'Interior terceiro andar', caption: 'Terceiro Andar' },
   { thumb: '/images/quarto-cama-thumb.webp', full: '/images/quarto-cama.webp', alt: 'Quarto principal', caption: 'Quarto' },
   { thumb: '/images/quarto-varanda-thumb.webp', full: '/images/quarto-varanda.webp', alt: 'Quarto com varanda', caption: 'Quarto com Varanda' },

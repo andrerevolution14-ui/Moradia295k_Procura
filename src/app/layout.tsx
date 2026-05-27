@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { Suspense } from 'react';
-import { Cormorant_Garamond, Inter } from 'next/font/google';
+import { Cormorant_Garamond, Inter, League_Spartan } from 'next/font/google';
 import './globals.css';
 import MetaPixel from '@/components/MetaPixel';
 import { PROJECT } from '@/lib/project';
@@ -15,20 +15,30 @@ const cormorant = Cormorant_Garamond({
 
 const inter = Inter({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
+  weight: ['300', '400', '500', '600', '700', '800'],
   variable: '--font-inter',
   display: 'swap',
 });
 
+const leagueSpartan = League_Spartan({
+  subsets: ['latin'],
+  weight: ['600', '700', '800'],
+  variable: '--font-league-spartan',
+  display: 'swap',
+});
+
 export const metadata: Metadata = {
-  title: `${PROJECT.name} — Moradia T3 de Alto Padrão | Oliveirinha, Aveiro`,
+  title: {
+    default: `${PROJECT.name} — Moradia T3 de Alto Padrão | Oliveirinha, Aveiro`,
+    template: `%s | ${PROJECT.name}`,
+  },
   description:
-    `Moradia T3 em ${PROJECT.fullAddress}. ${PROJECT.unitsAvailable} unidades disponíveis (${PROJECT.unitsReserved} reservada). ${PROJECT.price}€ · avaliação bancária ${PROJECT.priceAppraisal}€. Chamada com gestor dedicado.`,
+    `Moradia T3 em ${PROJECT.fullAddress}. ${PROJECT.unitsAvailable} unidades disponíveis (${PROJECT.unitsReserved} reservada). ${PROJECT.price}€ · avaliação bancária ${PROJECT.priceAppraisal}€. Receba o mapa de acabamentos.`,
   keywords:
     'moradia t3 aveiro, compra em planta oliveirinha, imóvel alto padrão aveiro, domaine du vingt-cinq, silvermont capital',
   openGraph: {
-    title: `${PROJECT.name} — Moradia T3 | Oliveirinha`,
-    description: `${PROJECT.unitsAvailable} unidades disponíveis · avaliação bancária ${PROJECT.priceAppraisal}€. Agende chamada com gestor dedicado.`,
+    title: `${PROJECT.name} — Moradia T3 em planta`,
+    description: `${PROJECT.unitsAvailable} unidades disponíveis · avaliação bancária ${PROJECT.priceAppraisal}€. Peça o mapa de acabamentos exclusivo.`,
     type: 'website',
     images: [{ url: '/og-image.jpg', width: 1200, height: 630 }],
   },
@@ -40,7 +50,7 @@ export const viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="pt" className={`${cormorant.variable} ${inter.variable}`}>
+    <html lang="pt" className={`${cormorant.variable} ${inter.variable} ${leagueSpartan.variable}`}>
       <body>
         <Suspense fallback={null}>
           <MetaPixel />

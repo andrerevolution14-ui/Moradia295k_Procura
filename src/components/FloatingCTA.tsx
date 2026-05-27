@@ -38,7 +38,7 @@ export default function FloatingCTA() {
                     <span className="scarcity-dot" aria-hidden />
                     {UNITS_LABEL}
                 </span>
-                <span className="floating-cta-sub">Gestor dedicado · chamada rápida</span>
+                <span className="floating-cta-sub">Mapa de Acabamentos · Acesso Imediato</span>
             </div>
             <a href="#formulario" className="btn btn--gold btn--sm floating-cta-btn">
                 {CTA_SHORT}

@@ -89,18 +89,16 @@ export default function HomePage() {
                 {PROJECT.typology} · {PROJECT.areaSqm} m² · {PROJECT.unitsAvailable} disp. · 1 reservada · {PROJECT.deliveryLabel}
               </div>
 
-              <h1 className="hero-title hero-title--compact">
-                Moradia de alto padrão<br />
-                <em>em Oliveirinha.</em>
-                <span className="hero-price">{PROJECT.price}€</span>
-                <span className="hero-appraisal">Avaliação bancária {PROJECT.priceAppraisal}€</span>
+              <h1 className="hero-title hero-title--compact" style={{ lineHeight: '1.15', textAlign: 'center' }}>
+                Moradia Premium Nova<br />
+                <span style={{ color: 'var(--gold)' }}>390.000€</span> <span style={{ opacity: 0.4, margin: '0 6px', fontWeight: 300 }}>|</span> A 10 minutos do centro
               </h1>
 
-              <p className="hero-sub hero-sub--compact">
-                Agende uma chamada com o <strong>{PROJECT.managerTitle}</strong> ({PROJECT.callDuration}) — é o primeiro passo antes da visita e da reserva.
+              <p className="hero-sub hero-sub--compact" style={{ textAlign: 'center' }}>
+                Consulte o <strong>mapa de acabamentos exclusivo</strong> e descubra os materiais premium, jardim privativo, estacionamento coberto e a opção T4.
               </p>
 
-              <div className="hero-cta-group">
+              <div className="hero-cta-group" style={{ justifyContent: 'center', alignItems: 'center' }}>
                 <a href="#formulario" className="btn btn--gold btn--lg" id="hero-cta">
                   {CTA_PRIMARY}
                   <ArrowIcon />
@@ -118,6 +116,31 @@ export default function HomePage() {
             <RevealWrapper delay={1}>
               <ProjectHighlights className="project-highlights--hero" />
             </RevealWrapper>
+          </div>
+        </div>
+      </section>
+
+      {/* ── PARTNERS BANNER ── */}
+      <section className="partners-banner" aria-label="Parceiros Técnicos">
+        <div className="container">
+          <div className="partners-inner">
+            <span className="partners-label">Parceiros Técnicos de Execução:</span>
+            <div className="partners-logos">
+              <div className="partner-item">
+                <span className="partner-text-logo">Grupo Centímetro</span>
+              </div>
+              <span className="partner-sep">&amp;</span>
+              <div className="partner-item partner-item--img">
+                <OptimizedImage
+                  src="/Positive.png"
+                  alt="Positive Project & Co"
+                  width={140}
+                  height={45}
+                  sizes="140px"
+                  style={{ width: 'auto', height: '36px', objectFit: 'contain' }}
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -140,7 +163,7 @@ export default function HomePage() {
           </RevealWrapper>
 
           <GalleryLightbox />
-          <SectionCta note={`Chamada com o gestor dedicado · ${PROJECT.callDuration}`} />
+          <SectionCta note="Acesso imediato · Mapa de acabamentos detalhado" />
         </div>
       </section>
 
@@ -204,7 +227,7 @@ export default function HomePage() {
               </div>
             </div>
           </div>
-          <SectionCta note="O gestor explica localização, preço e avaliação bancária na chamada." />
+          <SectionCta note="Descubra a localização exata, áreas amplas e condições de apoio bancário." />
         </div>
       </section>
 
@@ -216,7 +239,7 @@ export default function HomePage() {
           <RevealWrapper>
             <div className="section-header section-header--center section-header--compact">
               <p className="label">{PROJECT.managerTitle}</p>
-              <h2 className="title title--center">Agende a sua chamada.</h2>
+              <h2 className="title title--center">Receba o mapa hoje.</h2>
               <p className="section-intro section-intro--center section-intro--short">
                 {UNITS_LABEL} · {PROJECT.price}€ · avaliação bancária {PROJECT.priceAppraisal}€ · resposta em 24h
               </p>
@@ -320,7 +343,7 @@ export default function HomePage() {
                 </p>
                 <div className="check-list">
                   <div className="check-item" style={{ color: 'var(--white)' }}>
-                    <CheckSvg /> <span>Chamada com {PROJECT.managerTitle}</span>
+                    <CheckSvg /> <span>Personalização Total (Opção T4)</span>
                   </div>
                   <div className="check-item" style={{ color: 'var(--white)' }}>
                     <CheckSvg /> <span>Apoio bancário à obra</span>
@@ -351,7 +374,7 @@ export default function HomePage() {
 
           <div className="phases-layout">
             {[
-              { step: '01', badge: 'Chamada', title: `Gestor (${PROJECT.callDuration})`, body: `Preço, avaliação bancária (${PROJECT.priceAppraisal}€) e financiamento — com o gestor dedicado.` },
+              { step: '01', badge: 'Informação', title: 'Detalhes Técnicos', body: `Avaliação bancária (${PROJECT.priceAppraisal}€), mapa de acabamentos e opções de financiamento.` },
               { step: '02', badge: 'Reserva', title: 'Reserva', body: 'O gestor conduz visita e reserva. Proteção de sinal se o banco recusar por motivos alheios a si.' },
               { step: '03', badge: 'Entrega', title: PROJECT.deliveryLabel, body: 'Mesmo gestor acompanha personalização e obra até à entrega.' },
             ].map((p, i) => (

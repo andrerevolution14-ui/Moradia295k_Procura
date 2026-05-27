@@ -168,11 +168,11 @@ export default function Calculadora() {
       </div>
 
       <div className="calc-cta-block">
-        <p>Se os números fazem sentido para o seu perfil, o passo seguinte é a chamada de viabilidade.</p>
+        <p>Se os números fazem sentido para o seu perfil, o passo seguinte é consultar os materiais e acabamentos.</p>
         <a href="#formulario" className="btn btn--gold btn--lg">
           {CTA_PRIMARY}
         </a>
-        <span className="calc-cta-note">Depois, o gestor esclarece tudo na chamada · ~10 min</span>
+        <span className="calc-cta-note">Receba o mapa e descubra o nível de excelência desta moradia</span>
       </div>
     </div>
   );
