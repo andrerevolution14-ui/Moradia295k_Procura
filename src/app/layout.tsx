@@ -3,6 +3,7 @@ import { Suspense } from 'react';
 import { Cormorant_Garamond, Inter, League_Spartan } from 'next/font/google';
 import './globals.css';
 import MetaPixel from '@/components/MetaPixel';
+import GoogleTag from '@/components/GoogleTag';
 import { PROJECT } from '@/lib/project';
 
 const cormorant = Cormorant_Garamond({
@@ -42,7 +43,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [{ url: '/og-image.jpg', width: 1200, height: 630 }],
   },
-};
+ };
 
 export const viewport = {
   themeColor: '#0b1120',
@@ -54,6 +55,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <Suspense fallback={null}>
           <MetaPixel />
+          <GoogleTag />
         </Suspense>
         {children}
       </body>
