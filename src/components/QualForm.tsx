@@ -37,6 +37,7 @@ function validate(data: FormData): FormErrors {
 declare global {
   interface Window {
     fbq: (command: string, action: string, params?: Record<string, unknown>, options?: Record<string, unknown>) => void;
+    gtag_report_conversion?: (url?: string) => boolean | void;
   }
 }
 
@@ -95,6 +96,10 @@ export default function QualForm({ variant = 'full' }: { variant?: 'full' | 'com
                     value: leadValue,
                     currency: 'EUR',
                 }, { eventID: eventId });
+            }
+
+            if (typeof window !== 'undefined' && window.gtag_report_conversion) {
+                window.gtag_report_conversion();
             }
 
             await trackCapiLead({

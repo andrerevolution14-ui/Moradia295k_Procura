@@ -33,6 +33,19 @@ export default function GoogleTag() {
                         function gtag(){dataLayer.push(arguments);}
                         gtag('js', new Date());
                         gtag('config', '${GA_TRACKING_ID}');
+
+                        window.gtag_report_conversion = function(url) {
+                            var callback = function () {
+                                if (typeof(url) != 'undefined') {
+                                    window.location = url;
+                                }
+                            };
+                            gtag('event', 'conversion', {
+                                'send_to': '${GA_TRACKING_ID}/T7aMCMK23LUcEOKa9-hC',
+                                'event_callback': callback
+                            });
+                            return false;
+                        };
                     `,
                 }}
             />
