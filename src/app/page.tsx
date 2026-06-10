@@ -4,7 +4,6 @@ import RevealWrapper from '@/components/RevealWrapper';
 import OptimizedImage from '@/components/OptimizedImage';
 import QualForm from '@/components/QualForm';
 import TrustBadges from '@/components/TrustBadges';
-import VisitSteps from '@/components/VisitSteps';
 import FormHighlight from '@/components/FormHighlight';
 import SectionCta from '@/components/SectionCta';
 import ProjectHighlights from '@/components/ProjectHighlights';
@@ -13,8 +12,8 @@ import { IMAGES, CONTENT_IMAGE_SIZES } from '@/lib/images';
 import { CTA_PRIMARY, CTA_SHORT } from '@/lib/cta';
 import { PROJECT, UNITS_LABEL } from '@/lib/project';
 
+
 const FloatingCTA = dynamic(() => import('@/components/FloatingCTA'));
-const VisitFaq = dynamic(() => import('@/components/VisitFaq'));
 const GalleryLightbox = dynamic(() => import('@/components/GalleryLightbox'), {
   loading: () => <div className="gallery-grid gallery-grid--skeleton" aria-hidden />,
 });
@@ -238,12 +237,10 @@ export default function HomePage() {
         <div className="container container--narrow">
           <RevealWrapper>
             <div className="section-header section-header--center section-header--compact">
-              <p className="label">{PROJECT.managerTitle}</p>
-              <h2 className="title title--center">Receba o mapa hoje.</h2>
-              <p className="section-intro section-intro--center section-intro--short">
-                {UNITS_LABEL} · {PROJECT.price}€ · avaliação bancária {PROJECT.priceAppraisal}€ · resposta em 24h
+              <h2 className="title title--center">Fale com o promotor.</h2>
+              <p className="section-intro section-intro--center section-intro--short" style={{ maxWidth: '520px', margin: '12px auto 0' }}>
+                Apenas 3 unidades disponíveis em fase de lançamento com Preço Fixo de 390.000€ e Risco Zero no sinal.
               </p>
-              <ProjectHighlights className="project-highlights--form" />
             </div>
           </RevealWrapper>
 
@@ -253,14 +250,6 @@ export default function HomePage() {
                 <QualForm />
               </div>
             </FormHighlight>
-          </RevealWrapper>
-
-          <RevealWrapper>
-            <VisitSteps />
-          </RevealWrapper>
-
-          <RevealWrapper>
-            <VisitFaq />
           </RevealWrapper>
         </div>
       </section>

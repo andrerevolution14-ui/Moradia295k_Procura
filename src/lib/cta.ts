@@ -3,9 +3,9 @@ import { PROJECT } from '@/lib/project';
 export const CALENDLY_URL = 'https://calendly.com/queirosenterprise/30min';
 
 /** Objectivo da LP: vender a chamada com o gestor — o gestor conduz a venda */
-export const CTA_PRIMARY = 'Receber Mapa de Acabamentos Hoje';
+export const CTA_PRIMARY = 'QUERO RECEBER CHAMADA';
 
-export const CTA_SHORT = 'Receber Mapa Hoje';
+export const CTA_SHORT = 'Receber Chamada';
 
 export const TRUST_POINTS = [
   { icon: '◆', text: 'Mapa Detalhado' },

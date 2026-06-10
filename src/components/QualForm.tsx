@@ -2,8 +2,7 @@
 import { useState, useId } from 'react';
 import { insertLead } from '@/lib/supabase';
 import { trackCapiLead } from '@/app/actions/capi';
-import { CALENDLY_URL, CTA_PRIMARY } from '@/lib/cta';
-import { PROJECT } from '@/lib/project';
+import { CTA_PRIMARY } from '@/lib/cta';
 import TrustBadges from '@/components/TrustBadges';
 
 interface FormData {
@@ -110,9 +109,6 @@ export default function QualForm({ variant = 'full' }: { variant?: 'full' | 'com
             });
 
             setSubmitted(true);
-            window.setTimeout(() => {
-                window.location.href = CALENDLY_URL;
-            }, 1200);
         } catch (err: unknown) {
             console.error('Submission error:', err);
             setSubmitError('Ocorreu um erro ao enviar. Por favor, tente novamente.');
@@ -124,7 +120,7 @@ export default function QualForm({ variant = 'full' }: { variant?: 'full' | 'com
     if (submitted) {
         return (
             <div className={`qual-form${isCompact ? ' qual-form--compact' : ''}`} style={{ minHeight: isCompact ? 'auto' : '300px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <div className="form-success visible" style={{ textAlign: 'center', padding: isCompact ? '24px 12px' : '40px 20px', width: '100%' }}>
+                <div className="form-success visible" style={{ textAlign: 'center', padding: isCompact ? '24px 12px' : '48px 24px', width: '100%' }}>
                     <div className="success-check" style={{
                         width: isCompact ? '64px' : '80px',
                         height: isCompact ? '64px' : '80px',
@@ -133,24 +129,38 @@ export default function QualForm({ variant = 'full' }: { variant?: 'full' | 'com
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        margin: '0 auto 20px',
+                        margin: '0 auto 24px',
                         boxShadow: '0 10px 25px rgba(200, 169, 107, 0.4)',
                     }}>
                         <svg viewBox="0 0 20 20" style={{ width: '36px', height: '36px', color: '#fff' }}>
                             <path fill="currentColor" d="M16.7 5.3a1 1 0 00-1.4 0L8 12.6 4.7 9.3a1 1 0 00-1.4 1.4l4 4a1 1 0 001.4 0l8-8a1 1 0 000-1.4z" />
                         </svg>
                     </div>
-                    <h3 style={{ fontSize: isCompact ? '1.35rem' : '1.85rem', marginBottom: '12px', color: '#fff', fontWeight: '700' }}>
-                        Pedido recebido!
+                    <h3 style={{ fontSize: isCompact ? '1.35rem' : '2rem', marginBottom: '12px', color: '#fff', fontWeight: '700', letterSpacing: '-0.01em' }}>
+                        Inscrição Recebida!
                     </h3>
-                    <p style={{ fontSize: '1rem', color: 'rgba(255,255,255,0.8)', maxWidth: '400px', margin: '0 auto 20px', lineHeight: '1.7' }}>
-                        O mapa de acabamentos será enviado em breve. Se pretender avançar já ou tiver dúvidas, fale connosco:
+                    <p style={{ fontSize: '1.05rem', color: 'rgba(255,255,255,0.75)', maxWidth: '420px', margin: '0 auto 32px', lineHeight: '1.7' }}>
+                        O promotor entrará em contacto consigo nas próximas 24 horas.
                     </p>
-                    <a href={CALENDLY_URL} className="btn btn--gold btn--lg" style={{ marginTop: '8px' }}>
-                        Agendar chamada de acompanhamento
+                    <a
+                        href="tel:+351912050979"
+                        className="btn btn--gold btn--lg"
+                        id="thank-you-call-btn"
+                        style={{
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            gap: '10px',
+                            fontSize: '1.05rem',
+                            padding: '18px 36px',
+                        }}
+                    >
+                        <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: '20px', height: '20px', flexShrink: 0 }} aria-hidden>
+                            <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1.003 1.003 0 011.01-.24c1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                        </svg>
+                        LIGAR DIRETAMENTE AGORA
                     </a>
-                    <p style={{ marginTop: '16px', fontSize: '0.8rem', color: 'rgba(255,255,255,0.45)' }}>
-                        A redirecionar automaticamente...
+                    <p style={{ marginTop: '20px', fontSize: '0.8rem', color: 'rgba(255,255,255,0.4)' }}>
+                        Chamada para rede móvel nacional
                     </p>
                 </div>
             </div>
@@ -203,11 +213,7 @@ export default function QualForm({ variant = 'full' }: { variant?: 'full' | 'com
                 </div>
             </div>
 
-            {!isCompact && (
-                <p className="form-reassurance">
-                  Para enviarmos o mapa de acabamentos para o seu WhatsApp.
-                </p>
-            )}
+
 
             <div className="privacy-row">
                 <svg viewBox="0 0 20 20" aria-hidden><path d="M10 2a6 6 0 00-6 6v1H3a1 1 0 00-1 1v7a1 1 0 001 1h14a1 1 0 001-1v-7a1 1 0 00-1-1h-1V8a6 6 0 00-6-6zm-4 7V8a4 4 0 118 0v1H6z" /></svg>
